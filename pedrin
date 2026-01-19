@@ -1,0 +1,3081 @@
+
+local _ScreenGui = Instance.new('ScreenGui')
+local _Frame = Instance.new('Frame')
+local _UICorner = Instance.new('UICorner')
+local _Frame2 = Instance.new('Frame')
+local _UICorner2 = Instance.new('UICorner')
+local _UIListLayout = Instance.new('UIListLayout')
+local _TextButton = Instance.new('TextButton')
+local _UICorner3 = Instance.new('UICorner')
+local _TextButton2 = Instance.new('TextButton')
+local _UICorner4 = Instance.new('UICorner')
+local _TextButton3 = Instance.new('TextButton')
+local _UICorner5 = Instance.new('UICorner')
+local _TextButton4 = Instance.new('TextButton')
+local _UICorner6 = Instance.new('UICorner')
+local _TextButton5 = Instance.new('TextButton')
+local _UICorner7 = Instance.new('UICorner')
+local _TextButton6 = Instance.new('TextButton')
+local _UICorner8 = Instance.new('UICorner')
+local _TextButton7 = Instance.new('TextButton')
+local _UICorner9 = Instance.new('UICorner')
+local _Frame3 = Instance.new('Frame')
+local _Frame4 = Instance.new('Frame')
+local _Frame5 = Instance.new('Frame')
+local _UICorner10 = Instance.new('UICorner')
+local _TextLabel = Instance.new('TextLabel')
+local _TextLabel2 = Instance.new('TextLabel')
+local _TextButton8 = Instance.new('TextButton')
+local _UICorner11 = Instance.new('UICorner')
+local _TextLabel3 = Instance.new('TextLabel')
+local _Frame6 = Instance.new('Frame')
+local _UICorner12 = Instance.new('UICorner')
+local _TextButton9 = Instance.new('TextButton')
+local _UICorner13 = Instance.new('UICorner')
+local _TextButton10 = Instance.new('TextButton')
+local _UICorner14 = Instance.new('UICorner')
+local _TextButton11 = Instance.new('TextButton')
+local _UICorner15 = Instance.new('UICorner')
+local _TextButton12 = Instance.new('TextButton')
+local _UICorner16 = Instance.new('UICorner')
+local _TextLabel4 = Instance.new('TextLabel')
+local _TextButton13 = Instance.new('TextButton')
+local _UICorner17 = Instance.new('UICorner')
+local _TextLabel5 = Instance.new('TextLabel')
+local _TextLabel6 = Instance.new('TextLabel')
+local _Frame7 = Instance.new('Frame')
+local _UICorner18 = Instance.new('UICorner')
+local _TextButton14 = Instance.new('TextButton')
+local _UICorner19 = Instance.new('UICorner')
+local _TextLabel7 = Instance.new('TextLabel')
+local _TextButton15 = Instance.new('TextButton')
+local _UICorner20 = Instance.new('UICorner')
+local _TextButton16 = Instance.new('TextButton')
+local _UICorner21 = Instance.new('UICorner')
+local _TextButton17 = Instance.new('TextButton')
+local _UICorner22 = Instance.new('UICorner')
+local _TextButton18 = Instance.new('TextButton')
+local _UICorner23 = Instance.new('UICorner')
+local _TextButton19 = Instance.new('TextButton')
+local _UICorner24 = Instance.new('UICorner')
+local _TextButton20 = Instance.new('TextButton')
+local _UICorner25 = Instance.new('UICorner')
+local _TextButton21 = Instance.new('TextButton')
+local _UICorner26 = Instance.new('UICorner')
+local _TextButton22 = Instance.new('TextButton')
+local _UICorner27 = Instance.new('UICorner')
+local _TextButton23 = Instance.new('TextButton')
+local _UICorner28 = Instance.new('UICorner')
+local _TextButton24 = Instance.new('TextButton')
+local _UICorner29 = Instance.new('UICorner')
+local _Frame8 = Instance.new('Frame')
+local _UICorner30 = Instance.new('UICorner')
+local _TextLabel8 = Instance.new('TextLabel')
+local _TextLabel9 = Instance.new('TextLabel')
+local _TextLabel10 = Instance.new('TextLabel')
+local _TextLabel11 = Instance.new('TextLabel')
+local _TextLabel12 = Instance.new('TextLabel')
+local _TextLabel13 = Instance.new('TextLabel')
+local _TextLabel14 = Instance.new('TextLabel')
+local _TextLabel15 = Instance.new('TextLabel')
+local _TextLabel16 = Instance.new('TextLabel')
+local _TextLabel17 = Instance.new('TextLabel')
+local _Frame9 = Instance.new('Frame')
+local _UICorner31 = Instance.new('UICorner')
+local _ScrollingFrame = Instance.new('ScrollingFrame')
+local _UIListLayout2 = Instance.new('UIListLayout')
+local _ScrollingFrame2 = Instance.new('ScrollingFrame')
+local _UIListLayout3 = Instance.new('UIListLayout')
+local _ScrollingFrame3 = Instance.new('ScrollingFrame')
+local _UIListLayout4 = Instance.new('UIListLayout')
+local _ScrollingFrame4 = Instance.new('ScrollingFrame')
+local _UIListLayout5 = Instance.new('UIListLayout')
+local _TextLabel18 = Instance.new('TextLabel')
+local _TextLabel19 = Instance.new('TextLabel')
+local _TextLabel20 = Instance.new('TextLabel')
+local _TextLabel21 = Instance.new('TextLabel')
+local _Frame10 = Instance.new('Frame')
+local _UICorner32 = Instance.new('UICorner')
+local _TextLabel22 = Instance.new('TextLabel')
+local _TextLabel23 = Instance.new('TextLabel')
+local _TextLabel24 = Instance.new('TextLabel')
+local _Frame11 = Instance.new('Frame')
+local _UICorner33 = Instance.new('UICorner')
+local _TextButton25 = Instance.new('TextButton')
+local _UICorner34 = Instance.new('UICorner')
+local _TextLabel25 = Instance.new('TextLabel')
+local _TextBox = Instance.new('TextBox')
+local _UICorner35 = Instance.new('UICorner')
+local _TextLabel26 = Instance.new('TextLabel')
+local _Frame12 = Instance.new('Frame')
+local _UICorner36 = Instance.new('UICorner')
+local _TextButton26 = Instance.new('TextButton')
+local _UICorner37 = Instance.new('UICorner')
+local _TextButton27 = Instance.new('TextButton')
+local _UICorner38 = Instance.new('UICorner')
+local _TextButton28 = Instance.new('TextButton')
+local _UICorner39 = Instance.new('UICorner')
+local _TextButton29 = Instance.new('TextButton')
+local _UICorner40 = Instance.new('UICorner')
+local _TextLabel27 = Instance.new('TextLabel')
+local _TextLabel28 = Instance.new('TextLabel')
+local _TextButton30 = Instance.new('TextButton')
+local _UICorner41 = Instance.new('UICorner')
+local _TextBox2 = Instance.new('TextBox')
+local _UICorner42 = Instance.new('UICorner')
+local _TextLabel29 = Instance.new('TextLabel')
+local _TextLabel30 = Instance.new('TextLabel')
+
+_ScreenGui.Name = 'ZazaHubPaid'
+_ScreenGui.Parent = game.CoreGui
+_ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+_Frame.Name = 'Main'
+_Frame.Parent = _ScreenGui
+_Frame.Active = true
+_Frame.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+_Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame.BorderSizePixel = 0
+_Frame.Position = UDim2.new(0.28227061, 0, 0.403963417, 0)
+_Frame.Size = UDim2.new(0, 465, 0, 280)
+_UICorner.Parent = _Frame
+_Frame2.Name = 'Buttons'
+_Frame2.Parent = _Frame
+_Frame2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame2.BackgroundTransparency = 0.8
+_Frame2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame2.BorderSizePixel = 0
+_Frame2.Position = UDim2.new(0, 0, 0.14642857, 0)
+_Frame2.Size = UDim2.new(0, 126, 0, 239)
+_UICorner2.Parent = _Frame2
+_UIListLayout.Parent = _Frame2
+_UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+_UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+_UIListLayout.Padding = UDim.new(0, 8)
+_TextButton.Name = 'Main1'
+_TextButton.Parent = _Frame2
+_TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton.BackgroundTransparency = 0.5
+_TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton.BorderSizePixel = 0
+_TextButton.Position = UDim2.new(0.039682541, 0, 0, 0)
+_TextButton.Size = UDim2.new(0, 116, 0, 26)
+_TextButton.Font = Enum.Font.FredokaOne
+_TextButton.Text = 'Normal Farm'
+_TextButton.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton.TextScaled = true
+_TextButton.TextSize = 14
+_TextButton.TextStrokeTransparency = 0
+_TextButton.TextWrapped = true
+_UICorner3.Parent = _TextButton
+_TextButton2.Name = 'Main2'
+_TextButton2.Parent = _Frame2
+_TextButton2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton2.BackgroundTransparency = 0.5
+_TextButton2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton2.BorderSizePixel = 0
+_TextButton2.Position = UDim2.new(0.039682541, 0, 0, 0)
+_TextButton2.Size = UDim2.new(0, 116, 0, 26)
+_TextButton2.Font = Enum.Font.FredokaOne
+_TextButton2.Text = 'Ping Farm'
+_TextButton2.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton2.TextScaled = true
+_TextButton2.TextSize = 14
+_TextButton2.TextStrokeTransparency = 0
+_TextButton2.TextWrapped = true
+_UICorner4.Parent = _TextButton2
+_TextButton3.Name = 'Dupe'
+_TextButton3.Parent = _Frame2
+_TextButton3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton3.BackgroundTransparency = 0.5
+_TextButton3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton3.BorderSizePixel = 0
+_TextButton3.Position = UDim2.new(0.039682541, 0, 0, 0)
+_TextButton3.Size = UDim2.new(0, 116, 0, 26)
+_TextButton3.Font = Enum.Font.FredokaOne
+_TextButton3.Text = 'Dupe'
+_TextButton3.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton3.TextScaled = true
+_TextButton3.TextSize = 14
+_TextButton3.TextStrokeTransparency = 0
+_TextButton3.TextWrapped = true
+_UICorner5.Parent = _TextButton3
+_TextButton4.Name = 'Misc'
+_TextButton4.Parent = _Frame2
+_TextButton4.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton4.BackgroundTransparency = 0.5
+_TextButton4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton4.BorderSizePixel = 0
+_TextButton4.Position = UDim2.new(0.039682541, 0, 0, 0)
+_TextButton4.Size = UDim2.new(0, 116, 0, 26)
+_TextButton4.Font = Enum.Font.FredokaOne
+_TextButton4.Text = 'Misc'
+_TextButton4.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton4.TextScaled = true
+_TextButton4.TextSize = 14
+_TextButton4.TextStrokeTransparency = 0
+_TextButton4.TextWrapped = true
+_UICorner6.Parent = _TextButton4
+_TextButton5.Name = 'Info'
+_TextButton5.Parent = _Frame2
+_TextButton5.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton5.BackgroundTransparency = 0.5
+_TextButton5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton5.BorderSizePixel = 0
+_TextButton5.Position = UDim2.new(0.039682541, 0, 0, 0)
+_TextButton5.Size = UDim2.new(0, 116, 0, 26)
+_TextButton5.Font = Enum.Font.FredokaOne
+_TextButton5.Text = 'Info'
+_TextButton5.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton5.TextScaled = true
+_TextButton5.TextSize = 14
+_TextButton5.TextStrokeTransparency = 0
+_TextButton5.TextWrapped = true
+_UICorner7.Parent = _TextButton5
+_TextButton6.Name = 'Quest'
+_TextButton6.Parent = _Frame2
+_TextButton6.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton6.BackgroundTransparency = 0.5
+_TextButton6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton6.BorderSizePixel = 0
+_TextButton6.Position = UDim2.new(0.039682541, 0, 0, 0)
+_TextButton6.Size = UDim2.new(0, 116, 0, 26)
+_TextButton6.Font = Enum.Font.FredokaOne
+_TextButton6.Text = 'Quest (Coming Soon)'
+_TextButton6.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton6.TextScaled = true
+_TextButton6.TextSize = 14
+_TextButton6.TextStrokeTransparency = 0
+_TextButton6.TextWrapped = true
+_UICorner8.Parent = _TextButton6
+_TextButton7.Name = 'Player'
+_TextButton7.Parent = _Frame2
+_TextButton7.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton7.BackgroundTransparency = 0.5
+_TextButton7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton7.BorderSizePixel = 0
+_TextButton7.Position = UDim2.new(0.039682541, 0, 0, 0)
+_TextButton7.Size = UDim2.new(0, 116, 0, 26)
+_TextButton7.Font = Enum.Font.FredokaOne
+_TextButton7.Text = 'Player'
+_TextButton7.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton7.TextScaled = true
+_TextButton7.TextSize = 14
+_TextButton7.TextStrokeTransparency = 0
+_TextButton7.TextWrapped = true
+_UICorner9.Parent = _TextButton7
+_Frame3.Name = 'Black'
+_Frame3.Parent = _Frame
+_Frame3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame3.BorderSizePixel = 0
+_Frame3.Position = UDim2.new(0.270967752, 0, 0.14642857, 0)
+_Frame3.Size = UDim2.new(0, 12, 0, 239)
+_Frame4.Name = 'Black'
+_Frame4.Parent = _Frame
+_Frame4.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame4.BorderSizePixel = 0
+_Frame4.Position = UDim2.new(0.270967752, 0, 0.14642857, 0)
+_Frame4.Size = UDim2.new(0, 339, 0, 17)
+_Frame5.Name = 'Top'
+_Frame5.Parent = _Frame
+_Frame5.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame5.BackgroundTransparency = 0.8
+_Frame5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame5.BorderSizePixel = 0
+_Frame5.Position = UDim2.new(-0.00160030241, 0, -0.00317949569, 0)
+_Frame5.Size = UDim2.new(0, 465, 0, 26)
+_UICorner10.Parent = _Frame5
+_TextLabel.Name = 'Title'
+_TextLabel.Parent = _Frame5
+_TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel.BackgroundTransparency = 8
+_TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel.BorderSizePixel = 0
+_TextLabel.Size = UDim2.new(0, 223, 0, 26)
+_TextLabel.Font = Enum.Font.FredokaOne
+_TextLabel.Text = 'Zaza Hub | Paid Version!'
+_TextLabel.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel.TextScaled = true
+_TextLabel.TextSize = 14
+_TextLabel.TextStrokeTransparency = 0
+_TextLabel.TextWrapped = true
+_TextLabel2.Name = 'Ping'
+_TextLabel2.Parent = _Frame5
+_TextLabel2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel2.BackgroundTransparency = 8
+_TextLabel2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel2.BorderSizePixel = 0
+_TextLabel2.Position = UDim2.new(0.498687953, 0, -0.0304917563, 0)
+_TextLabel2.Size = UDim2.new(0, 134, 0, 26)
+_TextLabel2.Font = Enum.Font.FredokaOne
+_TextLabel2.Text = 'Your Ping...'
+_TextLabel2.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel2.TextScaled = true
+_TextLabel2.TextSize = 14
+_TextLabel2.TextStrokeTransparency = 0
+_TextLabel2.TextWrapped = true
+_TextButton8.Name = 'Main'
+_TextButton8.Parent = _Frame5
+_TextButton8.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton8.BackgroundTransparency = 0.5
+_TextButton8.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton8.BorderSizePixel = 0
+_TextButton8.Position = UDim2.new(0.820327699, 0, 0.188091576, 0)
+_TextButton8.Size = UDim2.new(0, 84, 0, 15)
+_TextButton8.Font = Enum.Font.FredokaOne
+_TextButton8.Text = 'Destroy'
+_TextButton8.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton8.TextScaled = true
+_TextButton8.TextSize = 14
+_TextButton8.TextStrokeTransparency = 0
+_TextButton8.TextWrapped = true
+_UICorner11.Parent = _TextButton8
+_TextLabel3.Name = 'version'
+_TextLabel3.Parent = _Frame5
+_TextLabel3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel3.BackgroundTransparency = 8
+_TextLabel3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel3.BorderSizePixel = 0
+_TextLabel3.Position = UDim2.new(0.786859989, 0, 1.00796974, 0)
+_TextLabel3.Size = UDim2.new(0, 98, 0, 15)
+_TextLabel3.Font = Enum.Font.FredokaOne
+_TextLabel3.Text = 'Version 1.3'
+_TextLabel3.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel3.TextScaled = true
+_TextLabel3.TextSize = 14
+_TextLabel3.TextStrokeTransparency = 0
+_TextLabel3.TextWrapped = true
+_Frame6.Name = 'MainFrame'
+_Frame6.Parent = _Frame
+_Frame6.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame6.BackgroundTransparency = 0.8
+_Frame6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame6.BorderSizePixel = 0
+_Frame6.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
+_Frame6.Size = UDim2.new(0, 327, 0, 222)
+_Frame6.Visible = false
+_UICorner12.Parent = _Frame6
+_TextButton9.Name = 'farm'
+_TextButton9.Parent = _Frame6
+_TextButton9.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton9.BackgroundTransparency = 0.5
+_TextButton9.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton9.BorderSizePixel = 0
+_TextButton9.Position = UDim2.new(0.0335663483, 0, 0.0405405387, 0)
+_TextButton9.Size = UDim2.new(0, 148, 0, 27)
+_TextButton9.Font = Enum.Font.FredokaOne
+_TextButton9.Text = 'Farm'
+_TextButton9.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton9.TextScaled = true
+_TextButton9.TextSize = 14
+_TextButton9.TextStrokeTransparency = 0
+_TextButton9.TextWrapped = true
+_UICorner13.Parent = _TextButton9
+_TextButton10.Name = 'unfarm'
+_TextButton10.Parent = _Frame6
+_TextButton10.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton10.BackgroundTransparency = 0.5
+_TextButton10.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton10.BorderSizePixel = 0
+_TextButton10.Position = UDim2.new(0.0335663483, 0, 0.346846849, 0)
+_TextButton10.Size = UDim2.new(0, 148, 0, 27)
+_TextButton10.Font = Enum.Font.FredokaOne
+_TextButton10.Text = 'Stop Farm'
+_TextButton10.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton10.TextScaled = true
+_TextButton10.TextSize = 14
+_TextButton10.TextStrokeTransparency = 0
+_TextButton10.TextWrapped = true
+_UICorner14.Parent = _TextButton10
+_TextButton11.Name = 'equip'
+_TextButton11.Parent = _Frame6
+_TextButton11.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton11.BackgroundTransparency = 0.5
+_TextButton11.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton11.BorderSizePixel = 0
+_TextButton11.Position = UDim2.new(0.516746759, 0, 0.0405405387, 0)
+_TextButton11.Size = UDim2.new(0, 148, 0, 27)
+_TextButton11.Font = Enum.Font.FredokaOne
+_TextButton11.Text = 'Equip'
+_TextButton11.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton11.TextScaled = true
+_TextButton11.TextSize = 14
+_TextButton11.TextStrokeTransparency = 0
+_TextButton11.TextWrapped = true
+_UICorner15.Parent = _TextButton11
+_TextButton12.Name = 'unequip'
+_TextButton12.Parent = _Frame6
+_TextButton12.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton12.BackgroundTransparency = 0.5
+_TextButton12.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton12.BorderSizePixel = 0
+_TextButton12.Position = UDim2.new(0.516746759, 0, 0.346846849, 0)
+_TextButton12.Size = UDim2.new(0, 148, 0, 27)
+_TextButton12.Font = Enum.Font.FredokaOne
+_TextButton12.Text = 'Stop Equip'
+_TextButton12.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton12.TextScaled = true
+_TextButton12.TextSize = 14
+_TextButton12.TextStrokeTransparency = 0
+_TextButton12.TextWrapped = true
+_UICorner16.Parent = _TextButton12
+_TextLabel4.Name = 'text'
+_TextLabel4.Parent = _Frame6
+_TextLabel4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel4.BackgroundTransparency = 8
+_TextLabel4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel4.BorderSizePixel = 0
+_TextLabel4.Position = UDim2.new(0.516746759, 0, 0.162162155, 0)
+_TextLabel4.Size = UDim2.new(0, 147, 0, 41)
+_TextLabel4.Font = Enum.Font.FredokaOne
+_TextLabel4.Text = 'Wait Until You Get A Equip Notification After You Click This Button!'
+_TextLabel4.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel4.TextScaled = true
+_TextLabel4.TextSize = 14
+_TextLabel4.TextStrokeTransparency = 0
+_TextLabel4.TextWrapped = true
+_TextButton13.Name = 'reduce'
+_TextButton13.Parent = _Frame6
+_TextButton13.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton13.BackgroundTransparency = 0.5
+_TextButton13.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton13.BorderSizePixel = 0
+_TextButton13.Position = UDim2.new(0.272098452, 0, 0.653153181, 0)
+_TextButton13.Size = UDim2.new(0, 148, 0, 27)
+_TextButton13.Font = Enum.Font.FredokaOne
+_TextButton13.Text = 'Reduce Lag/Anti Afk'
+_TextButton13.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton13.TextScaled = true
+_TextButton13.TextSize = 14
+_TextButton13.TextStrokeTransparency = 0
+_TextButton13.TextWrapped = true
+_UICorner17.Parent = _TextButton13
+_TextLabel5.Name = 'Wait'
+_TextLabel5.Parent = _Frame6
+_TextLabel5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel5.BackgroundTransparency = 1
+_TextLabel5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel5.BorderSizePixel = 0
+_TextLabel5.Position = UDim2.new(0.036624454, 0, 0.162162155, 0)
+_TextLabel5.Size = UDim2.new(0, 147, 0, 30)
+_TextLabel5.Font = Enum.Font.FredokaOne
+_TextLabel5.Text = '0'
+_TextLabel5.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel5.TextScaled = true
+_TextLabel5.TextSize = 14
+_TextLabel5.TextStrokeTransparency = 0
+_TextLabel5.TextTransparency = 1
+_TextLabel5.TextWrapped = true
+_TextLabel6.Name = 'text'
+_TextLabel6.Parent = _Frame6
+_TextLabel6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel6.BackgroundTransparency = 8
+_TextLabel6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel6.BorderSizePixel = 0
+_TextLabel6.Position = UDim2.new(-0.0341126807, 0, -0.0720720738, 0)
+_TextLabel6.Size = UDim2.new(0, 339, 0, 15)
+_TextLabel6.Font = Enum.Font.FredokaOne
+_TextLabel6.Text = 'Normal Farm Makes You Last A little less But Gains More Strength'
+_TextLabel6.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel6.TextScaled = true
+_TextLabel6.TextSize = 14
+_TextLabel6.TextStrokeTransparency = 0
+_TextLabel6.TextWrapped = true
+_Frame7.Name = 'MiscFrame'
+_Frame7.Parent = _Frame
+_Frame7.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame7.BackgroundTransparency = 0.8
+_Frame7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame7.BorderSizePixel = 0
+_Frame7.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
+_Frame7.Size = UDim2.new(0, 327, 0, 222)
+_Frame7.Visible = false
+_UICorner18.Parent = _Frame7
+_TextButton14.Name = 'daynight'
+_TextButton14.Parent = _Frame7
+_TextButton14.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton14.BackgroundTransparency = 0.5
+_TextButton14.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton14.BorderSizePixel = 0
+_TextButton14.Position = UDim2.new(0.0243920367, 0, 0.0405405387, 0)
+_TextButton14.Size = UDim2.new(0, 148, 0, 27)
+_TextButton14.Font = Enum.Font.FredokaOne
+_TextButton14.Text = 'Day/Night'
+_TextButton14.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton14.TextScaled = true
+_TextButton14.TextSize = 14
+_TextButton14.TextStrokeTransparency = 0
+_TextButton14.TextWrapped = true
+_UICorner19.Parent = _TextButton14
+_TextLabel7.Name = 'Text'
+_TextLabel7.Parent = _Frame7
+_TextLabel7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel7.BackgroundTransparency = 8
+_TextLabel7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel7.BorderSizePixel = 0
+_TextLabel7.Position = UDim2.new(0.140672788, 0, 0.882882893, 0)
+_TextLabel7.Size = UDim2.new(0, 223, 0, 26)
+_TextLabel7.Font = Enum.Font.FredokaOne
+_TextLabel7.Text = 'Other Useful Scripts..'
+_TextLabel7.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel7.TextScaled = true
+_TextLabel7.TextSize = 14
+_TextLabel7.TextStrokeTransparency = 0
+_TextLabel7.TextWrapped = true
+_TextButton15.Name = 'clicktp'
+_TextButton15.Parent = _Frame7
+_TextButton15.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton15.BackgroundTransparency = 0.5
+_TextButton15.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton15.BorderSizePixel = 0
+_TextButton15.Position = UDim2.new(0.0243920367, 0, 0.193693697, 0)
+_TextButton15.Size = UDim2.new(0, 148, 0, 27)
+_TextButton15.Font = Enum.Font.FredokaOne
+_TextButton15.Text = 'Click Teleport'
+_TextButton15.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton15.TextScaled = true
+_TextButton15.TextSize = 14
+_TextButton15.TextStrokeTransparency = 0
+_TextButton15.TextWrapped = true
+_UICorner20.Parent = _TextButton15
+_TextButton16.Name = 'fling'
+_TextButton16.Parent = _Frame7
+_TextButton16.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton16.BackgroundTransparency = 0.5
+_TextButton16.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton16.BorderSizePixel = 0
+_TextButton16.Position = UDim2.new(0.0243920367, 0, 0.346846849, 0)
+_TextButton16.Size = UDim2.new(0, 148, 0, 27)
+_TextButton16.Font = Enum.Font.FredokaOne
+_TextButton16.Text = 'Fling'
+_TextButton16.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton16.TextScaled = true
+_TextButton16.TextSize = 14
+_TextButton16.TextStrokeTransparency = 0
+_TextButton16.TextWrapped = true
+_UICorner21.Parent = _TextButton16
+_TextButton17.Name = 'spec'
+_TextButton17.Parent = _Frame7
+_TextButton17.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton17.BackgroundTransparency = 0.5
+_TextButton17.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton17.BorderSizePixel = 0
+_TextButton17.Position = UDim2.new(0.0243920367, 0, 0.5, 0)
+_TextButton17.Size = UDim2.new(0, 148, 0, 27)
+_TextButton17.Font = Enum.Font.FredokaOne
+_TextButton17.Text = 'Spectate Players'
+_TextButton17.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton17.TextScaled = true
+_TextButton17.TextSize = 14
+_TextButton17.TextStrokeTransparency = 0
+_TextButton17.TextWrapped = true
+_UICorner22.Parent = _TextButton17
+_TextButton18.Name = 'hit'
+_TextButton18.Parent = _Frame7
+_TextButton18.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton18.BackgroundTransparency = 0.5
+_TextButton18.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton18.BorderSizePixel = 0
+_TextButton18.Position = UDim2.new(0.0243920367, 0, 0.653153181, 0)
+_TextButton18.Size = UDim2.new(0, 148, 0, 27)
+_TextButton18.Font = Enum.Font.FredokaOne
+_TextButton18.Text = 'Anti Hit'
+_TextButton18.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton18.TextScaled = true
+_TextButton18.TextSize = 14
+_TextButton18.TextStrokeTransparency = 0
+_TextButton18.TextWrapped = true
+_UICorner23.Parent = _TextButton18
+_TextButton19.Name = 'rumble'
+_TextButton19.Parent = _Frame7
+_TextButton19.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton19.BackgroundTransparency = 0.5
+_TextButton19.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton19.BorderSizePixel = 0
+_TextButton19.Position = UDim2.new(0.516746759, 0, 0.0405405387, 0)
+_TextButton19.Size = UDim2.new(0, 148, 0, 27)
+_TextButton19.Font = Enum.Font.FredokaOne
+_TextButton19.Text = 'Tp To Rumble'
+_TextButton19.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton19.TextScaled = true
+_TextButton19.TextSize = 14
+_TextButton19.TextStrokeTransparency = 0
+_TextButton19.TextWrapped = true
+_UICorner24.Parent = _TextButton19
+_TextButton20.Name = 'pool'
+_TextButton20.Parent = _Frame7
+_TextButton20.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton20.BackgroundTransparency = 0.5
+_TextButton20.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton20.BorderSizePixel = 0
+_TextButton20.Position = UDim2.new(0.516746759, 0, 0.193693697, 0)
+_TextButton20.Size = UDim2.new(0, 148, 0, 27)
+_TextButton20.Font = Enum.Font.FredokaOne
+_TextButton20.Text = 'Tp To Pool'
+_TextButton20.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton20.TextScaled = true
+_TextButton20.TextSize = 14
+_TextButton20.TextStrokeTransparency = 0
+_TextButton20.TextWrapped = true
+_UICorner25.Parent = _TextButton20
+_TextButton21.Name = 'sky'
+_TextButton21.Parent = _Frame7
+_TextButton21.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton21.BackgroundTransparency = 0.5
+_TextButton21.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton21.BorderSizePixel = 0
+_TextButton21.Position = UDim2.new(0.516746759, 0, 0.346846849, 0)
+_TextButton21.Size = UDim2.new(0, 148, 0, 27)
+_TextButton21.Font = Enum.Font.FredokaOne
+_TextButton21.Text = 'Tp To Sky'
+_TextButton21.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton21.TextScaled = true
+_TextButton21.TextSize = 14
+_TextButton21.TextStrokeTransparency = 0
+_TextButton21.TextWrapped = true
+_UICorner26.Parent = _TextButton21
+_TextButton22.Name = 'globe'
+_TextButton22.Parent = _Frame7
+_TextButton22.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton22.BackgroundTransparency = 0.5
+_TextButton22.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton22.BorderSizePixel = 0
+_TextButton22.Position = UDim2.new(0.516746759, 0, 0.5, 0)
+_TextButton22.Size = UDim2.new(0, 148, 0, 27)
+_TextButton22.Font = Enum.Font.FredokaOne
+_TextButton22.Text = 'Tp To Globe'
+_TextButton22.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton22.TextScaled = true
+_TextButton22.TextSize = 14
+_TextButton22.TextStrokeTransparency = 0
+_TextButton22.TextWrapped = true
+_UICorner27.Parent = _TextButton22
+_TextButton23.Name = 'hid'
+_TextButton23.Parent = _Frame7
+_TextButton23.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton23.BackgroundTransparency = 0.5
+_TextButton23.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton23.BorderSizePixel = 0
+_TextButton23.Position = UDim2.new(0.516746759, 0, 0.653153181, 0)
+_TextButton23.Size = UDim2.new(0, 148, 0, 27)
+_TextButton23.Font = Enum.Font.FredokaOne
+_TextButton23.Text = 'Hide Chat and More'
+_TextButton23.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton23.TextScaled = true
+_TextButton23.TextSize = 14
+_TextButton23.TextStrokeTransparency = 0
+_TextButton23.TextWrapped = true
+_UICorner28.Parent = _TextButton23
+_TextButton24.Name = 'hid2'
+_TextButton24.Parent = _Frame7
+_TextButton24.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton24.BackgroundTransparency = 0.5
+_TextButton24.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton24.BorderSizePixel = 0
+_TextButton24.Position = UDim2.new(0.516746759, 0, 0.653153181, 0)
+_TextButton24.Size = UDim2.new(0, 148, 0, 27)
+_TextButton24.Visible = false
+_TextButton24.Font = Enum.Font.FredokaOne
+_TextButton24.Text = 'UnHide Chat and More'
+_TextButton24.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton24.TextScaled = true
+_TextButton24.TextSize = 14
+_TextButton24.TextStrokeTransparency = 0
+_TextButton24.TextWrapped = true
+_UICorner29.Parent = _TextButton24
+_Frame8.Name = 'InfoFrame'
+_Frame8.Parent = _Frame
+_Frame8.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame8.BackgroundTransparency = 0.8
+_Frame8.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame8.BorderSizePixel = 0
+_Frame8.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
+_Frame8.Size = UDim2.new(0, 327, 0, 222)
+_Frame8.Visible = false
+_UICorner30.Parent = _Frame8
+_TextLabel8.Name = 'Time'
+_TextLabel8.Parent = _Frame8
+_TextLabel8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel8.BackgroundTransparency = 8
+_TextLabel8.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel8.BorderSizePixel = 0
+_TextLabel8.Position = UDim2.new(0.507645249, 0, 0.346846849, 0)
+_TextLabel8.Size = UDim2.new(0, 160, 0, 26)
+_TextLabel8.Font = Enum.Font.FredokaOne
+_TextLabel8.Text = 'Time Farming: 0d 0h 0m 0'
+_TextLabel8.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel8.TextScaled = true
+_TextLabel8.TextSize = 14
+_TextLabel8.TextStrokeTransparency = 0
+_TextLabel8.TextWrapped = true
+_TextLabel9.Name = 'SPS'
+_TextLabel9.Parent = _Frame8
+_TextLabel9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel9.BackgroundTransparency = 8
+_TextLabel9.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel9.BorderSizePixel = 0
+_TextLabel9.Position = UDim2.new(0.0214067269, 0, 0.0405405387, 0)
+_TextLabel9.Size = UDim2.new(0, 160, 0, 26)
+_TextLabel9.Font = Enum.Font.FredokaOne
+_TextLabel9.Text = 'SPS: 0.0'
+_TextLabel9.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel9.TextScaled = true
+_TextLabel9.TextSize = 14
+_TextLabel9.TextStrokeTransparency = 0
+_TextLabel9.TextWrapped = true
+_TextLabel10.Name = 'SPM'
+_TextLabel10.Parent = _Frame8
+_TextLabel10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel10.BackgroundTransparency = 8
+_TextLabel10.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel10.BorderSizePixel = 0
+_TextLabel10.Position = UDim2.new(0.0214067269, 0, 0.193693697, 0)
+_TextLabel10.Size = UDim2.new(0, 160, 0, 26)
+_TextLabel10.Font = Enum.Font.FredokaOne
+_TextLabel10.Text = 'SPM: 0.0'
+_TextLabel10.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel10.TextScaled = true
+_TextLabel10.TextSize = 14
+_TextLabel10.TextStrokeTransparency = 0
+_TextLabel10.TextWrapped = true
+_TextLabel11.Name = 'SPTM'
+_TextLabel11.Parent = _Frame8
+_TextLabel11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel11.BackgroundTransparency = 8
+_TextLabel11.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel11.BorderSizePixel = 0
+_TextLabel11.Position = UDim2.new(0.0214067269, 0, 0.346846849, 0)
+_TextLabel11.Size = UDim2.new(0, 160, 0, 26)
+_TextLabel11.Font = Enum.Font.FredokaOne
+_TextLabel11.Text = 'SPTM: 0.0'
+_TextLabel11.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel11.TextScaled = true
+_TextLabel11.TextSize = 14
+_TextLabel11.TextStrokeTransparency = 0
+_TextLabel11.TextWrapped = true
+_TextLabel12.Name = 'SPH'
+_TextLabel12.Parent = _Frame8
+_TextLabel12.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel12.BackgroundTransparency = 8
+_TextLabel12.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel12.BorderSizePixel = 0
+_TextLabel12.Position = UDim2.new(0.0214067269, 0, 0.5, 0)
+_TextLabel12.Size = UDim2.new(0, 160, 0, 26)
+_TextLabel12.Font = Enum.Font.FredokaOne
+_TextLabel12.Text = 'SPH: 0.0'
+_TextLabel12.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel12.TextScaled = true
+_TextLabel12.TextSize = 14
+_TextLabel12.TextStrokeTransparency = 0
+_TextLabel12.TextWrapped = true
+_TextLabel13.Name = 'SPD'
+_TextLabel13.Parent = _Frame8
+_TextLabel13.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel13.BackgroundTransparency = 8
+_TextLabel13.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel13.BorderSizePixel = 0
+_TextLabel13.Position = UDim2.new(0.52905196, 0, 0.5, 0)
+_TextLabel13.Size = UDim2.new(0, 147, 0, 26)
+_TextLabel13.Font = Enum.Font.FredokaOne
+_TextLabel13.Text = 'SPD: 0.0'
+_TextLabel13.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel13.TextScaled = true
+_TextLabel13.TextSize = 14
+_TextLabel13.TextStrokeTransparency = 0
+_TextLabel13.TextWrapped = true
+_TextLabel14.Name = 'Size'
+_TextLabel14.Parent = _Frame8
+_TextLabel14.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel14.BackgroundTransparency = 8
+_TextLabel14.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel14.BorderSizePixel = 0
+_TextLabel14.Position = UDim2.new(0.52905196, 0, 0.0405405387, 0)
+_TextLabel14.Size = UDim2.new(0, 147, 0, 26)
+_TextLabel14.Font = Enum.Font.FredokaOne
+_TextLabel14.Text = 'Your Size: 0.00'
+_TextLabel14.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel14.TextScaled = true
+_TextLabel14.TextSize = 14
+_TextLabel14.TextStrokeTransparency = 0
+_TextLabel14.TextWrapped = true
+_TextLabel15.Name = 'Earn'
+_TextLabel15.Parent = _Frame8
+_TextLabel15.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel15.BackgroundTransparency = 8
+_TextLabel15.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel15.BorderSizePixel = 0
+_TextLabel15.Position = UDim2.new(0.52905196, 0, 0.193693697, 0)
+_TextLabel15.Size = UDim2.new(0, 147, 0, 26)
+_TextLabel15.Font = Enum.Font.FredokaOne
+_TextLabel15.Text = 'You Earned: 0.00'
+_TextLabel15.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel15.TextScaled = true
+_TextLabel15.TextSize = 14
+_TextLabel15.TextStrokeTransparency = 0
+_TextLabel15.TextWrapped = true
+_TextLabel16.Name = 'Strength'
+_TextLabel16.Parent = _Frame8
+_TextLabel16.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel16.BackgroundTransparency = 8
+_TextLabel16.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel16.BorderSizePixel = 0
+_TextLabel16.Position = UDim2.new(0.0305810403, 0, 0.806306303, 0)
+_TextLabel16.Size = UDim2.new(0, 307, 0, 43)
+_TextLabel16.Font = Enum.Font.FredokaOne
+_TextLabel16.Text = 'Your Strength: 0.00'
+_TextLabel16.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel16.TextScaled = true
+_TextLabel16.TextSize = 14
+_TextLabel16.TextStrokeTransparency = 0
+_TextLabel16.TextWrapped = true
+_TextLabel17.Name = 'SPW'
+_TextLabel17.Parent = _Frame8
+_TextLabel17.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel17.BackgroundTransparency = 8
+_TextLabel17.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel17.BorderSizePixel = 0
+_TextLabel17.Position = UDim2.new(0.25688073, 0, 0.653153181, 0)
+_TextLabel17.Size = UDim2.new(0, 147, 0, 26)
+_TextLabel17.Font = Enum.Font.FredokaOne
+_TextLabel17.Text = 'SPW: 0.0'
+_TextLabel17.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel17.TextScaled = true
+_TextLabel17.TextSize = 14
+_TextLabel17.TextStrokeTransparency = 0
+_TextLabel17.TextWrapped = true
+_Frame9.Name = 'PlayerFrame'
+_Frame9.Parent = _Frame
+_Frame9.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame9.BackgroundTransparency = 0.8
+_Frame9.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame9.BorderSizePixel = 0
+_Frame9.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
+_Frame9.Size = UDim2.new(0, 327, 0, 222)
+_Frame9.Visible = false
+_UICorner31.Parent = _Frame9
+_ScrollingFrame.Name = 'Farming'
+_ScrollingFrame.Parent = _Frame9
+_ScrollingFrame.Active = true
+_ScrollingFrame.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
+_ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_ScrollingFrame.BorderSizePixel = 0
+_ScrollingFrame.Position = UDim2.new(0.511357963, 0, 0.593615532, 0)
+_ScrollingFrame.Size = UDim2.new(0, 147, 0, 81)
+_UIListLayout2.Parent = _ScrollingFrame
+_UIListLayout2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+_UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
+_UIListLayout2.Padding = UDim.new(0, 2)
+_ScrollingFrame2.Name = 'Size'
+_ScrollingFrame2.Parent = _Frame9
+_ScrollingFrame2.Active = true
+_ScrollingFrame2.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
+_ScrollingFrame2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_ScrollingFrame2.BorderSizePixel = 0
+_ScrollingFrame2.Position = UDim2.new(0.0352680534, 0, 0.115146533, 0)
+_ScrollingFrame2.Size = UDim2.new(0, 147, 0, 81)
+_UIListLayout3.Parent = _ScrollingFrame2
+_UIListLayout3.HorizontalAlignment = Enum.HorizontalAlignment.Center
+_UIListLayout3.SortOrder = Enum.SortOrder.LayoutOrder
+_UIListLayout3.Padding = UDim.new(0, 2)
+_ScrollingFrame3.Name = 'Strength'
+_ScrollingFrame3.Parent = _Frame9
+_ScrollingFrame3.Active = true
+_ScrollingFrame3.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
+_ScrollingFrame3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_ScrollingFrame3.BorderSizePixel = 0
+_ScrollingFrame3.Position = UDim2.new(0.511357963, 0, 0.115146533, 0)
+_ScrollingFrame3.Size = UDim2.new(0, 147, 0, 81)
+_ScrollingFrame3.CanvasSize = UDim2.new(0, 0, 3, 0)
+_UIListLayout4.Parent = _ScrollingFrame3
+_UIListLayout4.HorizontalAlignment = Enum.HorizontalAlignment.Center
+_UIListLayout4.SortOrder = Enum.SortOrder.LayoutOrder
+_UIListLayout4.Padding = UDim.new(0, 2)
+_ScrollingFrame4.Name = 'Weights'
+_ScrollingFrame4.Parent = _Frame9
+_ScrollingFrame4.Active = true
+_ScrollingFrame4.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
+_ScrollingFrame4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_ScrollingFrame4.BorderSizePixel = 0
+_ScrollingFrame4.Position = UDim2.new(0.0352680534, 0, 0.593615532, 0)
+_ScrollingFrame4.Size = UDim2.new(0, 147, 0, 81)
+_UIListLayout5.Parent = _ScrollingFrame4
+_UIListLayout5.HorizontalAlignment = Enum.HorizontalAlignment.Center
+_UIListLayout5.SortOrder = Enum.SortOrder.LayoutOrder
+_UIListLayout5.Padding = UDim.new(0, 2)
+_TextLabel18.Parent = _Frame9
+_TextLabel18.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel18.BackgroundTransparency = 1
+_TextLabel18.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel18.BorderSizePixel = 0
+_TextLabel18.Position = UDim2.new(0.0108032227, 0, 0.501271546, 0)
+_TextLabel18.Size = UDim2.new(0, 164, 0, 19)
+_TextLabel18.Font = Enum.Font.FredokaOne
+_TextLabel18.Text = 'Players Weights'
+_TextLabel18.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel18.TextSize = 14
+_TextLabel18.TextStrokeTransparency = 0
+_TextLabel19.Parent = _Frame9
+_TextLabel19.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel19.BackgroundTransparency = 1
+_TextLabel19.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel19.BorderSizePixel = 0
+_TextLabel19.Position = UDim2.new(0.486893117, 0, 0.0228026789, 0)
+_TextLabel19.Size = UDim2.new(0, 164, 0, 19)
+_TextLabel19.Font = Enum.Font.FredokaOne
+_TextLabel19.Text = 'Players Strength'
+_TextLabel19.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel19.TextSize = 14
+_TextLabel19.TextStrokeTransparency = 0
+_TextLabel19.TextWrapped = true
+_TextLabel20.Parent = _Frame9
+_TextLabel20.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel20.BackgroundTransparency = 1
+_TextLabel20.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel20.BorderSizePixel = 0
+_TextLabel20.Position = UDim2.new(0.486893117, 0, 0.501271546, 0)
+_TextLabel20.Size = UDim2.new(0, 164, 0, 19)
+_TextLabel20.Font = Enum.Font.FredokaOne
+_TextLabel20.Text = 'Players Farming'
+_TextLabel20.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel20.TextSize = 14
+_TextLabel20.TextStrokeTransparency = 0
+_TextLabel21.Parent = _Frame9
+_TextLabel21.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel21.BackgroundTransparency = 1
+_TextLabel21.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel21.BorderSizePixel = 0
+_TextLabel21.Position = UDim2.new(0.0108032227, 0, 0.0228026789, 0)
+_TextLabel21.Size = UDim2.new(0, 164, 0, 19)
+_TextLabel21.Font = Enum.Font.FredokaOne
+_TextLabel21.Text = 'Players Size'
+_TextLabel21.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel21.TextSize = 14
+_TextLabel21.TextStrokeTransparency = 0
+_Frame10.Name = 'CredFrame'
+_Frame10.Parent = _Frame
+_Frame10.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame10.BackgroundTransparency = 0.8
+_Frame10.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame10.BorderSizePixel = 0
+_Frame10.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
+_Frame10.Size = UDim2.new(0, 327, 0, 222)
+_Frame10.Visible = false
+_UICorner32.Parent = _Frame10
+_TextLabel22.Parent = _Frame10
+_TextLabel22.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel22.BackgroundTransparency = 1
+_TextLabel22.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel22.BorderSizePixel = 0
+_TextLabel22.Position = UDim2.new(0.0526423566, 0, 0.717487752, 0)
+_TextLabel22.Size = UDim2.new(0, 292, 0, 62)
+_TextLabel22.Font = Enum.Font.FredokaOne
+_TextLabel22.Text = 'This Gui Was Made By: Abercke04'
+_TextLabel22.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel22.TextSize = 14
+_TextLabel22.TextStrokeTransparency = 0
+_TextLabel23.Parent = _Frame10
+_TextLabel23.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel23.BackgroundTransparency = 1
+_TextLabel23.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel23.BorderSizePixel = 0
+_TextLabel23.Position = UDim2.new(0.0526423566, 0, -0.0032329387, 0)
+_TextLabel23.Size = UDim2.new(0, 292, 0, 62)
+_TextLabel23.Font = Enum.Font.FredokaOne
+_TextLabel23.Text = 'Thank You For Using Zaza Hub!!'
+_TextLabel23.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel23.TextSize = 14
+_TextLabel23.TextStrokeTransparency = 0
+_TextLabel24.Parent = _Frame10
+_TextLabel24.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel24.BackgroundTransparency = 1
+_TextLabel24.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel24.BorderSizePixel = 0
+_TextLabel24.Position = UDim2.new(0.0526423566, 0, 0.343613923, 0)
+_TextLabel24.Size = UDim2.new(0, 292, 0, 62)
+_TextLabel24.Font = Enum.Font.FredokaOne
+_TextLabel24.Text = 'Zaza Hub Is 1 year and 6 months Old!!'
+_TextLabel24.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel24.TextSize = 14
+_TextLabel24.TextStrokeTransparency = 0
+_Frame11.Name = 'DupeFrame'
+_Frame11.Parent = _Frame
+_Frame11.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame11.BackgroundTransparency = 0.8
+_Frame11.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame11.BorderSizePixel = 0
+_Frame11.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
+_Frame11.Size = UDim2.new(0, 327, 0, 222)
+_Frame11.Visible = false
+_UICorner33.Parent = _Frame11
+_TextButton25.Name = 'Dupe'
+_TextButton25.Parent = _Frame11
+_TextButton25.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton25.BackgroundTransparency = 0.5
+_TextButton25.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton25.BorderSizePixel = 0
+_TextButton25.Position = UDim2.new(0.272098452, 0, 0.567567587, 0)
+_TextButton25.Size = UDim2.new(0, 148, 0, 27)
+_TextButton25.Font = Enum.Font.FredokaOne
+_TextButton25.Text = 'Dupe Weights'
+_TextButton25.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton25.TextScaled = true
+_TextButton25.TextSize = 14
+_TextButton25.TextStrokeTransparency = 0
+_TextButton25.TextWrapped = true
+_UICorner34.Parent = _TextButton25
+_TextLabel25.Name = 'Weights'
+_TextLabel25.Parent = _Frame11
+_TextLabel25.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel25.BackgroundTransparency = 8
+_TextLabel25.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel25.BorderSizePixel = 0
+_TextLabel25.Position = UDim2.new(0.159021407, 0, 0.382882893, 0)
+_TextLabel25.Size = UDim2.new(0, 223, 0, 26)
+_TextLabel25.Font = Enum.Font.FredokaOne
+_TextLabel25.Text = 'Weight Amount: 0'
+_TextLabel25.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel25.TextScaled = true
+_TextLabel25.TextSize = 14
+_TextLabel25.TextStrokeTransparency = 0
+_TextLabel25.TextWrapped = true
+_TextBox.Name = 'Duper'
+_TextBox.Parent = _Frame11
+_TextBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextBox.BackgroundTransparency = 0.6
+_TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextBox.BorderSizePixel = 0
+_TextBox.Position = UDim2.new(0.192660555, 0, 0.162162155, 0)
+_TextBox.Size = UDim2.new(0, 200, 0, 30)
+_TextBox.Font = Enum.Font.FredokaOne
+_TextBox.PlaceholderColor3 = Color3.fromRGB(85, 255, 0)
+_TextBox.PlaceholderText = 'Enter Any Number..'
+_TextBox.Text = ''
+_TextBox.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextBox.TextScaled = true
+_TextBox.TextSize = 14
+_TextBox.TextStrokeTransparency = 0
+_TextBox.TextWrapped = true
+_UICorner35.Parent = _TextBox
+_TextLabel26.Name = 'Remain'
+_TextLabel26.Parent = _Frame11
+_TextLabel26.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel26.BackgroundTransparency = 8
+_TextLabel26.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel26.BorderSizePixel = 0
+_TextLabel26.Position = UDim2.new(0.14984709, 0, 0.761261284, 0)
+_TextLabel26.Size = UDim2.new(0, 223, 0, 26)
+_TextLabel26.Font = Enum.Font.FredokaOne
+_TextLabel26.Text = 'Time Elapsed: 0s'
+_TextLabel26.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel26.TextScaled = true
+_TextLabel26.TextSize = 14
+_TextLabel26.TextStrokeTransparency = 0
+_TextLabel26.TextWrapped = true
+_Frame12.Name = 'Main2Frame'
+_Frame12.Parent = _Frame
+_Frame12.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_Frame12.BackgroundTransparency = 0.8
+_Frame12.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_Frame12.BorderSizePixel = 0
+_Frame12.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
+_Frame12.Size = UDim2.new(0, 327, 0, 222)
+_Frame12.Visible = false
+_UICorner36.Parent = _Frame12
+_TextButton26.Name = 'farm'
+_TextButton26.Parent = _Frame12
+_TextButton26.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton26.BackgroundTransparency = 0.5
+_TextButton26.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton26.BorderSizePixel = 0
+_TextButton26.Position = UDim2.new(0.0335663483, 0, 0.0405405387, 0)
+_TextButton26.Size = UDim2.new(0, 148, 0, 27)
+_TextButton26.Font = Enum.Font.FredokaOne
+_TextButton26.Text = 'Farm'
+_TextButton26.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton26.TextScaled = true
+_TextButton26.TextSize = 14
+_TextButton26.TextStrokeTransparency = 0
+_TextButton26.TextWrapped = true
+_UICorner37.Parent = _TextButton26
+_TextButton27.Name = 'unfarm'
+_TextButton27.Parent = _Frame12
+_TextButton27.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton27.BackgroundTransparency = 0.5
+_TextButton27.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton27.BorderSizePixel = 0
+_TextButton27.Position = UDim2.new(0.0335663483, 0, 0.346846849, 0)
+_TextButton27.Size = UDim2.new(0, 148, 0, 27)
+_TextButton27.Font = Enum.Font.FredokaOne
+_TextButton27.Text = 'Stop Farm'
+_TextButton27.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton27.TextScaled = true
+_TextButton27.TextSize = 14
+_TextButton27.TextStrokeTransparency = 0
+_TextButton27.TextWrapped = true
+_UICorner38.Parent = _TextButton27
+_TextButton28.Name = 'equip'
+_TextButton28.Parent = _Frame12
+_TextButton28.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton28.BackgroundTransparency = 0.5
+_TextButton28.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton28.BorderSizePixel = 0
+_TextButton28.Position = UDim2.new(0.516746759, 0, 0.0405405387, 0)
+_TextButton28.Size = UDim2.new(0, 148, 0, 27)
+_TextButton28.Font = Enum.Font.FredokaOne
+_TextButton28.Text = 'Equip'
+_TextButton28.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton28.TextScaled = true
+_TextButton28.TextSize = 14
+_TextButton28.TextStrokeTransparency = 0
+_TextButton28.TextWrapped = true
+_UICorner39.Parent = _TextButton28
+_TextButton29.Name = 'unequip'
+_TextButton29.Parent = _Frame12
+_TextButton29.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton29.BackgroundTransparency = 0.5
+_TextButton29.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton29.BorderSizePixel = 0
+_TextButton29.Position = UDim2.new(0.516746759, 0, 0.346846849, 0)
+_TextButton29.Size = UDim2.new(0, 148, 0, 27)
+_TextButton29.Font = Enum.Font.FredokaOne
+_TextButton29.Text = 'Stop Equip'
+_TextButton29.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton29.TextScaled = true
+_TextButton29.TextSize = 14
+_TextButton29.TextStrokeTransparency = 0
+_TextButton29.TextWrapped = true
+_UICorner40.Parent = _TextButton29
+_TextLabel27.Name = 'limiter'
+_TextLabel27.Parent = _Frame12
+_TextLabel27.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel27.BackgroundTransparency = 8
+_TextLabel27.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel27.BorderSizePixel = 0
+_TextLabel27.Position = UDim2.new(0.140672788, 0, 0.842342317, 0)
+_TextLabel27.Size = UDim2.new(0, 223, 0, 26)
+_TextLabel27.Font = Enum.Font.FredokaOne
+_TextLabel27.Text = 'Ping Limit Set To: ...'
+_TextLabel27.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel27.TextScaled = true
+_TextLabel27.TextSize = 14
+_TextLabel27.TextStrokeTransparency = 0
+_TextLabel27.TextWrapped = true
+_TextLabel28.Name = 'text'
+_TextLabel28.Parent = _Frame12
+_TextLabel28.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel28.BackgroundTransparency = 8
+_TextLabel28.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel28.BorderSizePixel = 0
+_TextLabel28.Position = UDim2.new(0.516746759, 0, 0.162162155, 0)
+_TextLabel28.Size = UDim2.new(0, 147, 0, 41)
+_TextLabel28.Font = Enum.Font.FredokaOne
+_TextLabel28.Text = 'Wait Until You Get A Equip Notification After You Click This Button!'
+_TextLabel28.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel28.TextScaled = true
+_TextLabel28.TextSize = 14
+_TextLabel28.TextStrokeTransparency = 0
+_TextLabel28.TextWrapped = true
+_TextButton30.Name = 'reduce'
+_TextButton30.Parent = _Frame12
+_TextButton30.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton30.BackgroundTransparency = 0.5
+_TextButton30.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextButton30.BorderSizePixel = 0
+_TextButton30.Position = UDim2.new(0.272098452, 0, 0.5, 0)
+_TextButton30.Size = UDim2.new(0, 148, 0, 27)
+_TextButton30.Font = Enum.Font.FredokaOne
+_TextButton30.Text = 'Reduce Lag/Anti Afk'
+_TextButton30.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextButton30.TextScaled = true
+_TextButton30.TextSize = 14
+_TextButton30.TextStrokeTransparency = 0
+_TextButton30.TextWrapped = true
+_UICorner41.Parent = _TextButton30
+_TextBox2.Name = 'Pinger'
+_TextBox2.Parent = _Frame12
+_TextBox2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_TextBox2.BackgroundTransparency = 0.6
+_TextBox2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextBox2.BorderSizePixel = 0
+_TextBox2.Position = UDim2.new(0.18960245, 0, 0.671171188, 0)
+_TextBox2.Size = UDim2.new(0, 200, 0, 30)
+_TextBox2.Font = Enum.Font.FredokaOne
+_TextBox2.PlaceholderColor3 = Color3.fromRGB(85, 255, 0)
+_TextBox2.PlaceholderText = 'Enter Any Number Between 17k-25k'
+_TextBox2.Text = ''
+_TextBox2.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextBox2.TextScaled = true
+_TextBox2.TextSize = 14
+_TextBox2.TextStrokeTransparency = 0
+_TextBox2.TextWrapped = true
+_UICorner42.Parent = _TextBox2
+_TextLabel29.Name = 'Wait'
+_TextLabel29.Parent = _Frame12
+_TextLabel29.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel29.BackgroundTransparency = 8
+_TextLabel29.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel29.BorderSizePixel = 0
+_TextLabel29.Position = UDim2.new(0.036624454, 0, 0.162162155, 0)
+_TextLabel29.Size = UDim2.new(0, 147, 0, 30)
+_TextLabel29.Font = Enum.Font.FredokaOne
+_TextLabel29.Text = '0'
+_TextLabel29.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel29.TextScaled = true
+_TextLabel29.TextSize = 14
+_TextLabel29.TextStrokeTransparency = 0
+_TextLabel29.TextTransparency = 1
+_TextLabel29.TextWrapped = true
+_TextLabel30.Name = 'text'
+_TextLabel30.Parent = _Frame12
+_TextLabel30.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_TextLabel30.BackgroundTransparency = 8
+_TextLabel30.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_TextLabel30.BorderSizePixel = 0
+_TextLabel30.Position = UDim2.new(-0.0341126807, 0, -0.0720720738, 0)
+_TextLabel30.Size = UDim2.new(0, 339, 0, 15)
+_TextLabel30.Font = Enum.Font.FredokaOne
+_TextLabel30.Text = 'Ping Farm Makes You Last A lot Longer But Gains less Strength'
+_TextLabel30.TextColor3 = Color3.fromRGB(85, 255, 0)
+_TextLabel30.TextScaled = true
+_TextLabel30.TextSize = 14
+_TextLabel30.TextStrokeTransparency = 0
+_TextLabel30.TextWrapped = true
+
+local function v140()
+    local _LocalScript = Instance.new('LocalScript', _TextButton)
+
+    _LocalScript.Parent.MouseButton1Click:Connect(function()
+        _LocalScript.Parent.Parent.Parent.MainFrame.Visible = true
+        _LocalScript.Parent.Parent.Parent.Main2Frame.Visible = false
+        _LocalScript.Parent.Parent.Parent.DupeFrame.Visible = false
+        _LocalScript.Parent.Parent.Parent.MiscFrame.Visible = false
+        _LocalScript.Parent.Parent.Parent.InfoFrame.Visible = false
+        _LocalScript.Parent.Parent.Parent.PlayerFrame.Visible = false
+        _LocalScript.Parent.Parent.Parent.CredFrame.Visible = false
+    end)
+end
+
+coroutine.wrap(v140)()
+
+local function v142()
+    local _LocalScript2 = Instance.new('LocalScript', _TextButton2)
+
+    _LocalScript2.Parent.MouseButton1Click:Connect(function()
+        _LocalScript2.Parent.Parent.Parent.MainFrame.Visible = false
+        _LocalScript2.Parent.Parent.Parent.Main2Frame.Visible = true
+        _LocalScript2.Parent.Parent.Parent.DupeFrame.Visible = false
+        _LocalScript2.Parent.Parent.Parent.MiscFrame.Visible = false
+        _LocalScript2.Parent.Parent.Parent.InfoFrame.Visible = false
+        _LocalScript2.Parent.Parent.Parent.PlayerFrame.Visible = false
+        _LocalScript2.Parent.Parent.Parent.CredFrame.Visible = false
+    end)
+end
+
+coroutine.wrap(v142)()
+
+local function v144()
+    local _LocalScript3 = Instance.new('LocalScript', _TextButton3)
+
+    _LocalScript3.Parent.MouseButton1Click:Connect(function()
+        _LocalScript3.Parent.Parent.Parent.MainFrame.Visible = false
+        _LocalScript3.Parent.Parent.Parent.Main2Frame.Visible = false
+        _LocalScript3.Parent.Parent.Parent.DupeFrame.Visible = true
+        _LocalScript3.Parent.Parent.Parent.MiscFrame.Visible = false
+        _LocalScript3.Parent.Parent.Parent.InfoFrame.Visible = false
+        _LocalScript3.Parent.Parent.Parent.PlayerFrame.Visible = false
+        _LocalScript3.Parent.Parent.Parent.CredFrame.Visible = false
+    end)
+end
+
+coroutine.wrap(v144)()
+
+local function v146()
+    local _LocalScript4 = Instance.new('LocalScript', _TextButton4)
+
+    _LocalScript4.Parent.MouseButton1Click:Connect(function()
+        _LocalScript4.Parent.Parent.Parent.MainFrame.Visible = false
+        _LocalScript4.Parent.Parent.Parent.Main2Frame.Visible = false
+        _LocalScript4.Parent.Parent.Parent.DupeFrame.Visible = false
+        _LocalScript4.Parent.Parent.Parent.MiscFrame.Visible = true
+        _LocalScript4.Parent.Parent.Parent.InfoFrame.Visible = false
+        _LocalScript4.Parent.Parent.Parent.PlayerFrame.Visible = false
+        _LocalScript4.Parent.Parent.Parent.CredFrame.Visible = false
+    end)
+end
+
+coroutine.wrap(v146)()
+
+local function v148()
+    local _LocalScript5 = Instance.new('LocalScript', _TextButton5)
+
+    _LocalScript5.Parent.MouseButton1Click:Connect(function()
+        _LocalScript5.Parent.Parent.Parent.MainFrame.Visible = false
+        _LocalScript5.Parent.Parent.Parent.Main2Frame.Visible = false
+        _LocalScript5.Parent.Parent.Parent.DupeFrame.Visible = false
+        _LocalScript5.Parent.Parent.Parent.MiscFrame.Visible = false
+        _LocalScript5.Parent.Parent.Parent.InfoFrame.Visible = true
+        _LocalScript5.Parent.Parent.Parent.PlayerFrame.Visible = false
+        _LocalScript5.Parent.Parent.Parent.CredFrame.Visible = false
+    end)
+end
+
+coroutine.wrap(v148)()
+
+local function v150()
+    local _LocalScript6 = Instance.new('LocalScript', _TextButton7)
+
+    _LocalScript6.Parent.MouseButton1Click:Connect(function()
+        _LocalScript6.Parent.Parent.Parent.MainFrame.Visible = false
+        _LocalScript6.Parent.Parent.Parent.Main2Frame.Visible = false
+        _LocalScript6.Parent.Parent.Parent.DupeFrame.Visible = false
+        _LocalScript6.Parent.Parent.Parent.MiscFrame.Visible = false
+        _LocalScript6.Parent.Parent.Parent.InfoFrame.Visible = false
+        _LocalScript6.Parent.Parent.Parent.PlayerFrame.Visible = true
+        _LocalScript6.Parent.Parent.Parent.CredFrame.Visible = false
+    end)
+end
+
+coroutine.wrap(v150)()
+
+local function v160()
+    local _LocalScript7 = Instance.new('LocalScript', _TextLabel2)
+    local u152 = {
+        '',
+        'K',
+        'M',
+        'B',
+        'T',
+    }
+
+    local function v158(p153, p154)
+        local v155 = math.floor(math.log(math.max(1, math.abs(p153)), 1000))
+        local v156 = u152[1 + v155] or 'e+' .. v155
+        local v157 = math.floor(p153 * (10 ^ p154 / 1000 ^ v155)) / 10 ^ p154
+
+        return ('%.' .. p154 .. 'f%s'):format(v157, v156)
+    end
+
+    while true do
+        local v159 = game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue()
+
+        _LocalScript7.Parent.Text = 'Ping: ' .. v158(v159, 2) .. 'ms'
+
+        wait(1)
+    end
+end
+
+coroutine.wrap(v160)()
+
+local function v162()
+    local _LocalScript8 = Instance.new('LocalScript', _TextButton8)
+
+    _LocalScript8.Parent.MouseButton1Click:Connect(function()
+        _LocalScript8.Parent.Parent.Parent:Destroy()
+    end)
+end
+
+coroutine.wrap(v162)()
+
+local function v169()
+    local _LocalScript9 = Instance.new('LocalScript', _TextButton9)
+
+    _LocalScript9.Parent.MouseButton1Click:Connect(function()
+        local u164 = tonumber(_LocalScript9.Parent.Parent.Wait.Text)
+
+        coroutine.wrap(function()
+            pcall(function()
+                _G.farmer = true
+
+                while _G.farmer do
+                    task.wait(u164)
+
+                    local v165, v166, v167 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+
+                    while true do
+                        local v168
+
+                        v167, v168 = v165(v166, v167)
+
+                        if v167 == nil then
+                            break
+                        end
+                        if v168.Name == 'Double Weight' and v168:IsA('Tool') then
+                            v168:Activate()
+                        end
+                    end
+                end
+            end)
+        end)()
+    end)
+end
+
+coroutine.wrap(v169)()
+
+local function v170()
+    Instance.new('LocalScript', _TextButton10).Parent.MouseButton1Click:Connect(function()
+        _G.farmer = false
+    end)
+end
+
+coroutine.wrap(v170)()
+
+local function v182()
+    Instance.new('LocalScript', _TextButton11).Parent.MouseButton1Click:Connect(function()
+        _G.Equip = true
+
+        local v171 = false
+
+        if not _G.Equip then
+            return
+        end
+
+        wait(0.631201)
+
+        local v172, v173, v174 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+        local v175 = 0
+
+        if v176.Name == 'Double Weight' then
+            v176.Parent = game.Players.LocalPlayer.Character
+            v175 = v175 + 1
+
+            if v175 >= 100 then
+                break
+            end
+        end
+
+        local v176
+
+        v174, v176 = v172(v173, v174)
+
+        if v174 ~= nil then
+        end
+
+        local v177, v178, v179 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+        local v180 = 0
+
+        while true do
+            local v181
+
+            v179, v181 = v177(v178, v179)
+
+            if v179 == nil then
+                break
+            end
+            if v181.Name == 'Double Weight' then
+                v180 = v180 + 1
+            end
+        end
+
+        if v180 == 0 and not v171 then
+            wait(1)
+            game:GetService('StarterGui'):SetCore('SendNotification', {
+                Title = 'Equip',
+                Text = 'Equipped All Weights. Enjoy!',
+                Duration = 3,
+            })
+
+            _G.Equip = false
+            v171 = true
+        end
+    end)
+end
+
+coroutine.wrap(v182)()
+
+local function v194()
+    Instance.new('LocalScript', _TextButton12).Parent.MouseButton1Click:Connect(function()
+        _G.Equip = true
+
+        local v183 = false
+
+        if not _G.Equip then
+            return
+        end
+
+        wait(0.631201)
+
+        local v184, v185, v186 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+        local v187 = 0
+
+        if v188.Name == 'Double Weight' then
+            v188.Parent = game.Players.LocalPlayer.Backpack
+            v187 = v187 + 1
+
+            if v187 >= 100 then
+                break
+            end
+        end
+
+        local v188
+
+        v186, v188 = v184(v185, v186)
+
+        if v186 ~= nil then
+        end
+
+        local v189, v190, v191 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+        local v192 = 0
+
+        while true do
+            local v193
+
+            v191, v193 = v189(v190, v191)
+
+            if v191 == nil then
+                break
+            end
+            if v193.Name == 'Double Weight' then
+                v192 = v192 + 1
+            end
+        end
+
+        if v192 == 0 and not v183 then
+            wait(1)
+            game:GetService('StarterGui'):SetCore('SendNotification', {
+                Title = 'Equip',
+                Text = 'Equipped All Weights. Enjoy!',
+                Duration = 3,
+            })
+
+            _G.Equip = false
+            v183 = true
+        end
+    end)
+end
+
+coroutine.wrap(v194)()
+
+local function v220()
+    Instance.new('LocalScript', _TextButton13).Parent.MouseButton1Click:Connect(function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/mmEr60d5', true))()
+        game.ReplicatedFirst.TourneyQ:Destroy()
+        game:GetService('Lighting').NormalSky:Destroy()
+        game:GetService('Players').LocalPlayer.PlayerGui.HUD:Destroy()
+
+        local v195 = game
+        local _Workspace = v195.Workspace
+        local _Lighting = v195.Lighting
+        local _Terrain = _Workspace.Terrain
+
+        _Terrain.WaterWaveSize = 0
+        _Terrain.WaterWaveSpeed = 0
+        _Terrain.WaterReflectance = 0
+        _Terrain.WaterTransparency = 0
+        _Lighting.GlobalShadows = false
+        _Lighting.FogEnd = 9000000000
+        settings().Rendering.QualityLevel = 'Level01'
+
+        local v199, v200, v201 = pairs(v195:GetDescendants())
+
+        while true do
+            local v202
+
+            v201, v202 = v199(v200, v201)
+
+            if v201 == nil then
+                break
+            end
+            if v202:IsA('Part') or (v202:IsA('Union') or v202:IsA('MeshPart')) then
+                v202.Reflectance = 0
+            elseif v202:IsA('ParticleEmitter') or v202:IsA('Trail') then
+                v202:Destroy()
+            elseif v202:IsA('Explosion') then
+                v202.BlastPressure = 0
+                v202.BlastRadius = 0
+            end
+        end
+
+        local v203, v204, v205 = pairs(_Lighting:GetChildren())
+
+        while true do
+            local v206
+
+            v205, v206 = v203(v204, v205)
+
+            if v205 == nil then
+                break
+            end
+            if v206:IsA('BlurEffect') or (v206:IsA('SunRaysEffect') or (v206:IsA('ColorCorrectionEffect') or (v206:IsA('BloomEffect') or v206:IsA('DepthOfFieldEffect')))) then
+                v206.Enabled = false
+            end
+        end
+
+        sethiddenproperty(game.Lighting, 'Technology', 'Compatibility')
+        game:GetService('StarterGui'):SetCore('SendNotification', {
+            Title = 'ANTI AFK ACTIVE',
+            Text = "This is so you won't get kicked",
+            Duration = 7,
+        })
+
+        local _VirtualUser = game:GetService('VirtualUser')
+
+        game:GetService('Players').LocalPlayer.Idled:connect(function()
+            _VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            wait(1)
+            _VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        end)
+
+        local v208, v209, v210 = pairs(game:GetService('Workspace'):GetChildren())
+
+        while true do
+            local v211
+
+            v210, v211 = v208(v209, v210)
+
+            if v210 == nil then
+                break
+            end
+
+            local _ = v211.ClassName == 'Model'
+
+            if v211.Name ~= game.Players.LocalPlayer.Name and (v211.Name ~= 'Terrain' and (v211.Name ~= 'Baseplate' and v211.Name ~= 'Camera')) then
+                v211:Destroy()
+            end
+        end
+
+        local v212, v213, v214 = pairs(game:GetService('ReplicatedStorage'):GetChildren())
+
+        while true do
+            local v215
+
+            v214, v215 = v212(v213, v214)
+
+            if v214 == nil then
+                break
+            end
+            if v215.Name ~= 'Data' then
+                v215:Destroy()
+            end
+        end
+
+        local v216, v217, v218 = pairs(game:GetService('CorePackages'):GetChildren())
+
+        while true do
+            local v219
+
+            v218, v219 = v216(v217, v218)
+
+            if v218 == nil then
+                break
+            end
+
+            v219:Destroy()
+        end
+    end)
+end
+
+coroutine.wrap(v220)()
+
+local function v232()
+    local _Parent = Instance.new('LocalScript', _TextLabel5).Parent
+    local u222 = 0
+
+    local function v231()
+        u222 = 0
+
+        local v223, v224, v225 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+
+        while true do
+            local v226
+
+            v225, v226 = v223(v224, v225)
+
+            if v225 == nil then
+                break
+            end
+            if v226.Name == 'Double Weight' then
+                u222 = u222 + 1
+            end
+        end
+
+        if u222 == 0 then
+            local v227, v228, v229 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+
+            while true do
+                local v230
+
+                v229, v230 = v227(v228, v229)
+
+                if v229 == nil then
+                    break
+                end
+                if v230.Name == 'Double Weight' then
+                    u222 = u222 + 1
+                end
+            end
+        end
+    end
+
+    while true do
+        v231()
+
+        _Parent.Text = 0.000886 * u222
+
+        wait(1)
+    end
+end
+
+coroutine.wrap(v232)()
+
+local function v233()
+    Instance.new('LocalScript', _TextButton14).Parent.MouseButton1Click:Connect(function()
+        if game:GetService('Lighting').ClockTime ~= 19 then
+            if game:GetService('Lighting').ClockTime == 14 then
+                game:GetService('Lighting').ClockTime = 19
+            end
+        else
+            game:GetService('Lighting').ClockTime = 14
+        end
+    end)
+end
+
+coroutine.wrap(v233)()
+
+local function v237()
+    Instance.new('LocalScript', _TextButton15).Parent.MouseButton1Click:Connect(function()
+        game:GetService('StarterGui'):SetCore('SendNotification', {
+            Title = 'Click TP Enabled!',
+            Text = 'Tap Left Alt to TP to your mouse.',
+            Duration = 10,
+        })
+
+        mouse = game.Players.LocalPlayer:GetMouse()
+
+        game:GetService('UserInputService').InputBegan:connect(function(p234, _)
+            if p234.KeyCode == Enum.KeyCode.LeftAlt then
+                local v235 = mouse.Hit + Vector3.new(0, 2.5, 0)
+                local v236 = CFrame.new(v235.X, v235.Y, v235.Z)
+
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v236
+            end
+        end)
+        print('Successfully Executed Script!')
+    end)
+end
+
+coroutine.wrap(v237)()
+
+local function v238()
+    Instance.new('LocalScript', _TextButton16).Parent.MouseButton1Click:Connect(function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Aberthegod/yoo/main/Flingg'))()
+    end)
+end
+
+coroutine.wrap(v238)()
+
+local function v239()
+    Instance.new('LocalScript', _TextButton17).Parent.MouseButton1Click:Connect(function()
+        loadstring(game:HttpGetAsync('https://pastefy.app/mJ8vapGJ/raw'))()
+        execute('https://scriptprotector-d6fe7-default-rtdb.firebaseio.com/', 'B4SraukVMMsjcGG2rAzqm2m0AkO5mY4bt3PkeNoo', 'Script9')
+    end)
+end
+
+coroutine.wrap(v239)()
+
+local function v240()
+    Instance.new('LocalScript', _TextButton18).Parent.MouseButton1Click:Connect(function()
+        coroutine.wrap(function()
+            game:GetService('RunService').RenderStepped:connect(function()
+                pcall(function()
+                    if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild('creator') then
+                        game.Players.LocalPlayer.Character.Humanoid:FindFirstChild('creator')
+                    end
+                end)
+            end)
+        end)()
+        coroutine.wrap(function()
+            game:GetService('RunService').RenderStepped:connect(function()
+                game.ReplicatedStorage.Remotes.Human_Punch:FireServer(game.Players.LocalPlayer.Character.RightHand, 'RightPunch', workspace[tostring(game.Players.LocalPlayer.Character.Humanoid:FindFirstChild('creator').Value)].UpperTorso, 5, true, 'RightPunch', game.Players.LocalPlayer.Backpack.Boxing.Handle.Hit, 5)
+                game.ReplicatedStorage.Remotes.Human_Punch:FireServer(game.Players.LocalPlayer.Character.LeftHand, 'LeftPunch', workspace[tostring(game.Players.LocalPlayer.Character.Humanoid:FindFirstChild('creator').Value)].UpperTorso, 5, true, 'LeftPunch', game.Players.LocalPlayer.Backpack.Boxing.Handle.Hit, 5)
+            end)
+        end)()
+    end)
+end
+
+coroutine.wrap(v240)()
+
+local function v241()
+    Instance.new('LocalScript', _TextButton19).Parent.MouseButton1Click:Connect(function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1837.48, 155.321, -5427.79)
+    end)
+end
+
+coroutine.wrap(v241)()
+
+local function v243()
+    Instance.new('LocalScript', _TextButton20).Parent.MouseButton1Click:Connect(function()
+        local _LocalPlayer2 = game.Players.LocalPlayer
+
+        game:GetService('Workspace'):FindFirstChild(_LocalPlayer2.Name).HumanoidRootPart.CFrame = CFrame.new(-360.621582, 140.854309, 644.211487, 0.0188650358, -5.53209532e-8, -0.999822021, -3.23362626e-9, 1, -5.5391812e-8, 0.999822021, 4.27801927e-9, 0.0188650358)
+    end)
+end
+
+coroutine.wrap(v243)()
+
+local function v244()
+    Instance.new('LocalScript', _TextButton21).Parent.MouseButton1Click:Connect(function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2000, 22000, -1000)
+        baseplatee = Instance.new('Part', workspace)
+        baseplatee.Size = Vector3.new(1000, 1, 1000)
+        baseplatee.CFrame = game.workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame + Vector3.new(0, -2, 0)
+        baseplatee.Anchored = true
+    end)
+end
+
+coroutine.wrap(v244)()
+
+local function v246()
+    Instance.new('LocalScript', _TextButton22).Parent.MouseButton1Click:Connect(function()
+        local _LocalPlayer3 = game.Players.LocalPlayer
+
+        game:GetService('Workspace'):FindFirstChild(_LocalPlayer3.Name).HumanoidRootPart.CFrame = CFrame.new(-488.355652, 301.610565, 243.951614, -0.0439637043, -4.32802345e-8, 0.999033153, -4.49692124e-8, 1, 4.1343192e-8, -0.999033153, -4.31081304e-8, -0.0439637043)
+    end)
+end
+
+coroutine.wrap(v246)()
+
+local function v249()
+    local _LocalScript10 = Instance.new('LocalScript', _TextButton23)
+
+    _LocalScript10.Parent.MouseButton1Click:Connect(function()
+        local _StarterGui = game:GetService('StarterGui')
+
+        _StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
+
+        game:GetService('CoreGui').RobloxGui.Backpack.Visible = false
+
+        _StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+
+        _LocalScript10.Parent.Visible = false
+        _LocalScript10.Parent.Parent.hid2.Visible = true
+    end)
+end
+
+coroutine.wrap(v249)()
+
+local function v252()
+    local _LocalScript11 = Instance.new('LocalScript', _TextButton24)
+
+    _LocalScript11.Parent.MouseButton1Click:Connect(function()
+        local _StarterGui2 = game:GetService('StarterGui')
+
+        _StarterGui2:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
+
+        game:GetService('CoreGui').RobloxGui.Backpack.Visible = true
+
+        _StarterGui2:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)
+
+        _LocalScript11.Parent.Visible = false
+        _LocalScript11.Parent.Parent.hid.Visible = true
+    end)
+end
+
+coroutine.wrap(v252)()
+
+local function v265()
+    local _LocalScript12 = Instance.new('LocalScript', _TextLabel8)
+    local u254 = nil
+    local _Parent2 = _LocalScript12.Parent
+
+    function Format_1(p256)
+        return string.format('%02i', p256)
+    end
+    function convertToDHMS(p257)
+        local v258 = math.floor(p257 / 60)
+        local v259 = p257 % 60
+        local v260 = math.floor(v258 / 60)
+        local v261 = v258 % 60
+        local v262 = math.floor(v260 / 24)
+        local v263 = v260 % 24
+
+        return Format_1(v262) .. ':' .. Format_1(v263) .. ':' .. Format_1(v261) .. ':' .. Format_1(v259)
+    end
+
+    coroutine.wrap(function()
+        while true do
+            if _G.farmer or _G.farmer2 then
+                if not u254 then
+                    u254 = os.time()
+                end
+
+                local v264 = os.time() - u254
+
+                _Parent2.Text = 'Time Farming: ' .. convertToDHMS(v264)
+            end
+
+            task.wait(1)
+        end
+    end)()
+end
+
+coroutine.wrap(v265)()
+
+local function v275()
+    local _LocalScript13 = Instance.new('LocalScript', _TextLabel14)
+    local _LocalPlayer4 = game.Players.LocalPlayer
+    local u268 = {
+        '',
+        'K',
+        'M',
+        'B',
+        'T',
+    }
+
+    local function v274(p269, p270)
+        local v271 = math.floor(math.log(math.max(1, math.abs(p269)), 1000))
+        local v272 = u268[1 + v271] or 'e+' .. v271
+        local v273 = math.floor(p269 * (10 ^ p270 / 1000 ^ v271)) / 10 ^ p270
+
+        return ('%.' .. p270 .. 'f%s'):format(v273, v272)
+    end
+
+    while true do
+        _LocalScript13.Parent.Text = 'Your Size: ' .. v274(_LocalPlayer4.leaderstats.Strength.Value, 1)
+
+        wait(1)
+    end
+end
+
+coroutine.wrap(v275)()
+
+local function v288()
+    local _Parent3 = Instance.new('LocalScript', _TextLabel15).Parent
+    local _Strength = game:GetService('Players').LocalPlayer.leaderstats.Strength
+    local _Value = _Strength.Value
+    local u279 = 0
+    local u280 = {
+        '',
+        'K',
+        'M',
+        'B',
+        'T',
+    }
+
+    local function u286(p281, p282)
+        local v283 = math.floor(math.log(math.max(1, math.abs(p281)), 1000))
+        local v284 = u280[1 + v283] or 'e+' .. v283
+        local v285 = math.floor(p281 * (10 ^ p282 / 1000 ^ v283)) / 10 ^ p282
+
+        return ('%.' .. p282 .. 'f%s'):format(v285, v284)
+    end
+
+    local v287 = _Strength
+
+    _Strength.GetPropertyChangedSignal(v287, 'Value'):Connect(function()
+        u279 = u279 + (_Strength.Value - _Value)
+        _Parent3.Text = 'You Earned: ' .. u286(u279, 1)
+        _Value = _Strength.Value
+    end)
+end
+
+coroutine.wrap(v288)()
+
+local function v294()
+    local _Parent4 = Instance.new('LocalScript', _TextLabel16).Parent
+    local v290 = true
+
+    while v290 == true do
+        local _Name = game:GetService('Players').LocalPlayer.Name
+
+        wait(0.01)
+
+        local _Value2 = game.ReplicatedStorage.Data[_Name].Strength.Value
+        local v293
+
+        if _Value2 >= 1000000000000 then
+            v293 = string.format('%.2fT', _Value2 / 1000000000000)
+        elseif _Value2 >= 1000000000 then
+            v293 = string.format('%.2fB', _Value2 / 1000000000)
+        elseif _Value2 >= 1000000 then
+            v293 = string.format('%.2fM', _Value2 / 1000000)
+        elseif _Value2 >= 1000 then
+            v293 = string.format('%.2fK', _Value2 / 1000)
+        else
+            v293 = _Value2
+        end
+
+        _Parent4.Text = 'Strength: ' .. v293 .. ' | ' .. _Value2
+    end
+end
+
+coroutine.wrap(v294)()
+
+local function v313()
+    local _LocalScript14 = Instance.new('LocalScript', _TextLabel17)
+    local u296 = {
+        '',
+        'K',
+        'M',
+        'B',
+        'T',
+    }
+    local _ = _LocalScript14.Parent.Parent.Parent.MainFrame
+
+    local function u302(p297, p298)
+        local v299 = math.floor(math.log(math.max(1, math.abs(p297)), 1000))
+        local v300 = u296[1 + v299] or 'e+' .. v299
+        local v301 = math.floor(p297 * (10 ^ p298 / 1000 ^ v299)) / 10 ^ p298
+
+        return ('%.' .. p298 .. 'f%s'):format(v301, v300)
+    end
+
+    local _SPS = _LocalScript14.Parent.Parent.SPS
+    local _SPM = _LocalScript14.Parent.Parent.SPM
+    local _SPTM = _LocalScript14.Parent.Parent.SPTM
+    local _SPH = _LocalScript14.Parent.Parent.SPH
+    local _SPD = _LocalScript14.Parent.Parent.SPD
+    local _SPW = _LocalScript14.Parent.Parent.SPW;
+
+    (function()
+        local _Strength2 = game:GetService('Players').LocalPlayer.leaderstats.Strength
+        local _Value3 = _Strength2.Value
+
+        while true do
+            wait(1)
+
+            local _Value4 = _Strength2.Value
+            local v312 = _Value4 - _Value3
+
+            _SPS.Text = 'SPS: ' .. u302(v312, 1)
+            _SPM.Text = 'SPM: ' .. u302(v312 * 60, 1)
+            _SPTM.Text = 'SPTM: ' .. u302(v312 * 600, 1)
+            _SPH.Text = 'SPH: ' .. u302(v312 * 3600, 1)
+            _SPD.Text = 'SPD: ' .. u302(v312 * 86400, 1)
+            _SPW.Text = 'SPW: ' .. u302(v312 * 604800, 1)
+            _Value3 = _Value4
+        end
+    end)()
+end
+
+coroutine.wrap(v313)()
+
+local function v332()
+    local _Parent5 = Instance.new('LocalScript', _ScrollingFrame).Parent
+    local u315 = {}
+    local v316 = 2
+
+    local function u321(p317)
+        local v318 = _Parent5:FindFirstChild(p317.Name)
+
+        if not v318 then
+            v318 = Instance.new('TextLabel')
+            v318.Name = p317.Name
+            v318.Size = UDim2.new(0, 149, 0, 19)
+            v318.BackgroundColor3 = Color3.new(0, 0, 0)
+            v318.TextColor3 = Color3.new(1, 1, 1)
+            v318.Font = Enum.Font.FredokaOne
+            v318.TextSize = 18
+            v318.TextScaled = true
+            v318.Parent = _Parent5
+        end
+
+        local v319 = game.ReplicatedStorage.Data:FindFirstChild(p317.Name)
+
+        if v319 and v319:FindFirstChild('Strength') then
+            local _Value5 = v319.Strength.Value
+
+            if not u315[p317.Name] then
+                u315[p317.Name] = _Value5
+            end
+            if _Value5 - u315[p317.Name] < 50 then
+                v318.Text = p317.Name .. ' Not Farming'
+                v318.TextColor3 = Color3.new(1, 1, 1)
+            else
+                v318.Text = p317.Name .. ' Is Farming'
+                v318.TextColor3 = Color3.new(0, 1, 0)
+            end
+
+            u315[p317.Name] = _Value5
+        else
+            v318.Text = p317.Name .. ': No Strength Stat'
+            u315[p317.Name] = nil
+        end
+    end
+    local function u323()
+        local v322 = #game.Players:GetPlayers()
+
+        _Parent5.CanvasSize = UDim2.new(0, 0, 0, v322 * 60)
+    end
+    local function v328()
+        local v324, v325, v326 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v327
+
+            v326, v327 = v324(v325, v326)
+
+            if v326 == nil then
+                break
+            end
+
+            u321(v327)
+        end
+
+        u323()
+    end
+
+    game.Players.PlayerAdded:Connect(function(p329)
+        u321(p329)
+    end)
+    game.Players.PlayerRemoving:Connect(function(p330)
+        local v331 = _Parent5:FindFirstChild(p330.Name)
+
+        if v331 then
+            v331:Destroy()
+        end
+
+        u315[p330.Name] = nil
+    end)
+
+    while true do
+        v328()
+        wait(v316)
+    end
+end
+
+coroutine.wrap(v332)()
+
+local function v357()
+    local _Parent6 = Instance.new('LocalScript', _ScrollingFrame2).Parent
+    local u334 = {
+        '',
+        'K',
+        'M',
+        'B',
+        'T',
+    }
+    local u335 = {}
+
+    local function u341(p336, p337)
+        local v338 = math.floor(math.log(math.max(1, math.abs(p336)), 1000))
+        local v339 = u334[1 + v338] or 'e+' .. v338
+        local v340 = math.floor(p336 * (10 ^ p337 / 1000 ^ v338)) / 10 ^ p337
+
+        return ('%.' .. p337 .. 'f%s'):format(v340, v339)
+    end
+    local function u346(p342)
+        local v343 = _Parent6:FindFirstChild(p342.Name)
+
+        if not v343 then
+            v343 = Instance.new('TextLabel')
+            v343.Name = p342.Name
+            v343.Size = UDim2.new(0, 149, 0, 19)
+            v343.BackgroundColor3 = Color3.new(0, 0, 0)
+            v343.TextColor3 = Color3.new(1, 1, 1)
+            v343.Font = Enum.Font.FredokaOne
+            v343.TextScaled = true
+            v343.TextSize = 18
+            v343.Parent = _Parent6
+        end
+
+        local _leaderstats = p342:FindFirstChild('leaderstats')
+
+        if _leaderstats and _leaderstats:FindFirstChild('Strength') then
+            local _Value6 = _leaderstats.Strength.Value
+
+            if u335[p342.Name] ~= _Value6 then
+                v343.Text = p342.Name .. ': ' .. u341(_Value6, 1)
+                u335[p342.Name] = _Value6
+            end
+        else
+            v343.Text = p342.Name .. ': No Strength Stat'
+        end
+    end
+    local function u348()
+        local v347 = #game.Players:GetPlayers()
+
+        _Parent6.CanvasSize = UDim2.new(0, 0, 0, v347 * 60)
+    end
+    local function v353()
+        local v349, v350, v351 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v352
+
+            v351, v352 = v349(v350, v351)
+
+            if v351 == nil then
+                break
+            end
+
+            u346(v352)
+        end
+
+        u348()
+    end
+
+    game.Players.PlayerAdded:Connect(function(p354)
+        u346(p354)
+        u348()
+    end)
+    game.Players.PlayerRemoving:Connect(function(p355)
+        local v356 = _Parent6:FindFirstChild(p355.Name)
+
+        if v356 then
+            v356:Destroy()
+        end
+
+        u335[p355.Name] = nil
+
+        u348()
+    end)
+
+    while true do
+        v353()
+        wait(5)
+    end
+end
+
+coroutine.wrap(v357)()
+
+local function v382()
+    local _Parent7 = Instance.new('LocalScript', _ScrollingFrame3).Parent
+    local u359 = {
+        '',
+        'K',
+        'M',
+        'B',
+        'T',
+    }
+    local u360 = {}
+
+    local function u366(p361, p362)
+        local v363 = math.floor(math.log(math.max(1, math.abs(p361)), 1000))
+        local v364 = u359[1 + v363] or 'e+' .. v363
+        local v365 = math.floor(p361 * (10 ^ p362 / 1000 ^ v363)) / 10 ^ p362
+
+        return ('%.' .. p362 .. 'f%s'):format(v365, v364)
+    end
+    local function u371(p367)
+        local v368 = _Parent7:FindFirstChild(p367.Name)
+
+        if not v368 then
+            v368 = Instance.new('TextLabel')
+            v368.Name = p367.Name
+            v368.Size = UDim2.new(0, 149, 0, 19)
+            v368.BackgroundColor3 = Color3.new(0, 0, 0)
+            v368.TextColor3 = Color3.new(1, 1, 1)
+            v368.TextScaled = true
+            v368.Font = Enum.Font.FredokaOne
+            v368.TextSize = 18
+            v368.Parent = _Parent7
+        end
+
+        local v369 = game.ReplicatedStorage.Data:FindFirstChild(p367.Name)
+
+        if v369 and v369:FindFirstChild('Strength') then
+            local _Value7 = v369.Strength.Value
+
+            if u360[p367.Name] ~= _Value7 then
+                v368.Text = p367.Name .. ': ' .. u366(_Value7, 1)
+                u360[p367.Name] = _Value7
+            end
+        else
+            v368.Text = p367.Name .. ': No Strength Stat'
+        end
+    end
+    local function u373()
+        local v372 = #game.Players:GetPlayers()
+
+        _Parent7.CanvasSize = UDim2.new(0, 0, 0, v372 * 60)
+    end
+    local function v378()
+        local v374, v375, v376 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v377
+
+            v376, v377 = v374(v375, v376)
+
+            if v376 == nil then
+                break
+            end
+
+            u371(v377)
+        end
+
+        u373()
+    end
+
+    game.Players.PlayerAdded:Connect(function(p379)
+        u371(p379)
+        u373()
+    end)
+    game.Players.PlayerRemoving:Connect(function(p380)
+        local v381 = _Parent7:FindFirstChild(p380.Name)
+
+        if v381 then
+            v381:Destroy()
+        end
+
+        u360[p380.Name] = nil
+
+        u373()
+    end)
+
+    while true do
+        v378()
+        wait(5)
+    end
+end
+
+coroutine.wrap(v382)()
+
+local function v424()
+    local _Parent8 = Instance.new('LocalScript', _ScrollingFrame4).Parent
+
+    local function u398(p384)
+        local v385 = _Parent8:FindFirstChild(p384.Name)
+
+        if not v385 then
+            v385 = Instance.new('TextLabel')
+            v385.Name = p384.Name
+            v385.Size = UDim2.new(0, 149, 0, 19)
+            v385.BackgroundColor3 = Color3.new(0, 0, 0)
+            v385.TextColor3 = Color3.new(1, 1, 1)
+            v385.Font = Enum.Font.FredokaOne
+            v385.TextSize = 18
+            v385.TextScaled = true
+            v385.Parent = _Parent8
+        end
+
+        local v386 = false
+        local v387 = 0
+        local _Backpack = p384:FindFirstChild('Backpack')
+        local _Character = p384:FindFirstChild('Character')
+
+        if _Backpack then
+            local v390, v391, v392 = pairs(_Backpack:GetChildren())
+
+            while true do
+                local v393
+
+                v392, v393 = v390(v391, v392)
+
+                if v392 == nil then
+                    break
+                end
+                if v393.Name == 'Double Weight' then
+                    v387 = v387 + 1
+                    v386 = true
+                end
+            end
+        end
+        if _Character then
+            local v394, v395, v396 = pairs(_Character:GetChildren())
+
+            while true do
+                local v397
+
+                v396, v397 = v394(v395, v396)
+
+                if v396 == nil then
+                    break
+                end
+                if v397.Name == 'Double Weight' then
+                    v387 = v387 + 1
+                    v386 = true
+                end
+            end
+        end
+        if v386 then
+            v385.Text = p384.Name .. ': ' .. v387 .. ' Double Weight(s)'
+        else
+            v385.Text = p384.Name .. ': Has No Double Weight'
+        end
+    end
+    local function u400()
+        local v399 = #game.Players:GetPlayers()
+
+        _Parent8.CanvasSize = UDim2.new(0, 0, 0, v399 * 60)
+    end
+    local function v405()
+        local v401, v402, v403 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v404
+
+            v403, v404 = v401(v402, v403)
+
+            if v403 == nil then
+                break
+            end
+
+            u398(v404)
+        end
+
+        u400()
+    end
+    local function u413(p406)
+        local _Backpack2 = p406:WaitForChild('Backpack', 5)
+        local v408 = p406.Character or p406.CharacterAdded:Wait()
+
+        if _Backpack2 then
+            _Backpack2.ChildAdded:Connect(function(p409)
+                if p409.Name == 'Double Weight' then
+                    u398(p406)
+                end
+            end)
+            _Backpack2.ChildRemoved:Connect(function(p410)
+                if p410.Name == 'Double Weight' then
+                    u398(p406)
+                end
+            end)
+        end
+        if v408 then
+            v408.ChildAdded:Connect(function(p411)
+                if p411.Name == 'Double Weight' then
+                    u398(p406)
+                end
+            end)
+            v408.ChildRemoved:Connect(function(p412)
+                if p412.Name == 'Double Weight' then
+                    u398(p406)
+                end
+            end)
+        end
+    end
+
+    game.Players.PlayerAdded:Connect(function(p414)
+        u398(p414)
+        u413(p414)
+        u400()
+    end)
+    game.Players.PlayerRemoving:Connect(function(p415)
+        local v416 = _Parent8:FindFirstChild(p415.Name)
+
+        if v416 then
+            v416:Destroy()
+        end
+
+        u400()
+    end)
+
+    local v417, v418, v419 = pairs(game.Players:GetPlayers())
+    local v420 = u400
+    local v421 = u413
+    local v422 = u398
+
+    while true do
+        local v423
+
+        v419, v423 = v417(v418, v419)
+
+        if v419 == nil then
+            break
+        end
+
+        v422(v423)
+        v421(v423)
+    end
+
+    v420()
+
+    while true do
+        v405()
+        wait(10)
+    end
+end
+
+coroutine.wrap(v424)()
+
+local function v440()
+    local _LocalScript15 = Instance.new('LocalScript', _Frame)
+    local _UserInputService = game:GetService('UserInputService')
+    local _Parent9 = _LocalScript15.Parent
+    local u428 = nil
+    local u429 = nil
+    local u430 = nil
+    local u431 = nil
+
+    local function u434(p432)
+        local v433 = p432.Position - u430
+
+        _Parent9.Position = UDim2.new(u431.X.Scale, u431.X.Offset + v433.X, u431.Y.Scale, u431.Y.Offset + v433.Y)
+    end
+    local function u436(p435)
+        u428 = true
+        u430 = p435.Position
+        u431 = _Parent9.Position
+
+        p435.Changed:Connect(function()
+            if p435.UserInputState == Enum.UserInputState.End then
+                u428 = false
+            end
+        end)
+    end
+
+    _Parent9.InputBegan:Connect(function(p437)
+        if p437.UserInputType == Enum.UserInputType.MouseButton1 or p437.UserInputType == Enum.UserInputType.Touch then
+            u436(p437)
+        end
+    end)
+    _Parent9.InputChanged:Connect(function(p438)
+        if p438.UserInputType == Enum.UserInputType.MouseMovement or p438.UserInputType == Enum.UserInputType.Touch then
+            u429 = p438
+        end
+    end)
+    _UserInputService.InputChanged:Connect(function(p439)
+        if p439 == u429 and u428 then
+            u434(p439)
+        end
+    end)
+end
+
+coroutine.wrap(v440)()
+
+local function v468()
+    local _LocalScript16 = Instance.new('LocalScript', _TextButton25)
+    local _Duper = _LocalScript16.Parent.Parent:WaitForChild('Duper')
+    local _Parent10 = _LocalScript16.Parent
+    local _Remain = _LocalScript16.Parent.Parent:WaitForChild('Remain')
+    local u445 = 5949054
+    local u446 = 1
+
+    local function u450(p447)
+        local _MarketplaceService2 = game:GetService('MarketplaceService')
+        local _LocalPlayer5 = game.Players.LocalPlayer
+
+        pcall(function()
+            _MarketplaceService2:SignalPromptGamePassPurchaseFinished(_LocalPlayer5, p447, true)
+        end)
+    end
+    local function u456()
+        local v451, v452, v453 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+        local v454 = 0
+
+        while true do
+            local v455
+
+            v453, v455 = v451(v452, v453)
+
+            if v453 == nil then
+                break
+            end
+            if v455.Name == 'Double Weight' then
+                v454 = v454 + 1
+            end
+        end
+
+        return v454
+    end
+    local function u461(p457, p458)
+        local v459 = math.floor(p458 / 60)
+        local v460 = p458 % 60
+
+        p457.Text = string.format('Time Remaining: %d min %.2f sec', v459, v460)
+    end
+    local function u464(p462, p463)
+        game:GetService('StarterGui'):SetCore('SendNotification', {
+            Title = 'Auto Dupe!',
+            Text = 'Started',
+            Duration = 7,
+        })
+
+        while p462 > 0 do
+            wait(1)
+
+            p462 = p462 - 1
+
+            u461(_Remain, p462)
+            u450(u445)
+
+            if p463 <= u456() then
+                break
+            end
+        end
+
+        game:GetService('StarterGui'):SetCore('SendNotification', {
+            Title = 'Countdown Completed!',
+            Text = 'All weights processed!',
+            Duration = 5,
+        })
+
+        _Remain.Text = 'Countdown Finished!'
+
+        print('Dupe Stopped')
+    end
+
+    _Parent10.MouseButton1Click:Connect(function()
+        local _Text = _Duper.Text
+        local v466 = tonumber(_Text) or 0
+        local v467 = u456()
+
+        if v467 < v466 then
+            u464((v466 - v467) * u446, v466)
+        else
+            print('You already have enough Double Weights.')
+
+            _Remain.Text = 'No more weights needed!'
+        end
+    end)
+end
+
+coroutine.wrap(v468)()
+
+local function v479()
+    local _Parent11 = Instance.new('LocalScript', _TextLabel25).Parent
+
+    while true do
+        wait(0.1)
+
+        local v470, v471, v472 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+        local v473 = 0
+        local v474
+
+        v472, v474 = v470(v471, v472)
+
+        if v472 ~= nil then
+            if v474.Name == 'Double Weight' then
+                v473 = v473 + 1
+            end
+        end
+        if v473 == 0 then
+            local v475, v476, v477 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+
+            while true do
+                local v478
+
+                v477, v478 = v475(v476, v477)
+
+                if v477 == nil then
+                    break
+                end
+                if v478.Name == 'Double Weight' then
+                    v473 = v473 + 1
+                end
+            end
+        end
+
+        _Parent11.Text = 'Weights: ' .. v473
+
+        if v473 == 9999999999999 then
+            return
+        end
+    end
+end
+
+coroutine.wrap(v479)()
+
+local function v494()
+    local _LocalScript17 = Instance.new('LocalScript', _TextButton26)
+
+    _LocalScript17.Parent.MouseButton1Click:Connect(function()
+        local u481 = tonumber(_LocalScript17.Parent.Parent.Wait.Text) or 1
+        local _Stats = game:GetService('Stats')
+        local v483 = tonumber(_LocalScript17.Parent.Parent.Parent.Main2Frame.Pinger.Text)
+        local v484 = false
+        local u485 = false
+
+        local function v490()
+            if not u485 then
+                u485 = true
+
+                coroutine.wrap(function()
+                    pcall(function()
+                        _G.farmer2 = true
+
+                        while _G.farmer2 do
+                            task.wait(u481)
+
+                            local v486, v487, v488 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+
+                            while true do
+                                local v489
+
+                                v488, v489 = v486(v487, v488)
+
+                                if v488 == nil then
+                                    break
+                                end
+                                if v489.Name == 'Double Weight' then
+                                    v489:Activate()
+                                end
+                            end
+                        end
+                    end)
+                end)()
+            end
+        end
+        local function v491()
+            if u485 then
+                _G.farmer2 = false
+                u485 = false
+            end
+        end
+
+        v490()
+
+        local v492 = u481
+
+        while true do
+            local v493 = _Stats.Network.ServerStatsItem['Data Ping']:GetValue()
+
+            if v483 <= v493 and not v484 then
+                game:GetService('StarterGui'):SetCore('SendNotification', {
+                    Title = 'Ping Limiter!',
+                    Text = 'Farm Stopped - Ping Over Limit',
+                    Duration = 3,
+                })
+                v491()
+
+                v484 = true
+            elseif v493 < v483 and v484 then
+                game:GetService('StarterGui'):SetCore('SendNotification', {
+                    Title = 'Ping Limiter!',
+                    Text = 'Farm Started - Ping Under Limit',
+                    Duration = 3,
+                })
+                v490()
+
+                v484 = false
+            end
+
+            task.wait(v492)
+        end
+    end)
+end
+
+coroutine.wrap(v494)()
+
+local function v495()
+    Instance.new('LocalScript', _TextButton27).Parent.MouseButton1Click:Connect(function()
+        _G.farmer2 = false
+    end)
+end
+
+coroutine.wrap(v495)()
+
+local function v507()
+    Instance.new('LocalScript', _TextButton28).Parent.MouseButton1Click:Connect(function()
+        _G.Equip = true
+
+        local v496 = false
+
+        if not _G.Equip then
+            return
+        end
+
+        wait(0.631201)
+
+        local v497, v498, v499 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+        local v500 = 0
+
+        if v501.Name == 'Double Weight' then
+            v501.Parent = game.Players.LocalPlayer.Character
+            v500 = v500 + 1
+
+            if v500 >= 100 then
+                break
+            end
+        end
+
+        local v501
+
+        v499, v501 = v497(v498, v499)
+
+        if v499 ~= nil then
+        end
+
+        local v502, v503, v504 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+        local v505 = 0
+
+        while true do
+            local v506
+
+            v504, v506 = v502(v503, v504)
+
+            if v504 == nil then
+                break
+            end
+            if v506.Name == 'Double Weight' then
+                v505 = v505 + 1
+            end
+        end
+
+        if v505 == 0 and not v496 then
+            wait(1)
+            game:GetService('StarterGui'):SetCore('SendNotification', {
+                Title = 'Equip',
+                Text = 'Equipped All Weights. Enjoy!',
+                Duration = 3,
+            })
+
+            _G.Equip = false
+            v496 = true
+        end
+    end)
+end
+
+coroutine.wrap(v507)()
+
+local function v519()
+    Instance.new('LocalScript', _TextButton29).Parent.MouseButton1Click:Connect(function()
+        _G.Equip = true
+
+        local v508 = false
+
+        if not _G.Equip then
+            return
+        end
+
+        wait(0.631201)
+
+        local v509, v510, v511 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+        local v512 = 0
+
+        if v513.Name == 'Double Weight' then
+            v513.Parent = game.Players.LocalPlayer.Backpack
+            v512 = v512 + 1
+
+            if v512 >= 100 then
+                break
+            end
+        end
+
+        local v513
+
+        v511, v513 = v509(v510, v511)
+
+        if v511 ~= nil then
+        end
+
+        local v514, v515, v516 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+        local v517 = 0
+
+        while true do
+            local v518
+
+            v516, v518 = v514(v515, v516)
+
+            if v516 == nil then
+                break
+            end
+            if v518.Name == 'Double Weight' then
+                v517 = v517 + 1
+            end
+        end
+
+        if v517 == 0 and not v508 then
+            wait(1)
+            game:GetService('StarterGui'):SetCore('SendNotification', {
+                Title = 'Equip',
+                Text = 'Equipped All Weights. Enjoy!',
+                Duration = 3,
+            })
+
+            _G.Equip = false
+            v508 = true
+        end
+    end)
+end
+
+coroutine.wrap(v519)()
+
+local function v531()
+    local _LocalScript18 = Instance.new('LocalScript', _TextLabel27)
+    local _Parent12 = _LocalScript18.Parent
+    local _Pinger = _LocalScript18.Parent.Parent.Pinger
+    local u523 = {
+        '',
+        'K',
+        'M',
+        'B',
+        'T',
+    }
+
+    local function v529(p524, p525)
+        local v526 = math.floor(math.log(math.max(1, math.abs(p524)), 1000))
+        local v527 = u523[1 + v526] or 'e+' .. v526
+        local v528 = math.floor(p524 * (10 ^ p525 / 1000 ^ v526)) / 10 ^ p525
+
+        return ('%.' .. p525 .. 'f%s'):format(v528, v527)
+    end
+
+    while true do
+        local v530 = tonumber(_Pinger.Text)
+
+        if v530 then
+            _Parent12.Text = 'Ping Limit Set To: ' .. v529(v530, 0)
+        else
+            _Parent12.Text = 'Invalid Ping Limit'
+        end
+
+        wait(1)
+    end
+end
+
+coroutine.wrap(v531)()
+
+local function v557()
+    Instance.new('LocalScript', _TextButton30).Parent.MouseButton1Click:Connect(function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/mmEr60d5', true))()
+        game.ReplicatedFirst.TourneyQ:Destroy()
+        game:GetService('Lighting').NormalSky:Destroy()
+        game:GetService('Players').LocalPlayer.PlayerGui.HUD:Destroy()
+
+        local v532 = game
+        local _Workspace2 = v532.Workspace
+        local _Lighting2 = v532.Lighting
+        local _Terrain2 = _Workspace2.Terrain
+
+        _Terrain2.WaterWaveSize = 0
+        _Terrain2.WaterWaveSpeed = 0
+        _Terrain2.WaterReflectance = 0
+        _Terrain2.WaterTransparency = 0
+        _Lighting2.GlobalShadows = false
+        _Lighting2.FogEnd = 9000000000
+        settings().Rendering.QualityLevel = 'Level01'
+
+        local v536, v537, v538 = pairs(v532:GetDescendants())
+
+        while true do
+            local v539
+
+            v538, v539 = v536(v537, v538)
+
+            if v538 == nil then
+                break
+            end
+            if v539:IsA('Part') or (v539:IsA('Union') or v539:IsA('MeshPart')) then
+                v539.Reflectance = 0
+            elseif v539:IsA('ParticleEmitter') or v539:IsA('Trail') then
+                v539:Destroy()
+            elseif v539:IsA('Explosion') then
+                v539.BlastPressure = 0
+                v539.BlastRadius = 0
+            end
+        end
+
+        local v540, v541, v542 = pairs(_Lighting2:GetChildren())
+
+        while true do
+            local v543
+
+            v542, v543 = v540(v541, v542)
+
+            if v542 == nil then
+                break
+            end
+            if v543:IsA('BlurEffect') or (v543:IsA('SunRaysEffect') or (v543:IsA('ColorCorrectionEffect') or (v543:IsA('BloomEffect') or v543:IsA('DepthOfFieldEffect')))) then
+                v543.Enabled = false
+            end
+        end
+
+        sethiddenproperty(game.Lighting, 'Technology', 'Compatibility')
+        game:GetService('StarterGui'):SetCore('SendNotification', {
+            Title = 'ANTI AFK ACTIVE',
+            Text = "This is so you won't get kicked",
+            Duration = 7,
+        })
+
+        local _VirtualUser2 = game:GetService('VirtualUser')
+
+        game:GetService('Players').LocalPlayer.Idled:connect(function()
+            _VirtualUser2:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            wait(1)
+            _VirtualUser2:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        end)
+
+        local v545, v546, v547 = pairs(game:GetService('Workspace'):GetChildren())
+
+        while true do
+            local v548
+
+            v547, v548 = v545(v546, v547)
+
+            if v547 == nil then
+                break
+            end
+
+            local _ = v548.ClassName == 'Model'
+
+            if v548.Name ~= game.Players.LocalPlayer.Name and (v548.Name ~= 'Terrain' and (v548.Name ~= 'Baseplate' and v548.Name ~= 'Camera')) then
+                v548:Destroy()
+            end
+        end
+
+        local v549, v550, v551 = pairs(game:GetService('ReplicatedStorage'):GetChildren())
+
+        while true do
+            local v552
+
+            v551, v552 = v549(v550, v551)
+
+            if v551 == nil then
+                break
+            end
+            if v552.Name ~= 'Data' then
+                v552:Destroy()
+            end
+        end
+
+        local v553, v554, v555 = pairs(game:GetService('CorePackages'):GetChildren())
+
+        while true do
+            local v556
+
+            v555, v556 = v553(v554, v555)
+
+            if v555 == nil then
+                break
+            end
+
+            v556:Destroy()
+        end
+    end)
+end
+
+coroutine.wrap(v557)()
+
+local function v569()
+    local _Parent13 = Instance.new('LocalScript', _TextLabel29).Parent
+    local u559 = 0
+
+    local function v568()
+        u559 = 0
+
+        local v560, v561, v562 = pairs(game.Players.LocalPlayer.Backpack:GetChildren())
+
+        while true do
+            local v563
+
+            v562, v563 = v560(v561, v562)
+
+            if v562 == nil then
+                break
+            end
+            if v563.Name == 'Double Weight' then
+                u559 = u559 + 1
+            end
+        end
+
+        if u559 == 0 then
+            local v564, v565, v566 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+
+            while true do
+                local v567
+
+                v566, v567 = v564(v565, v566)
+
+                if v566 == nil then
+                    break
+                end
+                if v567.Name == 'Double Weight' then
+                    u559 = u559 + 1
+                end
+            end
+        end
+    end
+
+    while true do
+        v568()
+
+        _Parent13.Text = 0.000886 * u559
+
+        wait(1)
+    end
+end
+
+coroutine.wrap(v569)()
