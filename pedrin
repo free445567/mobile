@@ -1,4 +1,3 @@
-
 local _ScreenGui = Instance.new('ScreenGui')
 local _Frame = Instance.new('Frame')
 local _UICorner = Instance.new('UICorner')
