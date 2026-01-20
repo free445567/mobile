@@ -1,73 +1,53 @@
 -- ==================================================================================
--- ZAZA HUB - VERSÃO PAGA - COMPLETAMENTE DESOFUSCADO
+-- ZAZA HUB V1.3 - COMPLETAMENTE DESOFUSCADO E FUNCIONAL
 -- ==================================================================================
--- Arquivo original gerado em: discord.gg/25ms
--- Desofuscado completamente para máxima legibilidade
--- Versão: 1.3
+-- Script original: discord.gg/25ms  
+-- Desofuscado completamente - SEM GAMEPASS
 -- Criador: abercke04
 -- ==================================================================================
 
--- ==================================================================================
--- SEÇÃO 1: SERVIÇOS E VARIÁVEIS GLOBAIS
+print("🚀 Iniciando Zaza Hub v1.3...")
 
--- NOTIFICAÇÕES (GAMEPASS REMOVIDO)
-if JogadorLocal then
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Aguarde...",
-        Text = "Carregando...",
-        Duration = 7
-    })
-    wait(7)
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Bem-vindo " .. JogadorLocal.Name,
-        Text = "Zaza Hub! By: abercke04",
-        Duration = 3
-    })
+-- Serviços
+local JogadorLocal = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Stats = game:GetService("Stats")
+
+-- Notificações de boas-vindas
+StarterGui:SetCore("SendNotification", {
+    Title = "Aguarde...",
+    Text = "Carregando Zaza Hub...",
+    Duration = 7
+})
+wait(7)
+StarterGui:SetCore("SendNotification", {
+    Title = "Bem-vindo " .. JogadorLocal.Name,
+    Text = "Zaza Hub carregado! By: abercke04",
+    Duration = 3
+})
+
+-- Funções utilitárias
+local function FormatarNumeroGrande(numero, casasDecimais)
+    local sufixos = {'', 'K', 'M', 'B', 'T'}
+    local magnitude = math.floor(math.log(math.max(1, math.abs(numero)), 1000))
+    local sufixo = sufixos[1 + magnitude] or 'e+' .. magnitude
+    local numeroFormatado = math.floor(numero * (10 ^ casasDecimais / 1000 ^ magnitude)) / 10 ^ casasDecimais
+    return string.format('%.' .. casasDecimais .. 'f%s', numeroFormatado, sufixo)
 end
--- ==================================================================================
-    })
+
+local function FormatarTempo(segundos)
+    local minutos = math.floor(segundos / 60)
+    local segs = segundos % 60
+    local horas = math.floor(minutos / 60)
+    local mins = minutos % 60
+    local dias = math.floor(horas / 24)
+    local hrs = horas % 24
+    return string.format('%02d:%02d:%02d:%02d', dias, hrs, mins, segs)
 end
 
--- ==================================================================================
--- SEÇÃO 3: DECLARAÇÃO DE TODOS OS COMPONENTES DA GUI
--- ==================================================================================
-
--- === COMPONENTE PRINCIPAL ===
-local TelaPrincipal = Instance.new('ScreenGui')
-local FramePrincipal = Instance.new('Frame')
-local CantoFramePrincipal = Instance.new('UICorner')
-
--- === ÁREA DE BOTÕES DE NAVEGAÇÃO ===
-local FrameBotoes = Instance.new('Frame')
-local CantoFrameBotoes = Instance.new('UICorner')
-local LayoutBotoes = Instance.new('UIListLayout')
-
--- Botão 1: Farm Normal
-local BotaoFarmNormal = Instance.new('TextButton')
-local CantoBotaoFarmNormal = Instance.new('UICorner')
-
--- Botão 2: Ping Farm
-local BotaoPingFarm = Instance.new('TextButton')
-local CantoBotaoPingFarm = Instance.new('UICorner')
-
--- Botão 3: Dupe
-local BotaoDupe = Instance.new('TextButton')
-local CantoBotaoDupe = Instance.new('UICorner')
-
--- Botão 4: Misc
-local BotaoMisc = Instance.new('TextButton')
-local CantoBotaoMisc = Instance.new('UICorner')
-
--- Botão 5: Info
-local BotaoInfo = Instance.new('TextButton')
-local CantoBotaoInfo = Instance.new('UICorner')
-
--- Botão 6: Quest
-local BotaoQuest = Instance.new('TextButton')
-local CantoBotaoQuest = Instance.new('UICorner')
-
--- Botão 7: Player
-local BotaoPlayer = Instance.new('TextButton')
 local CantoBotaoPlayer = Instance.new('UICorner')
 
 -- === SEPARADORES VISUAIS ===
