@@ -1,2732 +1,1448 @@
--- ==================================================================================
--- ZAZA HUB V1.3 - COMPLETAMENTE DESOFUSCADO E FUNCIONAL
--- ==================================================================================
--- Script original: discord.gg/25ms  
--- Desofuscado completamente - SEM GAMEPASS
--- Criador: abercke04
--- ==================================================================================
-
-print("🚀 Iniciando Zaza Hub v1.3...")
-
--- Serviços
-local JogadorLocal = game.Players.LocalPlayer
-local Players = game:GetService("Players")
-local StarterGui = game:GetService("StarterGui")
-local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-local Stats = game:GetService("Stats")
-
--- Notificações de boas-vindas
-StarterGui:SetCore("SendNotification", {
-    Title = "Aguarde...",
-    Text = "Carregando Zaza Hub...",
-    Duration = 7
-})
-wait(7)
-StarterGui:SetCore("SendNotification", {
-    Title = "Bem-vindo " .. JogadorLocal.Name,
-    Text = "Zaza Hub carregado! By: abercke04",
-    Duration = 3
-})
-
--- Funções utilitárias
-local function FormatarNumeroGrande(numero, casasDecimais)
-    local sufixos = {'', 'K', 'M', 'B', 'T'}
-    local magnitude = math.floor(math.log(math.max(1, math.abs(numero)), 1000))
-    local sufixo = sufixos[1 + magnitude] or 'e+' .. magnitude
-    local numeroFormatado = math.floor(numero * (10 ^ casasDecimais / 1000 ^ magnitude)) / 10 ^ casasDecimais
-    return string.format('%.' .. casasDecimais .. 'f%s', numeroFormatado, sufixo)
-end
-
-local function FormatarTempo(segundos)
-    local minutos = math.floor(segundos / 60)
-    local segs = segundos % 60
-    local horas = math.floor(minutos / 60)
-    local mins = minutos % 60
-    local dias = math.floor(horas / 24)
-    local hrs = horas % 24
-    return string.format('%02d:%02d:%02d:%02d', dias, hrs, mins, segs)
-end
-
-local CantoBotaoPlayer = Instance.new('UICorner')
-
--- === SEPARADORES VISUAIS ===
-local SeparadorVerticalPreto = Instance.new('Frame')
-local SeparadorHorizontalPreto = Instance.new('Frame')
-
--- === BARRA SUPERIOR ===
-local BarraSuperior = Instance.new('Frame')
-local CantoBarraSuperior = Instance.new('UICorner')
-local TextoTitulo = Instance.new('TextLabel')
-local TextoPing = Instance.new('TextLabel')
-local BotaoDestruirGUI = Instance.new('TextButton')
-local CantoBotaoDestruir = Instance.new('UICorner')
-local TextoVersao = Instance.new('TextLabel')
-
--- ==================================================================================
--- SEÇÃO 4: FRAMES DE CONTEÚDO (PAINÉIS)
--- ==================================================================================
-
--- === PAINEL: FARM NORMAL ===
-local PainelFarmNormal = Instance.new('Frame')
-local CantoPainelFarmNormal = Instance.new('UICorner')
-
--- Botões do Farm Normal
-local BotaoIniciarFarm = Instance.new('TextButton')
-local CantoBotaoIniciarFarm = Instance.new('UICorner')
-local BotaoPararFarm = Instance.new('TextButton')
-local CantoBotaoPararFarm = Instance.new('UICorner')
-local BotaoEquiparPesos = Instance.new('TextButton')
-local CantoBotaoEquiparPesos = Instance.new('UICorner')
-local BotaoPararEquiparPesos = Instance.new('TextButton')
-local CantoBotaoPararEquiparPesos = Instance.new('UICorner')
-
--- Labels e textos do Farm Normal
-local TextoInstrucaoEquipar = Instance.new('TextLabel')
-local BotaoReduzirLag = Instance.new('TextButton')
-local CantoBotaoReduzirLag = Instance.new('UICorner')
-local LabelTempoEspera = Instance.new('TextLabel')
-local TextoDescricaoFarmNormal = Instance.new('TextLabel')
-
--- === PAINEL: MISC (UTILIDADES) ===
-local PainelMisc = Instance.new('Frame')
-local CantoPainelMisc = Instance.new('UICorner')
-
--- Botões do Misc
-local BotaoAlternarDiaNoite = Instance.new('TextButton')
-local CantoBotaoAlternarDiaNoite = Instance.new('UICorner')
-local TextoScriptsUteis = Instance.new('TextLabel')
-local BotaoClickTeleport = Instance.new('TextButton')
-local CantoBotaoClickTeleport = Instance.new('UICorner')
-local BotaoFling = Instance.new('TextButton')
-local CantoBotaoFling = Instance.new('UICorner')
-local BotaoEspectarPlayers = Instance.new('TextButton')
-local CantoBotaoEspectarPlayers = Instance.new('UICorner')
-local BotaoAntiHit = Instance.new('TextButton')
-local CantoBotaoAntiHit = Instance.new('UICorner')
-local BotaoTeleportarRumble = Instance.new('TextButton')
-local CantoBotaoTeleportarRumble = Instance.new('UICorner')
-local BotaoTeleportarPiscina = Instance.new('TextButton')
-local CantoBotaoTeleportarPiscina = Instance.new('UICorner')
-local BotaoTeleportarCeu = Instance.new('TextButton')
-local CantoBotaoTeleportarCeu = Instance.new('UICorner')
-local BotaoTeleportarGlobo = Instance.new('TextButton')
-local CantoBotaoTeleportarGlobo = Instance.new('UICorner')
-local BotaoEsconderChat = Instance.new('TextButton')
-local CantoBotaoEsconderChat = Instance.new('UICorner')
-local BotaoMostrarChat = Instance.new('TextButton')
-local CantoBotaoMostrarChat = Instance.new('UICorner')
-
--- === PAINEL: INFO (INFORMAÇÕES) ===
-local PainelInfo = Instance.new('Frame')
-local CantoPainelInfo = Instance.new('UICorner')
-
--- Labels de informação
-local LabelTempoFarmando = Instance.new('TextLabel')
-local LabelForcaPorSegundo = Instance.new('TextLabel')
-local LabelForcaPorMinuto = Instance.new('TextLabel')
-local LabelForcaPor10Minutos = Instance.new('TextLabel')
-local LabelForcaPorHora = Instance.new('TextLabel')
-local LabelForcaPorDia = Instance.new('TextLabel')
-local LabelTamanhoJogador = Instance.new('TextLabel')
-local LabelGanhosTotal = Instance.new('TextLabel')
-local LabelForcaAtual = Instance.new('TextLabel')
-local LabelForcaPorSemana = Instance.new('TextLabel')
-
--- === PAINEL: PLAYER (INFORMAÇÕES DE JOGADORES) ===
-local PainelPlayer = Instance.new('Frame')
-local CantoPainelPlayer = Instance.new('UICorner')
-
--- ScrollFrames para listas de jogadores
-local ScrollFarmandoJogadores = Instance.new('ScrollingFrame')
-local LayoutScrollFarmando = Instance.new('UIListLayout')
-local ScrollTamanhoJogadores = Instance.new('ScrollingFrame')
-local LayoutScrollTamanho = Instance.new('UIListLayout')
-local ScrollForcaJogadores = Instance.new('ScrollingFrame')
-local LayoutScrollForca = Instance.new('UIListLayout')
-local ScrollPesosJogadores = Instance.new('ScrollingFrame')
-local LayoutScrollPesos = Instance.new('UIListLayout')
-
--- Labels de cabeçalho
-local LabelCabecalhoPesos = Instance.new('TextLabel')
-local LabelCabecalhoForca = Instance.new('TextLabel')
-local LabelCabecalhoFarmando = Instance.new('TextLabel')
-local LabelCabecalhoTamanho = Instance.new('TextLabel')
-
--- === PAINEL: CRÉDITOS ===
-local PainelCreditos = Instance.new('Frame')
-local CantoPainelCreditos = Instance.new('UICorner')
-local TextoCredito1 = Instance.new('TextLabel')
-local TextoCredito2 = Instance.new('TextLabel')
-local TextoCredito3 = Instance.new('TextLabel')
-
--- === PAINEL: DUPE (DUPLICAÇÃO) ===
-local PainelDupe = Instance.new('Frame')
-local CantoPainelDupe = Instance.new('UICorner')
-local BotaoDuplicarPesos = Instance.new('TextButton')
-local CantoBotaoDuplicarPesos = Instance.new('UICorner')
-local LabelQuantidadePesos = Instance.new('TextLabel')
-local CaixaTextoDupe = Instance.new('TextBox')
-local CantoCaixaTextoDupe = Instance.new('UICorner')
-local LabelTempoRestante = Instance.new('TextLabel')
-
--- === PAINEL: PING FARM ===
-local PainelPingFarm = Instance.new('Frame')
-local CantoPainelPingFarm = Instance.new('UICorner')
-
--- Botões do Ping Farm
-local BotaoIniciarFarmPing = Instance.new('TextButton')
-local CantoBotaoIniciarFarmPing = Instance.new('UICorner')
-local BotaoPararFarmPing = Instance.new('TextButton')
-local CantoBotaoPararFarmPing = Instance.new('UICorner')
-local BotaoEquiparPesosPing = Instance.new('TextButton')
-local CantoBotaoEquiparPesosPing = Instance.new('UICorner')
-local BotaoPararEquiparPesosPing = Instance.new('TextButton')
-local CantoBotaoPararEquiparPesosPing = Instance.new('UICorner')
-
--- Labels e inputs do Ping Farm
-local LabelLimitePing = Instance.new('TextLabel')
-local TextoInstrucaoEquiparPing = Instance.new('TextLabel')
-local BotaoReduzirLagPing = Instance.new('TextButton')
-local CantoBotaoReduzirLagPing = Instance.new('UICorner')
-local CaixaTextoLimitePing = Instance.new('TextBox')
-local CantoCaixaTextoLimitePing = Instance.new('UICorner')
-local LabelTempoEsperaPing = Instance.new('TextLabel')
-local TextoDescricaoPingFarm = Instance.new('TextLabel')
-
--- ==================================================================================
--- SEÇÃO 5: CONFIGURAÇÃO DA GUI - PROPRIEDADES DE TODOS OS COMPONENTES
--- ==================================================================================
-
--- === CONFIGURAÇÃO: TELA PRINCIPAL ===
-TelaPrincipal.Name = 'ZazaHubPaid'
-TelaPrincipal.Parent = game.CoreGui
-TelaPrincipal.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
--- === CONFIGURAÇÃO: FRAME PRINCIPAL ===
-FramePrincipal.Name = 'Main'
-FramePrincipal.Parent = TelaPrincipal
-FramePrincipal.Active = true
-FramePrincipal.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
-FramePrincipal.BorderColor3 = Color3.fromRGB(0, 0, 0)
-FramePrincipal.BorderSizePixel = 0
-FramePrincipal.Position = UDim2.new(0.28227061, 0, 0.403963417, 0)
-FramePrincipal.Size = UDim2.new(0, 465, 0, 280)
-
-CantoFramePrincipal.Parent = FramePrincipal
-
--- === CONFIGURAÇÃO: FRAME DE BOTÕES ===
-FrameBotoes.Name = 'Buttons'
-FrameBotoes.Parent = FramePrincipal
-FrameBotoes.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-FrameBotoes.BackgroundTransparency = 0.8
-FrameBotoes.BorderColor3 = Color3.fromRGB(0, 0, 0)
-FrameBotoes.BorderSizePixel = 0
-FrameBotoes.Position = UDim2.new(0, 0, 0.14642857, 0)
-FrameBotoes.Size = UDim2.new(0, 126, 0, 239)
-
-CantoFrameBotoes.Parent = FrameBotoes
-
-LayoutBotoes.Parent = FrameBotoes
-LayoutBotoes.HorizontalAlignment = Enum.HorizontalAlignment.Center
-LayoutBotoes.SortOrder = Enum.SortOrder.LayoutOrder
-LayoutBotoes.Padding = UDim.new(0, 8)
-
--- === CONFIGURAÇÃO: BOTÃO FARM NORMAL ===
-BotaoFarmNormal.Name = 'Main1'
-BotaoFarmNormal.Parent = FrameBotoes
-BotaoFarmNormal.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoFarmNormal.BackgroundTransparency = 0.5
-BotaoFarmNormal.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoFarmNormal.BorderSizePixel = 0
-BotaoFarmNormal.Position = UDim2.new(0.039682541, 0, 0, 0)
-BotaoFarmNormal.Size = UDim2.new(0, 116, 0, 26)
-BotaoFarmNormal.Font = Enum.Font.FredokaOne
-BotaoFarmNormal.Text = 'Normal Farm'
-BotaoFarmNormal.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoFarmNormal.TextScaled = true
-BotaoFarmNormal.TextSize = 14
-BotaoFarmNormal.TextStrokeTransparency = 0
-BotaoFarmNormal.TextWrapped = true
-
-CantoBotaoFarmNormal.Parent = BotaoFarmNormal
-
--- === CONFIGURAÇÃO: BOTÃO PING FARM ===
-BotaoPingFarm.Name = 'Main2'
-BotaoPingFarm.Parent = FrameBotoes
-BotaoPingFarm.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPingFarm.BackgroundTransparency = 0.5
-BotaoPingFarm.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPingFarm.BorderSizePixel = 0
-BotaoPingFarm.Position = UDim2.new(0.039682541, 0, 0, 0)
-BotaoPingFarm.Size = UDim2.new(0, 116, 0, 26)
-BotaoPingFarm.Font = Enum.Font.FredokaOne
-BotaoPingFarm.Text = 'Ping Farm'
-BotaoPingFarm.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoPingFarm.TextScaled = true
-BotaoPingFarm.TextSize = 14
-BotaoPingFarm.TextStrokeTransparency = 0
-BotaoPingFarm.TextWrapped = true
-
-CantoBotaoPingFarm.Parent = BotaoPingFarm
-
--- === CONFIGURAÇÃO: BOTÃO DUPE ===
-BotaoDupe.Name = 'Dupe'
-BotaoDupe.Parent = FrameBotoes
-BotaoDupe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoDupe.BackgroundTransparency = 0.5
-BotaoDupe.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoDupe.BorderSizePixel = 0
-BotaoDupe.Position = UDim2.new(0.039682541, 0, 0, 0)
-BotaoDupe.Size = UDim2.new(0, 116, 0, 26)
-BotaoDupe.Font = Enum.Font.FredokaOne
-BotaoDupe.Text = 'Dupe'
-BotaoDupe.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoDupe.TextScaled = true
-BotaoDupe.TextSize = 14
-BotaoDupe.TextStrokeTransparency = 0
-BotaoDupe.TextWrapped = true
-
-CantoBotaoDupe.Parent = BotaoDupe
-
--- === CONFIGURAÇÃO: BOTÃO MISC ===
-BotaoMisc.Name = 'Misc'
-BotaoMisc.Parent = FrameBotoes
-BotaoMisc.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoMisc.BackgroundTransparency = 0.5
-BotaoMisc.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoMisc.BorderSizePixel = 0
-BotaoMisc.Position = UDim2.new(0.039682541, 0, 0, 0)
-BotaoMisc.Size = UDim2.new(0, 116, 0, 26)
-BotaoMisc.Font = Enum.Font.FredokaOne
-BotaoMisc.Text = 'Misc'
-BotaoMisc.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoMisc.TextScaled = true
-BotaoMisc.TextSize = 14
-BotaoMisc.TextStrokeTransparency = 0
-BotaoMisc.TextWrapped = true
-
-CantoBotaoMisc.Parent = BotaoMisc
-
--- === CONFIGURAÇÃO: BOTÃO INFO ===
-BotaoInfo.Name = 'Info'
-BotaoInfo.Parent = FrameBotoes
-BotaoInfo.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoInfo.BackgroundTransparency = 0.5
-BotaoInfo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoInfo.BorderSizePixel = 0
-BotaoInfo.Position = UDim2.new(0.039682541, 0, 0, 0)
-BotaoInfo.Size = UDim2.new(0, 116, 0, 26)
-BotaoInfo.Font = Enum.Font.FredokaOne
-BotaoInfo.Text = 'Info'
-BotaoInfo.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoInfo.TextScaled = true
-BotaoInfo.TextSize = 14
-BotaoInfo.TextStrokeTransparency = 0
-BotaoInfo.TextWrapped = true
-
-CantoBotaoInfo.Parent = BotaoInfo
-
--- === CONFIGURAÇÃO: BOTÃO QUEST ===
-BotaoQuest.Name = 'Quest'
-BotaoQuest.Parent = FrameBotoes
-BotaoQuest.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoQuest.BackgroundTransparency = 0.5
-BotaoQuest.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoQuest.BorderSizePixel = 0
-BotaoQuest.Position = UDim2.new(0.039682541, 0, 0, 0)
-BotaoQuest.Size = UDim2.new(0, 116, 0, 26)
-BotaoQuest.Font = Enum.Font.FredokaOne
-BotaoQuest.Text = 'Quest (Em Breve)'
-BotaoQuest.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoQuest.TextScaled = true
-BotaoQuest.TextSize = 14
-BotaoQuest.TextStrokeTransparency = 0
-BotaoQuest.TextWrapped = true
-
-CantoBotaoQuest.Parent = BotaoQuest
-
--- === CONFIGURAÇÃO: BOTÃO PLAYER ===
-BotaoPlayer.Name = 'Player'
-BotaoPlayer.Parent = FrameBotoes
-BotaoPlayer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPlayer.BackgroundTransparency = 0.5
-BotaoPlayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPlayer.BorderSizePixel = 0
-BotaoPlayer.Position = UDim2.new(0.039682541, 0, 0, 0)
-BotaoPlayer.Size = UDim2.new(0, 116, 0, 26)
-BotaoPlayer.Font = Enum.Font.FredokaOne
-BotaoPlayer.Text = 'Player'
-BotaoPlayer.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoPlayer.TextScaled = true
-BotaoPlayer.TextSize = 14
-BotaoPlayer.TextStrokeTransparency = 0
-BotaoPlayer.TextWrapped = true
-
-CantoBotaoPlayer.Parent = BotaoPlayer
-
--- === CONFIGURAÇÃO: SEPARADORES ===
-SeparadorVerticalPreto.Name = 'Black'
-SeparadorVerticalPreto.Parent = FramePrincipal
-SeparadorVerticalPreto.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-SeparadorVerticalPreto.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SeparadorVerticalPreto.BorderSizePixel = 0
-SeparadorVerticalPreto.Position = UDim2.new(0.270967752, 0, 0.14642857, 0)
-SeparadorVerticalPreto.Size = UDim2.new(0, 12, 0, 239)
-
-SeparadorHorizontalPreto.Name = 'Black'
-SeparadorHorizontalPreto.Parent = FramePrincipal
-SeparadorHorizontalPreto.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-SeparadorHorizontalPreto.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SeparadorHorizontalPreto.BorderSizePixel = 0
-SeparadorHorizontalPreto.Position = UDim2.new(0.270967752, 0, 0.14642857, 0)
-SeparadorHorizontalPreto.Size = UDim2.new(0, 339, 0, 17)
-
--- === CONFIGURAÇÃO: BARRA SUPERIOR ===
-BarraSuperior.Name = 'Top'
-BarraSuperior.Parent = FramePrincipal
-BarraSuperior.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BarraSuperior.BackgroundTransparency = 0.8
-BarraSuperior.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BarraSuperior.BorderSizePixel = 0
-BarraSuperior.Position = UDim2.new(-0.00160030241, 0, -0.00317949569, 0)
-BarraSuperior.Size = UDim2.new(0, 465, 0, 26)
-
-CantoBarraSuperior.Parent = BarraSuperior
-
-TextoTitulo.Name = 'Title'
-TextoTitulo.Parent = BarraSuperior
-TextoTitulo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoTitulo.BackgroundTransparency = 8
-TextoTitulo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoTitulo.BorderSizePixel = 0
-TextoTitulo.Size = UDim2.new(0, 223, 0, 26)
-TextoTitulo.Font = Enum.Font.FredokaOne
-TextoTitulo.Text = 'Zaza Hub | Versão Paga!'
-TextoTitulo.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoTitulo.TextScaled = true
-TextoTitulo.TextSize = 14
-TextoTitulo.TextStrokeTransparency = 0
-TextoTitulo.TextWrapped = true
-
-TextoPing.Name = 'Ping'
-TextoPing.Parent = BarraSuperior
-TextoPing.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoPing.BackgroundTransparency = 8
-TextoPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoPing.BorderSizePixel = 0
-TextoPing.Position = UDim2.new(0.498687953, 0, -0.0304917563, 0)
-TextoPing.Size = UDim2.new(0, 134, 0, 26)
-TextoPing.Font = Enum.Font.FredokaOne
-TextoPing.Text = 'Seu Ping...'
-TextoPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoPing.TextScaled = true
-TextoPing.TextSize = 14
-TextoPing.TextStrokeTransparency = 0
-TextoPing.TextWrapped = true
-
-BotaoDestruirGUI.Name = 'Main'
-BotaoDestruirGUI.Parent = BarraSuperior
-BotaoDestruirGUI.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoDestruirGUI.BackgroundTransparency = 0.5
-BotaoDestruirGUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoDestruirGUI.BorderSizePixel = 0
-BotaoDestruirGUI.Position = UDim2.new(0.820327699, 0, 0.188091576, 0)
-BotaoDestruirGUI.Size = UDim2.new(0, 84, 0, 15)
-BotaoDestruirGUI.Font = Enum.Font.FredokaOne
-BotaoDestruirGUI.Text = 'Destroy'
-BotaoDestruirGUI.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoDestruirGUI.TextScaled = true
-BotaoDestruirGUI.TextSize = 14
-BotaoDestruirGUI.TextStrokeTransparency = 0
-BotaoDestruirGUI.TextWrapped = true
-
-CantoBotaoDestruir.Parent = BotaoDestruirGUI
-
-TextoVersao.Name = 'version'
-TextoVersao.Parent = BarraSuperior
-TextoVersao.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoVersao.BackgroundTransparency = 8
-TextoVersao.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoVersao.BorderSizePixel = 0
-TextoVersao.Position = UDim2.new(0.786859989, 0, 1.00796974, 0)
-TextoVersao.Size = UDim2.new(0, 98, 0, 15)
-TextoVersao.Font = Enum.Font.FredokaOne
-TextoVersao.Text = 'Version 1.3'
-TextoVersao.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoVersao.TextScaled = true
-TextoVersao.TextSize = 14
-TextoVersao.TextStrokeTransparency = 0
-TextoVersao.TextWrapped = true
-
--- ==================================================================================
--- SEÇÃO 6: CONFIGURAÇÃO DO PAINEL FARM NORMAL
--- ==================================================================================
-
-PainelFarmNormal.Name = 'MainFrame'
-PainelFarmNormal.Parent = FramePrincipal
-PainelFarmNormal.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PainelFarmNormal.BackgroundTransparency = 0.8
-PainelFarmNormal.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PainelFarmNormal.BorderSizePixel = 0
-PainelFarmNormal.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
-PainelFarmNormal.Size = UDim2.new(0, 327, 0, 222)
-PainelFarmNormal.Visible = false
-
-CantoPainelFarmNormal.Parent = PainelFarmNormal
-
-BotaoIniciarFarm.Name = 'farm'
-BotaoIniciarFarm.Parent = PainelFarmNormal
-BotaoIniciarFarm.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoIniciarFarm.BackgroundTransparency = 0.5
-BotaoIniciarFarm.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoIniciarFarm.BorderSizePixel = 0
-BotaoIniciarFarm.Position = UDim2.new(0.0335663483, 0, 0.0405405387, 0)
-BotaoIniciarFarm.Size = UDim2.new(0, 148, 0, 27)
-BotaoIniciarFarm.Font = Enum.Font.FredokaOne
-BotaoIniciarFarm.Text = 'Farm'
-BotaoIniciarFarm.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoIniciarFarm.TextScaled = true
-BotaoIniciarFarm.TextSize = 14
-BotaoIniciarFarm.TextStrokeTransparency = 0
-BotaoIniciarFarm.TextWrapped = true
-
-CantoBotaoIniciarFarm.Parent = BotaoIniciarFarm
-
-BotaoPararFarm.Name = 'unfarm'
-BotaoPararFarm.Parent = PainelFarmNormal
-BotaoPararFarm.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararFarm.BackgroundTransparency = 0.5
-BotaoPararFarm.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararFarm.BorderSizePixel = 0
-BotaoPararFarm.Position = UDim2.new(0.0335663483, 0, 0.346846849, 0)
-BotaoPararFarm.Size = UDim2.new(0, 148, 0, 27)
-BotaoPararFarm.Font = Enum.Font.FredokaOne
-BotaoPararFarm.Text = 'Stop Farm'
-BotaoPararFarm.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoPararFarm.TextScaled = true
-BotaoPararFarm.TextSize = 14
-BotaoPararFarm.TextStrokeTransparency = 0
-BotaoPararFarm.TextWrapped = true
-
-CantoBotaoPararFarm.Parent = BotaoPararFarm
-
-BotaoEquiparPesos.Name = 'equip'
-BotaoEquiparPesos.Parent = PainelFarmNormal
-BotaoEquiparPesos.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEquiparPesos.BackgroundTransparency = 0.5
-BotaoEquiparPesos.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEquiparPesos.BorderSizePixel = 0
-BotaoEquiparPesos.Position = UDim2.new(0.516746759, 0, 0.0405405387, 0)
-BotaoEquiparPesos.Size = UDim2.new(0, 148, 0, 27)
-BotaoEquiparPesos.Font = Enum.Font.FredokaOne
-BotaoEquiparPesos.Text = 'Equip'
-BotaoEquiparPesos.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoEquiparPesos.TextScaled = true
-BotaoEquiparPesos.TextSize = 14
-BotaoEquiparPesos.TextStrokeTransparency = 0
-BotaoEquiparPesos.TextWrapped = true
-
-CantoBotaoEquiparPesos.Parent = BotaoEquiparPesos
-
-BotaoPararEquiparPesos.Name = 'unequip'
-BotaoPararEquiparPesos.Parent = PainelFarmNormal
-BotaoPararEquiparPesos.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararEquiparPesos.BackgroundTransparency = 0.5
-BotaoPararEquiparPesos.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararEquiparPesos.BorderSizePixel = 0
-BotaoPararEquiparPesos.Position = UDim2.new(0.516746759, 0, 0.346846849, 0)
-BotaoPararEquiparPesos.Size = UDim2.new(0, 148, 0, 27)
-BotaoPararEquiparPesos.Font = Enum.Font.FredokaOne
-BotaoPararEquiparPesos.Text = 'Stop Equip'
-BotaoPararEquiparPesos.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoPararEquiparPesos.TextScaled = true
-BotaoPararEquiparPesos.TextSize = 14
-BotaoPararEquiparPesos.TextStrokeTransparency = 0
-BotaoPararEquiparPesos.TextWrapped = true
-
-CantoBotaoPararEquiparPesos.Parent = BotaoPararEquiparPesos
-
-TextoInstrucaoEquipar.Name = 'text'
-TextoInstrucaoEquipar.Parent = PainelFarmNormal
-TextoInstrucaoEquipar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoInstrucaoEquipar.BackgroundTransparency = 8
-TextoInstrucaoEquipar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoInstrucaoEquipar.BorderSizePixel = 0
-TextoInstrucaoEquipar.Position = UDim2.new(0.516746759, 0, 0.162162155, 0)
-TextoInstrucaoEquipar.Size = UDim2.new(0, 147, 0, 41)
-TextoInstrucaoEquipar.Font = Enum.Font.FredokaOne
-TextoInstrucaoEquipar.Text = 'Wait Until You Get A Equip Notification After You Click This Button!'
-TextoInstrucaoEquipar.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoInstrucaoEquipar.TextScaled = true
-TextoInstrucaoEquipar.TextSize = 14
-TextoInstrucaoEquipar.TextStrokeTransparency = 0
-TextoInstrucaoEquipar.TextWrapped = true
-
-BotaoReduzirLag.Name = 'reduce'
-BotaoReduzirLag.Parent = PainelFarmNormal
-BotaoReduzirLag.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoReduzirLag.BackgroundTransparency = 0.5
-BotaoReduzirLag.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoReduzirLag.BorderSizePixel = 0
-BotaoReduzirLag.Position = UDim2.new(0.272098452, 0, 0.653153181, 0)
-BotaoReduzirLag.Size = UDim2.new(0, 148, 0, 27)
-BotaoReduzirLag.Font = Enum.Font.FredokaOne
-BotaoReduzirLag.Text = 'Reduce Lag/Anti Afk'
-BotaoReduzirLag.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoReduzirLag.TextScaled = true
-BotaoReduzirLag.TextSize = 14
-BotaoReduzirLag.TextStrokeTransparency = 0
-BotaoReduzirLag.TextWrapped = true
-
-CantoBotaoReduzirLag.Parent = BotaoReduzirLag
-
-LabelTempoEspera.Name = 'Wait'
-LabelTempoEspera.Parent = PainelFarmNormal
-LabelTempoEspera.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelTempoEspera.BackgroundTransparency = 1
-LabelTempoEspera.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelTempoEspera.BorderSizePixel = 0
-LabelTempoEspera.Position = UDim2.new(0.036624454, 0, 0.162162155, 0)
-LabelTempoEspera.Size = UDim2.new(0, 147, 0, 30)
-LabelTempoEspera.Font = Enum.Font.FredokaOne
-LabelTempoEspera.Text = '0'
-LabelTempoEspera.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelTempoEspera.TextScaled = true
-LabelTempoEspera.TextSize = 14
-LabelTempoEspera.TextStrokeTransparency = 0
-LabelTempoEspera.TextTransparency = 1
-LabelTempoEspera.TextWrapped = true
-
-TextoDescricaoFarmNormal.Name = 'text'
-TextoDescricaoFarmNormal.Parent = PainelFarmNormal
-TextoDescricaoFarmNormal.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoDescricaoFarmNormal.BackgroundTransparency = 8
-TextoDescricaoFarmNormal.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoDescricaoFarmNormal.BorderSizePixel = 0
-TextoDescricaoFarmNormal.Position = UDim2.new(-0.0341126807, 0, -0.0720720738, 0)
-TextoDescricaoFarmNormal.Size = UDim2.new(0, 339, 0, 15)
-TextoDescricaoFarmNormal.Font = Enum.Font.FredokaOne
-TextoDescricaoFarmNormal.Text = 'Normal Farm Makes You Last A little less But Gains More Strength'
-TextoDescricaoFarmNormal.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoDescricaoFarmNormal.TextScaled = true
-TextoDescricaoFarmNormal.TextSize = 14
-TextoDescricaoFarmNormal.TextStrokeTransparency = 0
-TextoDescricaoFarmNormal.TextWrapped = true
-
--- ==================================================================================
--- SEÇÃO 7: CONFIGURAÇÃO DO PAINEL MISC
--- ==================================================================================
-
-PainelMisc.Name = 'MiscFrame'
-PainelMisc.Parent = FramePrincipal
-PainelMisc.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PainelMisc.BackgroundTransparency = 0.8
-PainelMisc.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PainelMisc.BorderSizePixel = 0
-PainelMisc.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
-PainelMisc.Size = UDim2.new(0, 327, 0, 222)
-PainelMisc.Visible = false
-
-CantoPainelMisc.Parent = PainelMisc
-
-BotaoAlternarDiaNoite.Name = 'daynight'
-BotaoAlternarDiaNoite.Parent = PainelMisc
-BotaoAlternarDiaNoite.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoAlternarDiaNoite.BackgroundTransparency = 0.5
-BotaoAlternarDiaNoite.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoAlternarDiaNoite.BorderSizePixel = 0
-BotaoAlternarDiaNoite.Position = UDim2.new(0.0243920367, 0, 0.0405405387, 0)
-BotaoAlternarDiaNoite.Size = UDim2.new(0, 148, 0, 27)
-BotaoAlternarDiaNoite.Font = Enum.Font.FredokaOne
-BotaoAlternarDiaNoite.Text = 'Day/Night'
-BotaoAlternarDiaNoite.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoAlternarDiaNoite.TextScaled = true
-BotaoAlternarDiaNoite.TextSize = 14
-BotaoAlternarDiaNoite.TextStrokeTransparency = 0
-BotaoAlternarDiaNoite.TextWrapped = true
-
-CantoBotaoAlternarDiaNoite.Parent = BotaoAlternarDiaNoite
-
-TextoScriptsUteis.Name = 'Text'
-TextoScriptsUteis.Parent = PainelMisc
-TextoScriptsUteis.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoScriptsUteis.BackgroundTransparency = 8
-TextoScriptsUteis.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoScriptsUteis.BorderSizePixel = 0
-TextoScriptsUteis.Position = UDim2.new(0.140672788, 0, 0.882882893, 0)
-TextoScriptsUteis.Size = UDim2.new(0, 223, 0, 26)
-TextoScriptsUteis.Font = Enum.Font.FredokaOne
-TextoScriptsUteis.Text = 'Other Useful Scripts..'
-TextoScriptsUteis.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoScriptsUteis.TextScaled = true
-TextoScriptsUteis.TextSize = 14
-TextoScriptsUteis.TextStrokeTransparency = 0
-TextoScriptsUteis.TextWrapped = true
-
-BotaoClickTeleport.Name = 'clicktp'
-BotaoClickTeleport.Parent = PainelMisc
-BotaoClickTeleport.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoClickTeleport.BackgroundTransparency = 0.5
-BotaoClickTeleport.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoClickTeleport.BorderSizePixel = 0
-BotaoClickTeleport.Position = UDim2.new(0.0243920367, 0, 0.193693697, 0)
-BotaoClickTeleport.Size = UDim2.new(0, 148, 0, 27)
-BotaoClickTeleport.Font = Enum.Font.FredokaOne
-BotaoClickTeleport.Text = 'Click Teleport'
-BotaoClickTeleport.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoClickTeleport.TextScaled = true
-BotaoClickTeleport.TextSize = 14
-BotaoClickTeleport.TextStrokeTransparency = 0
-BotaoClickTeleport.TextWrapped = true
-
-CantoBotaoClickTeleport.Parent = BotaoClickTeleport
-
-BotaoFling.Name = 'fling'
-BotaoFling.Parent = PainelMisc
-BotaoFling.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoFling.BackgroundTransparency = 0.5
-BotaoFling.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoFling.BorderSizePixel = 0
-BotaoFling.Position = UDim2.new(0.0243920367, 0, 0.346846849, 0)
-BotaoFling.Size = UDim2.new(0, 148, 0, 27)
-BotaoFling.Font = Enum.Font.FredokaOne
-BotaoFling.Text = 'Fling'
-BotaoFling.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoFling.TextScaled = true
-BotaoFling.TextSize = 14
-BotaoFling.TextStrokeTransparency = 0
-BotaoFling.TextWrapped = true
-
-CantoBotaoFling.Parent = BotaoFling
-
-BotaoEspectarPlayers.Name = 'spec'
-BotaoEspectarPlayers.Parent = PainelMisc
-BotaoEspectarPlayers.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEspectarPlayers.BackgroundTransparency = 0.5
-BotaoEspectarPlayers.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEspectarPlayers.BorderSizePixel = 0
-BotaoEspectarPlayers.Position = UDim2.new(0.0243920367, 0, 0.5, 0)
-BotaoEspectarPlayers.Size = UDim2.new(0, 148, 0, 27)
-BotaoEspectarPlayers.Font = Enum.Font.FredokaOne
-BotaoEspectarPlayers.Text = 'Spectate Players'
-BotaoEspectarPlayers.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoEspectarPlayers.TextScaled = true
-BotaoEspectarPlayers.TextSize = 14
-BotaoEspectarPlayers.TextStrokeTransparency = 0
-BotaoEspectarPlayers.TextWrapped = true
-
-CantoBotaoEspectarPlayers.Parent = BotaoEspectarPlayers
-
-BotaoAntiHit.Name = 'hit'
-BotaoAntiHit.Parent = PainelMisc
-BotaoAntiHit.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoAntiHit.BackgroundTransparency = 0.5
-BotaoAntiHit.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoAntiHit.BorderSizePixel = 0
-BotaoAntiHit.Position = UDim2.new(0.0243920367, 0, 0.653153181, 0)
-BotaoAntiHit.Size = UDim2.new(0, 148, 0, 27)
-BotaoAntiHit.Font = Enum.Font.FredokaOne
-BotaoAntiHit.Text = 'Anti Hit'
-BotaoAntiHit.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoAntiHit.TextScaled = true
-BotaoAntiHit.TextSize = 14
-BotaoAntiHit.TextStrokeTransparency = 0
-BotaoAntiHit.TextWrapped = true
-
-CantoBotaoAntiHit.Parent = BotaoAntiHit
-
-BotaoTeleportarRumble.Name = 'rumble'
-BotaoTeleportarRumble.Parent = PainelMisc
-BotaoTeleportarRumble.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarRumble.BackgroundTransparency = 0.5
-BotaoTeleportarRumble.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarRumble.BorderSizePixel = 0
-BotaoTeleportarRumble.Position = UDim2.new(0.516746759, 0, 0.0405405387, 0)
-BotaoTeleportarRumble.Size = UDim2.new(0, 148, 0, 27)
-BotaoTeleportarRumble.Font = Enum.Font.FredokaOne
-BotaoTeleportarRumble.Text = 'Tp To Rumble'
-BotaoTeleportarRumble.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoTeleportarRumble.TextScaled = true
-BotaoTeleportarRumble.TextSize = 14
-BotaoTeleportarRumble.TextStrokeTransparency = 0
-BotaoTeleportarRumble.TextWrapped = true
-
-CantoBotaoTeleportarRumble.Parent = BotaoTeleportarRumble
-
-BotaoTeleportarPiscina.Name = 'pool'
-BotaoTeleportarPiscina.Parent = PainelMisc
-BotaoTeleportarPiscina.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarPiscina.BackgroundTransparency = 0.5
-BotaoTeleportarPiscina.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarPiscina.BorderSizePixel = 0
-BotaoTeleportarPiscina.Position = UDim2.new(0.516746759, 0, 0.193693697, 0)
-BotaoTeleportarPiscina.Size = UDim2.new(0, 148, 0, 27)
-BotaoTeleportarPiscina.Font = Enum.Font.FredokaOne
-BotaoTeleportarPiscina.Text = 'Tp To Pool'
-BotaoTeleportarPiscina.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoTeleportarPiscina.TextScaled = true
-BotaoTeleportarPiscina.TextSize = 14
-BotaoTeleportarPiscina.TextStrokeTransparency = 0
-BotaoTeleportarPiscina.TextWrapped = true
-
-CantoBotaoTeleportarPiscina.Parent = BotaoTeleportarPiscina
-
-BotaoTeleportarCeu.Name = 'sky'
-BotaoTeleportarCeu.Parent = PainelMisc
-BotaoTeleportarCeu.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarCeu.BackgroundTransparency = 0.5
-BotaoTeleportarCeu.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarCeu.BorderSizePixel = 0
-BotaoTeleportarCeu.Position = UDim2.new(0.516746759, 0, 0.346846849, 0)
-BotaoTeleportarCeu.Size = UDim2.new(0, 148, 0, 27)
-BotaoTeleportarCeu.Font = Enum.Font.FredokaOne
-BotaoTeleportarCeu.Text = 'Tp To Sky'
-BotaoTeleportarCeu.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoTeleportarCeu.TextScaled = true
-BotaoTeleportarCeu.TextSize = 14
-BotaoTeleportarCeu.TextStrokeTransparency = 0
-BotaoTeleportarCeu.TextWrapped = true
-
-CantoBotaoTeleportarCeu.Parent = BotaoTeleportarCeu
-
-BotaoTeleportarGlobo.Name = 'globe'
-BotaoTeleportarGlobo.Parent = PainelMisc
-BotaoTeleportarGlobo.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarGlobo.BackgroundTransparency = 0.5
-BotaoTeleportarGlobo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoTeleportarGlobo.BorderSizePixel = 0
-BotaoTeleportarGlobo.Position = UDim2.new(0.516746759, 0, 0.5, 0)
-BotaoTeleportarGlobo.Size = UDim2.new(0, 148, 0, 27)
-BotaoTeleportarGlobo.Font = Enum.Font.FredokaOne
-BotaoTeleportarGlobo.Text = 'Tp To Globe'
-BotaoTeleportarGlobo.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoTeleportarGlobo.TextScaled = true
-BotaoTeleportarGlobo.TextSize = 14
-BotaoTeleportarGlobo.TextStrokeTransparency = 0
-BotaoTeleportarGlobo.TextWrapped = true
-
-CantoBotaoTeleportarGlobo.Parent = BotaoTeleportarGlobo
-
-BotaoEsconderChat.Name = 'hid'
-BotaoEsconderChat.Parent = PainelMisc
-BotaoEsconderChat.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEsconderChat.BackgroundTransparency = 0.5
-BotaoEsconderChat.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEsconderChat.BorderSizePixel = 0
-BotaoEsconderChat.Position = UDim2.new(0.516746759, 0, 0.653153181, 0)
-BotaoEsconderChat.Size = UDim2.new(0, 148, 0, 27)
-BotaoEsconderChat.Font = Enum.Font.FredokaOne
-BotaoEsconderChat.Text = 'Hide Chat and More'
-BotaoEsconderChat.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoEsconderChat.TextScaled = true
-BotaoEsconderChat.TextSize = 14
-BotaoEsconderChat.TextStrokeTransparency = 0
-BotaoEsconderChat.TextWrapped = true
-
-CantoBotaoEsconderChat.Parent = BotaoEsconderChat
-
-BotaoMostrarChat.Name = 'hid2'
-BotaoMostrarChat.Parent = PainelMisc
-BotaoMostrarChat.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoMostrarChat.BackgroundTransparency = 0.5
-BotaoMostrarChat.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoMostrarChat.BorderSizePixel = 0
-BotaoMostrarChat.Position = UDim2.new(0.516746759, 0, 0.653153181, 0)
-BotaoMostrarChat.Size = UDim2.new(0, 148, 0, 27)
-BotaoMostrarChat.Visible = false
-BotaoMostrarChat.Font = Enum.Font.FredokaOne
-BotaoMostrarChat.Text = 'UnHide Chat and More'
-BotaoMostrarChat.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoMostrarChat.TextScaled = true
-BotaoMostrarChat.TextSize = 14
-BotaoMostrarChat.TextStrokeTransparency = 0
-BotaoMostrarChat.TextWrapped = true
-
-CantoBotaoMostrarChat.Parent = BotaoMostrarChat
-
-
--- ==================================================================================
--- SEÇÃO 8: CONFIGURAÇÃO DO PAINEL INFO
--- ==================================================================================
-
-PainelInfo.Name = 'InfoFrame'
-PainelInfo.Parent = FramePrincipal
-PainelInfo.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PainelInfo.BackgroundTransparency = 0.8
-PainelInfo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PainelInfo.BorderSizePixel = 0
-PainelInfo.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
-PainelInfo.Size = UDim2.new(0, 327, 0, 222)
-PainelInfo.Visible = false
-
-CantoPainelInfo.Parent = PainelInfo
-
-LabelTempoFarmando.Name = 'Time'
-LabelTempoFarmando.Parent = PainelInfo
-LabelTempoFarmando.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelTempoFarmando.BackgroundTransparency = 8
-LabelTempoFarmando.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelTempoFarmando.BorderSizePixel = 0
-LabelTempoFarmando.Position = UDim2.new(0.507645249, 0, 0.346846849, 0)
-LabelTempoFarmando.Size = UDim2.new(0, 160, 0, 26)
-LabelTempoFarmando.Font = Enum.Font.FredokaOne
-LabelTempoFarmando.Text = 'Time Farming: 0d 0h 0m 0'
-LabelTempoFarmando.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelTempoFarmando.TextScaled = true
-LabelTempoFarmando.TextSize = 14
-LabelTempoFarmando.TextStrokeTransparency = 0
-LabelTempoFarmando.TextWrapped = true
-
-LabelForcaPorSegundo.Name = 'SPS'
-LabelForcaPorSegundo.Parent = PainelInfo
-LabelForcaPorSegundo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelForcaPorSegundo.BackgroundTransparency = 8
-LabelForcaPorSegundo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelForcaPorSegundo.BorderSizePixel = 0
-LabelForcaPorSegundo.Position = UDim2.new(0.0214067269, 0, 0.0405405387, 0)
-LabelForcaPorSegundo.Size = UDim2.new(0, 160, 0, 26)
-LabelForcaPorSegundo.Font = Enum.Font.FredokaOne
-LabelForcaPorSegundo.Text = 'SPS: 0.0'
-LabelForcaPorSegundo.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelForcaPorSegundo.TextScaled = true
-LabelForcaPorSegundo.TextSize = 14
-LabelForcaPorSegundo.TextStrokeTransparency = 0
-LabelForcaPorSegundo.TextWrapped = true
-
-LabelForcaPorMinuto.Name = 'SPM'
-LabelForcaPorMinuto.Parent = PainelInfo
-LabelForcaPorMinuto.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelForcaPorMinuto.BackgroundTransparency = 8
-LabelForcaPorMinuto.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelForcaPorMinuto.BorderSizePixel = 0
-LabelForcaPorMinuto.Position = UDim2.new(0.0214067269, 0, 0.193693697, 0)
-LabelForcaPorMinuto.Size = UDim2.new(0, 160, 0, 26)
-LabelForcaPorMinuto.Font = Enum.Font.FredokaOne
-LabelForcaPorMinuto.Text = 'SPM: 0.0'
-LabelForcaPorMinuto.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelForcaPorMinuto.TextScaled = true
-LabelForcaPorMinuto.TextSize = 14
-LabelForcaPorMinuto.TextStrokeTransparency = 0
-LabelForcaPorMinuto.TextWrapped = true
-
-LabelForcaPor10Minutos.Name = 'SPTM'
-LabelForcaPor10Minutos.Parent = PainelInfo
-LabelForcaPor10Minutos.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelForcaPor10Minutos.BackgroundTransparency = 8
-LabelForcaPor10Minutos.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelForcaPor10Minutos.BorderSizePixel = 0
-LabelForcaPor10Minutos.Position = UDim2.new(0.0214067269, 0, 0.346846849, 0)
-LabelForcaPor10Minutos.Size = UDim2.new(0, 160, 0, 26)
-LabelForcaPor10Minutos.Font = Enum.Font.FredokaOne
-LabelForcaPor10Minutos.Text = 'SPTM: 0.0'
-LabelForcaPor10Minutos.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelForcaPor10Minutos.TextScaled = true
-LabelForcaPor10Minutos.TextSize = 14
-LabelForcaPor10Minutos.TextStrokeTransparency = 0
-LabelForcaPor10Minutos.TextWrapped = true
-
-LabelForcaPorHora.Name = 'SPH'
-LabelForcaPorHora.Parent = PainelInfo
-LabelForcaPorHora.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelForcaPorHora.BackgroundTransparency = 8
-LabelForcaPorHora.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelForcaPorHora.BorderSizePixel = 0
-LabelForcaPorHora.Position = UDim2.new(0.0214067269, 0, 0.5, 0)
-LabelForcaPorHora.Size = UDim2.new(0, 160, 0, 26)
-LabelForcaPorHora.Font = Enum.Font.FredokaOne
-LabelForcaPorHora.Text = 'SPH: 0.0'
-LabelForcaPorHora.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelForcaPorHora.TextScaled = true
-LabelForcaPorHora.TextSize = 14
-LabelForcaPorHora.TextStrokeTransparency = 0
-LabelForcaPorHora.TextWrapped = true
-
-LabelForcaPorDia.Name = 'SPD'
-LabelForcaPorDia.Parent = PainelInfo
-LabelForcaPorDia.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelForcaPorDia.BackgroundTransparency = 8
-LabelForcaPorDia.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelForcaPorDia.BorderSizePixel = 0
-LabelForcaPorDia.Position = UDim2.new(0.52905196, 0, 0.5, 0)
-LabelForcaPorDia.Size = UDim2.new(0, 147, 0, 26)
-LabelForcaPorDia.Font = Enum.Font.FredokaOne
-LabelForcaPorDia.Text = 'SPD: 0.0'
-LabelForcaPorDia.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelForcaPorDia.TextScaled = true
-LabelForcaPorDia.TextSize = 14
-LabelForcaPorDia.TextStrokeTransparency = 0
-LabelForcaPorDia.TextWrapped = true
-
-LabelTamanhoJogador.Name = 'Size'
-LabelTamanhoJogador.Parent = PainelInfo
-LabelTamanhoJogador.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelTamanhoJogador.BackgroundTransparency = 8
-LabelTamanhoJogador.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelTamanhoJogador.BorderSizePixel = 0
-LabelTamanhoJogador.Position = UDim2.new(0.52905196, 0, 0.0405405387, 0)
-LabelTamanhoJogador.Size = UDim2.new(0, 147, 0, 26)
-LabelTamanhoJogador.Font = Enum.Font.FredokaOne
-LabelTamanhoJogador.Text = 'Your Size: 0.00'
-LabelTamanhoJogador.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelTamanhoJogador.TextScaled = true
-LabelTamanhoJogador.TextSize = 14
-LabelTamanhoJogador.TextStrokeTransparency = 0
-LabelTamanhoJogador.TextWrapped = true
-
-LabelGanhosTotal.Name = 'Earn'
-LabelGanhosTotal.Parent = PainelInfo
-LabelGanhosTotal.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelGanhosTotal.BackgroundTransparency = 8
-LabelGanhosTotal.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelGanhosTotal.BorderSizePixel = 0
-LabelGanhosTotal.Position = UDim2.new(0.52905196, 0, 0.193693697, 0)
-LabelGanhosTotal.Size = UDim2.new(0, 147, 0, 26)
-LabelGanhosTotal.Font = Enum.Font.FredokaOne
-LabelGanhosTotal.Text = 'You Earned: 0.00'
-LabelGanhosTotal.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelGanhosTotal.TextScaled = true
-LabelGanhosTotal.TextSize = 14
-LabelGanhosTotal.TextStrokeTransparency = 0
-LabelGanhosTotal.TextWrapped = true
-
-LabelForcaAtual.Name = 'Strength'
-LabelForcaAtual.Parent = PainelInfo
-LabelForcaAtual.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelForcaAtual.BackgroundTransparency = 8
-LabelForcaAtual.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelForcaAtual.BorderSizePixel = 0
-LabelForcaAtual.Position = UDim2.new(0.0305810403, 0, 0.806306303, 0)
-LabelForcaAtual.Size = UDim2.new(0, 307, 0, 43)
-LabelForcaAtual.Font = Enum.Font.FredokaOne
-LabelForcaAtual.Text = 'Your Strength: 0.00'
-LabelForcaAtual.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelForcaAtual.TextScaled = true
-LabelForcaAtual.TextSize = 14
-LabelForcaAtual.TextStrokeTransparency = 0
-LabelForcaAtual.TextWrapped = true
-
-LabelForcaPorSemana.Name = 'SPW'
-LabelForcaPorSemana.Parent = PainelInfo
-LabelForcaPorSemana.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelForcaPorSemana.BackgroundTransparency = 8
-LabelForcaPorSemana.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelForcaPorSemana.BorderSizePixel = 0
-LabelForcaPorSemana.Position = UDim2.new(0.25688073, 0, 0.653153181, 0)
-LabelForcaPorSemana.Size = UDim2.new(0, 147, 0, 26)
-LabelForcaPorSemana.Font = Enum.Font.FredokaOne
-LabelForcaPorSemana.Text = 'SPW: 0.0'
-LabelForcaPorSemana.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelForcaPorSemana.TextScaled = true
-LabelForcaPorSemana.TextSize = 14
-LabelForcaPorSemana.TextStrokeTransparency = 0
-LabelForcaPorSemana.TextWrapped = true
-
--- ==================================================================================
--- SEÇÃO 9: CONFIGURAÇÃO DO PAINEL PLAYER
--- ==================================================================================
-
-PainelPlayer.Name = 'PlayerFrame'
-PainelPlayer.Parent = FramePrincipal
-PainelPlayer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PainelPlayer.BackgroundTransparency = 0.8
-PainelPlayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PainelPlayer.BorderSizePixel = 0
-PainelPlayer.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
-PainelPlayer.Size = UDim2.new(0, 327, 0, 222)
-PainelPlayer.Visible = false
-
-CantoPainelPlayer.Parent = PainelPlayer
-
-ScrollFarmandoJogadores.Name = 'Farming'
-ScrollFarmandoJogadores.Parent = PainelPlayer
-ScrollFarmandoJogadores.Active = true
-ScrollFarmandoJogadores.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
-ScrollFarmandoJogadores.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScrollFarmandoJogadores.BorderSizePixel = 0
-ScrollFarmandoJogadores.Position = UDim2.new(0.511357963, 0, 0.593615532, 0)
-ScrollFarmandoJogadores.Size = UDim2.new(0, 147, 0, 81)
-
-LayoutScrollFarmando.Parent = ScrollFarmandoJogadores
-LayoutScrollFarmando.HorizontalAlignment = Enum.HorizontalAlignment.Center
-LayoutScrollFarmando.SortOrder = Enum.SortOrder.LayoutOrder
-LayoutScrollFarmando.Padding = UDim.new(0, 2)
-
-ScrollTamanhoJogadores.Name = 'Size'
-ScrollTamanhoJogadores.Parent = PainelPlayer
-ScrollTamanhoJogadores.Active = true
-ScrollTamanhoJogadores.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
-ScrollTamanhoJogadores.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScrollTamanhoJogadores.BorderSizePixel = 0
-ScrollTamanhoJogadores.Position = UDim2.new(0.0352680534, 0, 0.115146533, 0)
-ScrollTamanhoJogadores.Size = UDim2.new(0, 147, 0, 81)
-
-LayoutScrollTamanho.Parent = ScrollTamanhoJogadores
-LayoutScrollTamanho.HorizontalAlignment = Enum.HorizontalAlignment.Center
-LayoutScrollTamanho.SortOrder = Enum.SortOrder.LayoutOrder
-LayoutScrollTamanho.Padding = UDim.new(0, 2)
-
-ScrollForcaJogadores.Name = 'Strength'
-ScrollForcaJogadores.Parent = PainelPlayer
-ScrollForcaJogadores.Active = true
-ScrollForcaJogadores.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
-ScrollForcaJogadores.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScrollForcaJogadores.BorderSizePixel = 0
-ScrollForcaJogadores.Position = UDim2.new(0.511357963, 0, 0.115146533, 0)
-ScrollForcaJogadores.Size = UDim2.new(0, 147, 0, 81)
-ScrollForcaJogadores.CanvasSize = UDim2.new(0, 0, 3, 0)
-
-LayoutScrollForca.Parent = ScrollForcaJogadores
-LayoutScrollForca.HorizontalAlignment = Enum.HorizontalAlignment.Center
-LayoutScrollForca.SortOrder = Enum.SortOrder.LayoutOrder
-LayoutScrollForca.Padding = UDim.new(0, 2)
-
-ScrollPesosJogadores.Name = 'Weights'
-ScrollPesosJogadores.Parent = PainelPlayer
-ScrollPesosJogadores.Active = true
-ScrollPesosJogadores.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
-ScrollPesosJogadores.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScrollPesosJogadores.BorderSizePixel = 0
-ScrollPesosJogadores.Position = UDim2.new(0.0352680534, 0, 0.593615532, 0)
-ScrollPesosJogadores.Size = UDim2.new(0, 147, 0, 81)
-
-LayoutScrollPesos.Parent = ScrollPesosJogadores
-LayoutScrollPesos.HorizontalAlignment = Enum.HorizontalAlignment.Center
-LayoutScrollPesos.SortOrder = Enum.SortOrder.LayoutOrder
-LayoutScrollPesos.Padding = UDim.new(0, 2)
-
-LabelCabecalhoPesos.Parent = PainelPlayer
-LabelCabecalhoPesos.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelCabecalhoPesos.BackgroundTransparency = 1
-LabelCabecalhoPesos.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelCabecalhoPesos.BorderSizePixel = 0
-LabelCabecalhoPesos.Position = UDim2.new(0.0108032227, 0, 0.501271546, 0)
-LabelCabecalhoPesos.Size = UDim2.new(0, 164, 0, 19)
-LabelCabecalhoPesos.Font = Enum.Font.FredokaOne
-LabelCabecalhoPesos.Text = 'Players Weights'
-LabelCabecalhoPesos.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelCabecalhoPesos.TextSize = 14
-LabelCabecalhoPesos.TextStrokeTransparency = 0
-
-LabelCabecalhoForca.Parent = PainelPlayer
-LabelCabecalhoForca.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelCabecalhoForca.BackgroundTransparency = 1
-LabelCabecalhoForca.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelCabecalhoForca.BorderSizePixel = 0
-LabelCabecalhoForca.Position = UDim2.new(0.486893117, 0, 0.0228026789, 0)
-LabelCabecalhoForca.Size = UDim2.new(0, 164, 0, 19)
-LabelCabecalhoForca.Font = Enum.Font.FredokaOne
-LabelCabecalhoForca.Text = 'Players Strength'
-LabelCabecalhoForca.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelCabecalhoForca.TextSize = 14
-LabelCabecalhoForca.TextStrokeTransparency = 0
-LabelCabecalhoForca.TextWrapped = true
-
-LabelCabecalhoFarmando.Parent = PainelPlayer
-LabelCabecalhoFarmando.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelCabecalhoFarmando.BackgroundTransparency = 1
-LabelCabecalhoFarmando.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelCabecalhoFarmando.BorderSizePixel = 0
-LabelCabecalhoFarmando.Position = UDim2.new(0.486893117, 0, 0.501271546, 0)
-LabelCabecalhoFarmando.Size = UDim2.new(0, 164, 0, 19)
-LabelCabecalhoFarmando.Font = Enum.Font.FredokaOne
-LabelCabecalhoFarmando.Text = 'Players Farming'
-LabelCabecalhoFarmando.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelCabecalhoFarmando.TextSize = 14
-LabelCabecalhoFarmando.TextStrokeTransparency = 0
-
-LabelCabecalhoTamanho.Parent = PainelPlayer
-LabelCabecalhoTamanho.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelCabecalhoTamanho.BackgroundTransparency = 1
-LabelCabecalhoTamanho.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelCabecalhoTamanho.BorderSizePixel = 0
-LabelCabecalhoTamanho.Position = UDim2.new(0.0108032227, 0, 0.0228026789, 0)
-LabelCabecalhoTamanho.Size = UDim2.new(0, 164, 0, 19)
-LabelCabecalhoTamanho.Font = Enum.Font.FredokaOne
-LabelCabecalhoTamanho.Text = 'Players Size'
-LabelCabecalhoTamanho.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelCabecalhoTamanho.TextSize = 14
-LabelCabecalhoTamanho.TextStrokeTransparency = 0
-
--- ==================================================================================
--- SEÇÃO 10: CONFIGURAÇÃO DO PAINEL CRÉDITOS
--- ==================================================================================
-
-PainelCreditos.Name = 'CredFrame'
-PainelCreditos.Parent = FramePrincipal
-PainelCreditos.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PainelCreditos.BackgroundTransparency = 0.8
-PainelCreditos.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PainelCreditos.BorderSizePixel = 0
-PainelCreditos.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
-PainelCreditos.Size = UDim2.new(0, 327, 0, 222)
-PainelCreditos.Visible = false
-
-CantoPainelCreditos.Parent = PainelCreditos
-
-TextoCredito1.Parent = PainelCreditos
-TextoCredito1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoCredito1.BackgroundTransparency = 1
-TextoCredito1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoCredito1.BorderSizePixel = 0
-TextoCredito1.Position = UDim2.new(0.0526423566, 0, 0.717487752, 0)
-TextoCredito1.Size = UDim2.new(0, 292, 0, 62)
-TextoCredito1.Font = Enum.Font.FredokaOne
-TextoCredito1.Text = 'This Gui Was Made By: Abercke04'
-TextoCredito1.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoCredito1.TextSize = 14
-TextoCredito1.TextStrokeTransparency = 0
-
-TextoCredito2.Parent = PainelCreditos
-TextoCredito2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoCredito2.BackgroundTransparency = 1
-TextoCredito2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoCredito2.BorderSizePixel = 0
-TextoCredito2.Position = UDim2.new(0.0526423566, 0, -0.0032329387, 0)
-TextoCredito2.Size = UDim2.new(0, 292, 0, 62)
-TextoCredito2.Font = Enum.Font.FredokaOne
-TextoCredito2.Text = 'Thank You For Using Zaza Hub!!'
-TextoCredito2.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoCredito2.TextSize = 14
-TextoCredito2.TextStrokeTransparency = 0
-
-TextoCredito3.Parent = PainelCreditos
-TextoCredito3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoCredito3.BackgroundTransparency = 1
-TextoCredito3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoCredito3.BorderSizePixel = 0
-TextoCredito3.Position = UDim2.new(0.0526423566, 0, 0.343613923, 0)
-TextoCredito3.Size = UDim2.new(0, 292, 0, 62)
-TextoCredito3.Font = Enum.Font.FredokaOne
-TextoCredito3.Text = 'Zaza Hub Is 1 year and 6 months Old!!'
-TextoCredito3.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoCredito3.TextSize = 14
-TextoCredito3.TextStrokeTransparency = 0
-
--- ==================================================================================
--- SEÇÃO 11: CONFIGURAÇÃO DO PAINEL DUPE
--- ==================================================================================
-
-PainelDupe.Name = 'DupeFrame'
-PainelDupe.Parent = FramePrincipal
-PainelDupe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PainelDupe.BackgroundTransparency = 0.8
-PainelDupe.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PainelDupe.BorderSizePixel = 0
-PainelDupe.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
-PainelDupe.Size = UDim2.new(0, 327, 0, 222)
-PainelDupe.Visible = false
-
-CantoPainelDupe.Parent = PainelDupe
-
-BotaoDuplicarPesos.Name = 'Dupe'
-BotaoDuplicarPesos.Parent = PainelDupe
-BotaoDuplicarPesos.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoDuplicarPesos.BackgroundTransparency = 0.5
-BotaoDuplicarPesos.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoDuplicarPesos.BorderSizePixel = 0
-BotaoDuplicarPesos.Position = UDim2.new(0.272098452, 0, 0.567567587, 0)
-BotaoDuplicarPesos.Size = UDim2.new(0, 148, 0, 27)
-BotaoDuplicarPesos.Font = Enum.Font.FredokaOne
-BotaoDuplicarPesos.Text = 'Dupe Weights'
-BotaoDuplicarPesos.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoDuplicarPesos.TextScaled = true
-BotaoDuplicarPesos.TextSize = 14
-BotaoDuplicarPesos.TextStrokeTransparency = 0
-BotaoDuplicarPesos.TextWrapped = true
-
-CantoBotaoDuplicarPesos.Parent = BotaoDuplicarPesos
-
-LabelQuantidadePesos.Name = 'Weights'
-LabelQuantidadePesos.Parent = PainelDupe
-LabelQuantidadePesos.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelQuantidadePesos.BackgroundTransparency = 8
-LabelQuantidadePesos.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelQuantidadePesos.BorderSizePixel = 0
-LabelQuantidadePesos.Position = UDim2.new(0.159021407, 0, 0.382882893, 0)
-LabelQuantidadePesos.Size = UDim2.new(0, 223, 0, 26)
-LabelQuantidadePesos.Font = Enum.Font.FredokaOne
-LabelQuantidadePesos.Text = 'Weight Amount: 0'
-LabelQuantidadePesos.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelQuantidadePesos.TextScaled = true
-LabelQuantidadePesos.TextSize = 14
-LabelQuantidadePesos.TextStrokeTransparency = 0
-LabelQuantidadePesos.TextWrapped = true
-
-CaixaTextoDupe.Name = 'Duper'
-CaixaTextoDupe.Parent = PainelDupe
-CaixaTextoDupe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-CaixaTextoDupe.BackgroundTransparency = 0.6
-CaixaTextoDupe.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CaixaTextoDupe.BorderSizePixel = 0
-CaixaTextoDupe.Position = UDim2.new(0.192660555, 0, 0.162162155, 0)
-CaixaTextoDupe.Size = UDim2.new(0, 200, 0, 30)
-CaixaTextoDupe.Font = Enum.Font.FredokaOne
-CaixaTextoDupe.PlaceholderColor3 = Color3.fromRGB(85, 255, 0)
-CaixaTextoDupe.PlaceholderText = 'Enter Any Number..'
-CaixaTextoDupe.Text = ''
-CaixaTextoDupe.TextColor3 = Color3.fromRGB(85, 255, 0)
-CaixaTextoDupe.TextScaled = true
-CaixaTextoDupe.TextSize = 14
-CaixaTextoDupe.TextStrokeTransparency = 0
-CaixaTextoDupe.TextWrapped = true
-
-CantoCaixaTextoDupe.Parent = CaixaTextoDupe
-
-LabelTempoRestante.Name = 'Remain'
-LabelTempoRestante.Parent = PainelDupe
-LabelTempoRestante.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelTempoRestante.BackgroundTransparency = 8
-LabelTempoRestante.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelTempoRestante.BorderSizePixel = 0
-LabelTempoRestante.Position = UDim2.new(0.14984709, 0, 0.761261284, 0)
-LabelTempoRestante.Size = UDim2.new(0, 223, 0, 26)
-LabelTempoRestante.Font = Enum.Font.FredokaOne
-LabelTempoRestante.Text = 'Time Elapsed: 0s'
-LabelTempoRestante.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelTempoRestante.TextScaled = true
-LabelTempoRestante.TextSize = 14
-LabelTempoRestante.TextStrokeTransparency = 0
-LabelTempoRestante.TextWrapped = true
-
-
--- ==================================================================================
--- SEÇÃO 12: CONFIGURAÇÃO DO PAINEL PING FARM
--- ==================================================================================
-
-PainelPingFarm.Name = 'Main2Frame'
-PainelPingFarm.Parent = FramePrincipal
-PainelPingFarm.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PainelPingFarm.BackgroundTransparency = 0.8
-PainelPingFarm.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PainelPingFarm.BorderSizePixel = 0
-PainelPingFarm.Position = UDim2.new(0.294956386, 0, 0.206663728, 0)
-PainelPingFarm.Size = UDim2.new(0, 327, 0, 222)
-PainelPingFarm.Visible = false
-
-CantoPainelPingFarm.Parent = PainelPingFarm
-
-BotaoIniciarFarmPing.Name = 'farm'
-BotaoIniciarFarmPing.Parent = PainelPingFarm
-BotaoIniciarFarmPing.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoIniciarFarmPing.BackgroundTransparency = 0.5
-BotaoIniciarFarmPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoIniciarFarmPing.BorderSizePixel = 0
-BotaoIniciarFarmPing.Position = UDim2.new(0.0335663483, 0, 0.0405405387, 0)
-BotaoIniciarFarmPing.Size = UDim2.new(0, 148, 0, 27)
-BotaoIniciarFarmPing.Font = Enum.Font.FredokaOne
-BotaoIniciarFarmPing.Text = 'Farm'
-BotaoIniciarFarmPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoIniciarFarmPing.TextScaled = true
-BotaoIniciarFarmPing.TextSize = 14
-BotaoIniciarFarmPing.TextStrokeTransparency = 0
-BotaoIniciarFarmPing.TextWrapped = true
-
-CantoBotaoIniciarFarmPing.Parent = BotaoIniciarFarmPing
-
-BotaoPararFarmPing.Name = 'unfarm'
-BotaoPararFarmPing.Parent = PainelPingFarm
-BotaoPararFarmPing.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararFarmPing.BackgroundTransparency = 0.5
-BotaoPararFarmPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararFarmPing.BorderSizePixel = 0
-BotaoPararFarmPing.Position = UDim2.new(0.0335663483, 0, 0.346846849, 0)
-BotaoPararFarmPing.Size = UDim2.new(0, 148, 0, 27)
-BotaoPararFarmPing.Font = Enum.Font.FredokaOne
-BotaoPararFarmPing.Text = 'Stop Farm'
-BotaoPararFarmPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoPararFarmPing.TextScaled = true
-BotaoPararFarmPing.TextSize = 14
-BotaoPararFarmPing.TextStrokeTransparency = 0
-BotaoPararFarmPing.TextWrapped = true
-
-CantoBotaoPararFarmPing.Parent = BotaoPararFarmPing
-
-BotaoEquiparPesosPing.Name = 'equip'
-BotaoEquiparPesosPing.Parent = PainelPingFarm
-BotaoEquiparPesosPing.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEquiparPesosPing.BackgroundTransparency = 0.5
-BotaoEquiparPesosPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoEquiparPesosPing.BorderSizePixel = 0
-BotaoEquiparPesosPing.Position = UDim2.new(0.516746759, 0, 0.0405405387, 0)
-BotaoEquiparPesosPing.Size = UDim2.new(0, 148, 0, 27)
-BotaoEquiparPesosPing.Font = Enum.Font.FredokaOne
-BotaoEquiparPesosPing.Text = 'Equip'
-BotaoEquiparPesosPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoEquiparPesosPing.TextScaled = true
-BotaoEquiparPesosPing.TextSize = 14
-BotaoEquiparPesosPing.TextStrokeTransparency = 0
-BotaoEquiparPesosPing.TextWrapped = true
-
-CantoBotaoEquiparPesosPing.Parent = BotaoEquiparPesosPing
-
-BotaoPararEquiparPesosPing.Name = 'unequip'
-BotaoPararEquiparPesosPing.Parent = PainelPingFarm
-BotaoPararEquiparPesosPing.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararEquiparPesosPing.BackgroundTransparency = 0.5
-BotaoPararEquiparPesosPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoPararEquiparPesosPing.BorderSizePixel = 0
-BotaoPararEquiparPesosPing.Position = UDim2.new(0.516746759, 0, 0.346846849, 0)
-BotaoPararEquiparPesosPing.Size = UDim2.new(0, 148, 0, 27)
-BotaoPararEquiparPesosPing.Font = Enum.Font.FredokaOne
-BotaoPararEquiparPesosPing.Text = 'Stop Equip'
-BotaoPararEquiparPesosPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoPararEquiparPesosPing.TextScaled = true
-BotaoPararEquiparPesosPing.TextSize = 14
-BotaoPararEquiparPesosPing.TextStrokeTransparency = 0
-BotaoPararEquiparPesosPing.TextWrapped = true
-
-CantoBotaoPararEquiparPesosPing.Parent = BotaoPararEquiparPesosPing
-
-LabelLimitePing.Name = 'limiter'
-LabelLimitePing.Parent = PainelPingFarm
-LabelLimitePing.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelLimitePing.BackgroundTransparency = 8
-LabelLimitePing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelLimitePing.BorderSizePixel = 0
-LabelLimitePing.Position = UDim2.new(0.140672788, 0, 0.842342317, 0)
-LabelLimitePing.Size = UDim2.new(0, 223, 0, 26)
-LabelLimitePing.Font = Enum.Font.FredokaOne
-LabelLimitePing.Text = 'Ping Limit Set To: ...'
-LabelLimitePing.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelLimitePing.TextScaled = true
-LabelLimitePing.TextSize = 14
-LabelLimitePing.TextStrokeTransparency = 0
-LabelLimitePing.TextWrapped = true
-
-TextoInstrucaoEquiparPing.Name = 'text'
-TextoInstrucaoEquiparPing.Parent = PainelPingFarm
-TextoInstrucaoEquiparPing.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoInstrucaoEquiparPing.BackgroundTransparency = 8
-TextoInstrucaoEquiparPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoInstrucaoEquiparPing.BorderSizePixel = 0
-TextoInstrucaoEquiparPing.Position = UDim2.new(0.516746759, 0, 0.162162155, 0)
-TextoInstrucaoEquiparPing.Size = UDim2.new(0, 147, 0, 41)
-TextoInstrucaoEquiparPing.Font = Enum.Font.FredokaOne
-TextoInstrucaoEquiparPing.Text = 'Wait Until You Get A Equip Notification After You Click This Button!'
-TextoInstrucaoEquiparPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoInstrucaoEquiparPing.TextScaled = true
-TextoInstrucaoEquiparPing.TextSize = 14
-TextoInstrucaoEquiparPing.TextStrokeTransparency = 0
-TextoInstrucaoEquiparPing.TextWrapped = true
-
-BotaoReduzirLagPing.Name = 'reduce'
-BotaoReduzirLagPing.Parent = PainelPingFarm
-BotaoReduzirLagPing.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BotaoReduzirLagPing.BackgroundTransparency = 0.5
-BotaoReduzirLagPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BotaoReduzirLagPing.BorderSizePixel = 0
-BotaoReduzirLagPing.Position = UDim2.new(0.272098452, 0, 0.5, 0)
-BotaoReduzirLagPing.Size = UDim2.new(0, 148, 0, 27)
-BotaoReduzirLagPing.Font = Enum.Font.FredokaOne
-BotaoReduzirLagPing.Text = 'Reduce Lag/Anti Afk'
-BotaoReduzirLagPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-BotaoReduzirLagPing.TextScaled = true
-BotaoReduzirLagPing.TextSize = 14
-BotaoReduzirLagPing.TextStrokeTransparency = 0
-BotaoReduzirLagPing.TextWrapped = true
-
-CantoBotaoReduzirLagPing.Parent = BotaoReduzirLagPing
-
-CaixaTextoLimitePing.Name = 'Pinger'
-CaixaTextoLimitePing.Parent = PainelPingFarm
-CaixaTextoLimitePing.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-CaixaTextoLimitePing.BackgroundTransparency = 0.6
-CaixaTextoLimitePing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CaixaTextoLimitePing.BorderSizePixel = 0
-CaixaTextoLimitePing.Position = UDim2.new(0.18960245, 0, 0.671171188, 0)
-CaixaTextoLimitePing.Size = UDim2.new(0, 200, 0, 30)
-CaixaTextoLimitePing.Font = Enum.Font.FredokaOne
-CaixaTextoLimitePing.PlaceholderColor3 = Color3.fromRGB(85, 255, 0)
-CaixaTextoLimitePing.PlaceholderText = 'Enter Any Number Between 17k-25k'
-CaixaTextoLimitePing.Text = ''
-CaixaTextoLimitePing.TextColor3 = Color3.fromRGB(85, 255, 0)
-CaixaTextoLimitePing.TextScaled = true
-CaixaTextoLimitePing.TextSize = 14
-CaixaTextoLimitePing.TextStrokeTransparency = 0
-CaixaTextoLimitePing.TextWrapped = true
-
-CantoCaixaTextoLimitePing.Parent = CaixaTextoLimitePing
-
-LabelTempoEsperaPing.Name = 'Wait'
-LabelTempoEsperaPing.Parent = PainelPingFarm
-LabelTempoEsperaPing.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LabelTempoEsperaPing.BackgroundTransparency = 8
-LabelTempoEsperaPing.BorderColor3 = Color3.fromRGB(0, 0, 0)
-LabelTempoEsperaPing.BorderSizePixel = 0
-LabelTempoEsperaPing.Position = UDim2.new(0.036624454, 0, 0.162162155, 0)
-LabelTempoEsperaPing.Size = UDim2.new(0, 147, 0, 30)
-LabelTempoEsperaPing.Font = Enum.Font.FredokaOne
-LabelTempoEsperaPing.Text = '0'
-LabelTempoEsperaPing.TextColor3 = Color3.fromRGB(85, 255, 0)
-LabelTempoEsperaPing.TextScaled = true
-LabelTempoEsperaPing.TextSize = 14
-LabelTempoEsperaPing.TextStrokeTransparency = 0
-LabelTempoEsperaPing.TextTransparency = 1
-LabelTempoEsperaPing.TextWrapped = true
-
-TextoDescricaoPingFarm.Name = 'text'
-TextoDescricaoPingFarm.Parent = PainelPingFarm
-TextoDescricaoPingFarm.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextoDescricaoPingFarm.BackgroundTransparency = 8
-TextoDescricaoPingFarm.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextoDescricaoPingFarm.BorderSizePixel = 0
-TextoDescricaoPingFarm.Position = UDim2.new(-0.0341126807, 0, -0.0720720738, 0)
-TextoDescricaoPingFarm.Size = UDim2.new(0, 339, 0, 15)
-TextoDescricaoPingFarm.Font = Enum.Font.FredokaOne
-TextoDescricaoPingFarm.Text = 'Ping Farm Makes You Last A lot Longer But Gains less Strength'
-TextoDescricaoPingFarm.TextColor3 = Color3.fromRGB(85, 255, 0)
-TextoDescricaoPingFarm.TextScaled = true
-TextoDescricaoPingFarm.TextSize = 14
-TextoDescricaoPingFarm.TextStrokeTransparency = 0
-TextoDescricaoPingFarm.TextWrapped = true
-
--- ==================================================================================
--- SEÇÃO 13: FUNÇÕES UTILITÁRIAS
--- ==================================================================================
-
--- Função para formatar números grandes com sufixos (K, M, B, T)
-local function FormatarNumeroGrande(numero, casasDecimais)
-    local sufixos = {'', 'K', 'M', 'B', 'T'}
-    local magnitude = math.floor(math.log(math.max(1, math.abs(numero)), 1000))
-    local sufixo = sufixos[1 + magnitude] or 'e+' .. magnitude
-    local numeroFormatado = math.floor(numero * (10 ^ casasDecimais / 1000 ^ magnitude)) / 10 ^ casasDecimais
+local vu1 = {}
+local vu2 = game:GetService("TweenService")
+local vu3 = game:GetService("UserInputService")
+local vu4 = game:GetService("UserInputService")
+
+-- ===== SISTEMA DE INSTÂNCIA ÚNICA =====
+if _G.GhostHubActive then
+    local StarterGui = game:GetService("StarterGui")
     
-    return string.format('%.' .. casasDecimais .. 'f%s', numeroFormatado, sufixo)
-end
-
--- Função para formatar tempo em formato DD:HH:MM:SS
-local function FormatarTempo(segundos)
-    local minutos = math.floor(segundos / 60)
-    local segs = segundos % 60
-    local horas = math.floor(minutos / 60)
-    local mins = minutos % 60
-    local dias = math.floor(horas / 24)
-    local hrs = horas % 24
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Ghost Hub Already Running";
+            Text = "Destroying old instance and creating new one...";
+            Duration = 3;
+        })
+    end)
     
-    return string.format('%02i:%02i:%02i:%02i', dias, hrs, mins, segs)
-end
-
--- ==================================================================================
--- SEÇÃO 14: EVENTOS DOS BOTÕES DE NAVEGAÇÃO
--- ==================================================================================
-
--- EVENTO: Botão Farm Normal
-BotaoFarmNormal.MouseButton1Click:Connect(function()
-    PainelFarmNormal.Visible = true
-    PainelPingFarm.Visible = false
-    PainelDupe.Visible = false
-    PainelMisc.Visible = false
-    PainelInfo.Visible = false
-    PainelPlayer.Visible = false
-    PainelCreditos.Visible = false
-end)
-
--- EVENTO: Botão Ping Farm
-BotaoPingFarm.MouseButton1Click:Connect(function()
-    PainelFarmNormal.Visible = false
-    PainelPingFarm.Visible = true
-    PainelDupe.Visible = false
-    PainelMisc.Visible = false
-    PainelInfo.Visible = false
-    PainelPlayer.Visible = false
-    PainelCreditos.Visible = false
-end)
-
--- EVENTO: Botão Dupe
-BotaoDupe.MouseButton1Click:Connect(function()
-    PainelFarmNormal.Visible = false
-    PainelPingFarm.Visible = false
-    PainelDupe.Visible = true
-    PainelMisc.Visible = false
-    PainelInfo.Visible = false
-    PainelPlayer.Visible = false
-    PainelCreditos.Visible = false
-end)
-
--- EVENTO: Botão Misc
-BotaoMisc.MouseButton1Click:Connect(function()
-    PainelFarmNormal.Visible = false
-    PainelPingFarm.Visible = false
-    PainelDupe.Visible = false
-    PainelMisc.Visible = true
-    PainelInfo.Visible = false
-    PainelPlayer.Visible = false
-    PainelCreditos.Visible = false
-end)
-
--- EVENTO: Botão Info
-BotaoInfo.MouseButton1Click:Connect(function()
-    PainelFarmNormal.Visible = false
-    PainelPingFarm.Visible = false
-    PainelDupe.Visible = false
-    PainelMisc.Visible = false
-    PainelInfo.Visible = true
-    PainelPlayer.Visible = false
-    PainelCreditos.Visible = false
-end)
-
--- EVENTO: Botão Player
-BotaoPlayer.MouseButton1Click:Connect(function()
-    PainelFarmNormal.Visible = false
-    PainelPingFarm.Visible = false
-    PainelDupe.Visible = false
-    PainelMisc.Visible = false
-    PainelInfo.Visible = false
-    PainelPlayer.Visible = true
-    PainelCreditos.Visible = false
-end)
-
--- ==================================================================================
--- SEÇÃO 15: ATUALIZAÇÃO DO PING EM TEMPO REAL
--- ==================================================================================
-
-coroutine.wrap(function()
-    while true do
-        local pingAtual = game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue()
-        TextoPing.Text = 'Ping: ' .. FormatarNumeroGrande(pingAtual, 2) .. 'ms'
-        wait(1)
-    end
-end)()
-
--- ==================================================================================
--- SEÇÃO 16: EVENTO DO BOTÃO DESTRUIR GUI
--- ==================================================================================
-
-BotaoDestruirGUI.MouseButton1Click:Connect(function()
-    TelaPrincipal:Destroy()
-end)
-
--- ==================================================================================
--- SEÇÃO 17: FUNÇÕES DO PAINEL FARM NORMAL
--- ==================================================================================
-
--- EVENTO: Iniciar Farm Normal
-BotaoIniciarFarm.MouseButton1Click:Connect(function()
-    local tempoEspera = tonumber(LabelTempoEspera.Text)
-    
-    coroutine.wrap(function()
+    if _G.GhostHubInstance then
         pcall(function()
-            _G.farmer = true
+            _G.GhostHubInstance:Destroy()
+        end)
+    end
+    
+    _G.farmEnabled = false
+    _G.farmActive = false
+    _G.pingPaused = false
+    _G.Equip = false
+    
+    wait(0.5)
+end
+
+_G.GhostHubActive = true
+
+function vu1.DraggingEnabled(_, p5, p6)
+    local vu7 = p6 or p5
+    local vu8 = false
+    local vu9 = nil
+    local vu10 = nil
+    local vu11 = nil
+    p5.InputBegan:Connect(function(pu12)
+        if pu12.UserInputType == Enum.UserInputType.MouseButton1 or pu12.UserInputType == Enum.UserInputType.Touch then
+            vu8 = true
+            vu10 = pu12.Position
+            vu11 = vu7.Position
+            pu12.Changed:Connect(function()
+                if pu12.UserInputState == Enum.UserInputState.End then
+                    vu8 = false
+                end
+            end)
+        end
+    end)
+    p5.InputChanged:Connect(function(p13)
+        if p13.UserInputType == Enum.UserInputType.MouseMovement or p13.UserInputType == Enum.UserInputType.Touch then
+            vu9 = p13
+        end
+    end)
+    vu4.InputChanged:Connect(function(p14)
+        if p14 == vu9 and vu8 then
+            local v15 = p14.Position - vu10
+            vu7.Position = UDim2.new(vu11.X.Scale, vu11.X.Offset + v15.X, vu11.Y.Scale, vu11.Y.Offset + v15.Y)
+        end
+    end)
+end
+
+local vu16 = tostring(math.random(1, 100)) .. tostring(math.random(1, 50)) .. tostring(math.random(1, 100))
+
+function vu1.Toggle(_)
+    if game.CoreGui:FindFirstChild(vu16).Enabled then
+        game.CoreGui:FindFirstChild(vu16).Enabled = false
+    else
+        game.CoreGui:FindFirstChild(vu16).Enabled = true
+    end
+end
+
+function vu1.Create(_, p17)
+    local vu18 = Instance.new("ScreenGui")
+    local v19 = Instance.new("Frame")
+    local v20 = Instance.new("UICorner")
+    local v21 = Instance.new("ImageLabel")
+    local v22 = Instance.new("Frame")
+    local v23 = Instance.new("UICorner")
+    local v24 = Instance.new("Frame")
+    local v25 = Instance.new("Frame")
+    local v26 = Instance.new("ImageLabel")
+    local vu27 = Instance.new("ImageButton")
+    local v28 = Instance.new("TextLabel")
+    local vu29 = Instance.new("Frame")
+    local v30 = Instance.new("UICorner")
+    local v31 = Instance.new("UICorner")
+    local vu32 = Instance.new("Frame")
+    local v33 = Instance.new("UIListLayout")
+    local v34 = Instance.new("UIPadding")
+    local v35 = Instance.new("Frame")
+    local v36 = Instance.new("Frame")
+    vu1:DraggingEnabled(v35, v19)
+    
+    function vu1.Destroy(_)
+        vu18:Destroy()
+    end
+    
+    vu18.Name = vu16
+    vu18.Parent = game.CoreGui
+    vu18.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    v19.Name = "Main"
+    v19.Parent = vu18
+    v19.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    v19.BorderSizePixel = 0
+    v19.Position = UDim2.new(0.377, 0, 0.368, 0)
+    v19.Size = UDim2.new(0, 480, 0, 293)
+    v19.Active = true
+    v19.Selectable = true
+    v19.Draggable = true
+    v20.CornerRadius = UDim.new(0, 6)
+    v20.Parent = v19
+    v21.Name = "Shadow"
+    v21.Parent = v19
+    v21.AnchorPoint = Vector2.new(0.5, 0.5)
+    v21.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    v21.BackgroundTransparency = 1
+    v21.Position = UDim2.new(0.5, 0, 0.5, 0)
+    v21.Size = UDim2.new(1, 30, 1, 30)
+    v21.ZIndex = 0
+    v21.Image = "rbxassetid://5554236805"
+    v21.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    v21.ScaleType = Enum.ScaleType.Slice
+    v21.SliceCenter = Rect.new(23, 23, 277, 277)
+    v35.Name = "tabs"
+    v35.Parent = v19
+    v35.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+    v35.BorderSizePixel = 0
+    v35.Position = UDim2.new(0, 0, 0, 35)
+    v35.Size = UDim2.new(0, 122, 1, - 35)
+    v30.CornerRadius = UDim.new(0, 6)
+    v30.Parent = v35
+    v36.Name = "Cover"
+    v36.Parent = v35
+    v36.AnchorPoint = Vector2.new(1, 0.5)
+    v36.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+    v36.BorderSizePixel = 0
+    v36.Position = UDim2.new(1, 0, 0.5, 0)
+    v36.Size = UDim2.new(0, 5, 1, 0)
+    v22.Name = "Top"
+    v22.Parent = v19
+    v22.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+    v22.BorderSizePixel = 0
+    v22.Size = UDim2.new(1, 0, 0, 34)
+    v23.CornerRadius = UDim.new(0, 6)
+    v23.Parent = v22
+    v24.Name = "Cover"
+    v24.Parent = v22
+    v24.AnchorPoint = Vector2.new(0.5, 1)
+    v24.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+    v24.BorderSizePixel = 0
+    v24.Position = UDim2.new(0.5, 0, 1, 0)
+    v24.Size = UDim2.new(1, 0, 0, 4)
+    v25.Name = "Line"
+    v25.Parent = v22
+    v25.AnchorPoint = Vector2.new(0.5, 1)
+    v25.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    v25.BackgroundTransparency = 0.92
+    v25.Position = UDim2.new(0.5, 0, 1, 1)
+    v25.Size = UDim2.new(1, 0, 0, 1)
+    v26.Name = "Logo"
+    v26.Parent = v22
+    v26.AnchorPoint = Vector2.new(0, 0.5)
+    v26.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    v26.BackgroundTransparency = 1
+    v26.Position = UDim2.new(0, 4, 0.5, 0)
+    v26.Size = UDim2.new(0, 26, 0, 25)
+    v26.Image = "rbxassetid://17825568299"
+    v26.ImageColor3 = Color3.fromRGB(0, 150, 255)
+    vu27.Name = "Close"
+    vu27.Parent = v22
+    vu27.AnchorPoint = Vector2.new(1, 0.5)
+    vu27.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    vu27.BackgroundTransparency = 1
+    vu27.Position = UDim2.new(1, - 6, 0.5, 0)
+    vu27.Size = UDim2.new(0, 20, 0, 20)
+    vu27.Image = "http://www.roblox.com/asset/?id=7755372427"
+    vu27.ImageColor3 = Color3.fromRGB(199, 199, 199)
+    vu27.ScaleType = Enum.ScaleType.Crop
+    vu27.MouseButton1Click:connect(function()
+        vu18.Enabled = false
+    end)
+    vu27.MouseEnter:connect(function()
+        vu2:Create(vu27, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(255, 255, 255)}, true):Play()
+    end)
+    vu27.MouseLeave:connect(function()
+        vu2:Create(vu27, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(166, 166, 166)}, true):Play()
+    end)
+    v28.Name = "GameName"
+    v28.Parent = v22
+    v28.AnchorPoint = Vector2.new(0, 0.5)
+    v28.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    v28.BackgroundTransparency = 1
+    v28.Position = UDim2.new(0, 32, 0.5, 0)
+    v28.Size = UDim2.new(0, 165, 0, 22)
+    v28.Font = Enum.Font.Gotham
+    v28.Text = p17 or "Game Name"
+    v28.TextColor3 = Color3.fromRGB(0, 150, 255)
+    v28.TextSize = 14
+    v28.TextXAlignment = Enum.TextXAlignment.Left
+    vu29.Name = "Pages"
+    vu29.Parent = v19
+    vu29.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    vu29.BorderSizePixel = 0
+    vu29.Position = UDim2.new(0, 130, 0, 42)
+    vu29.Size = UDim2.new(1, - 138, 1, - 50)
+    vu32.Name = "TabsContainer"
+    vu32.Parent = v35
+    vu32.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    vu32.BackgroundTransparency = 1
+    vu32.Size = UDim2.new(1, 0, 1, 0)
+    v33.Name = "TabsList"
+    v33.Parent = vu32
+    v33.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    v33.SortOrder = Enum.SortOrder.LayoutOrder
+    v33.Padding = UDim.new(0, 5)
+    v34.Parent = vu32
+    v34.PaddingTop = UDim.new(0, 5)
+    v31.CornerRadius = UDim.new(0, 6)
+    v31.Parent = v35
+    
+    return {
+        Tab = function(_, p37)
+            local vu38 = Instance.new("UIListLayout")
+            local vu39 = Instance.new("ScrollingFrame")
+            local v40 = Instance.new("UICorner")
+            local vu41 = Instance.new("TextButton")
+            vu41.Name = "TabButton"
+            vu41.Parent = vu32
+            vu41.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+            vu41.BackgroundTransparency = 1
+            vu41.Size = UDim2.new(1, - 12, 0, 30)
+            vu41.AutoButtonColor = false
+            vu41.Font = Enum.Font.Gotham
+            vu41.Text = p37 or "Tab"
+            vu41.TextColor3 = Color3.fromRGB(255, 255, 255)
+            vu41.TextSize = 14
+            v40.CornerRadius = UDim.new(0, 6)
+            v40.Parent = vu41
+            vu39.Name = "Page"
+            vu39.Visible = false
+            vu39.Parent = vu29
+            vu39.Active = true
+            vu39.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            vu39.BackgroundTransparency = 1
+            vu39.BorderSizePixel = 0
+            vu39.Size = UDim2.new(1, 0, 1, 0)
+            vu39.CanvasPosition = Vector2.new(0, 0)
+            vu39.ScrollBarThickness = 2
+            vu39.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
+            vu38.Parent = vu39
+            vu38.HorizontalAlignment = Enum.HorizontalAlignment.Center
+            vu38.SortOrder = Enum.SortOrder.LayoutOrder
+            vu38.Padding = UDim.new(0, 5)
+            vu38:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+                vu39.CanvasSize = UDim2.new(0, 0, 0, vu38.AbsoluteContentSize.Y)
+            end)
+            vu41.MouseButton1Click:Connect(function()
+                for _, v45 in pairs(vu29:GetChildren()) do
+                    if v45:IsA("ScrollingFrame") then
+                        v45.Visible = false
+                    end
+                end
+                vu39.Visible = true
+                for _, v49 in pairs(vu32:GetChildren()) do
+                    if v49.Name == "TabButton" then
+                        vu2:Create(v49, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+                        vu2:Create(v49, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(72, 72, 72)}):Play()
+                    end
+                end
+                vu2:Create(vu41, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.5}):Play()
+                vu2:Create(vu41, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+            end)
             
-            while _G.farmer do
-                task.wait(tempoEspera)
+            return {
+                Button = function(_, p50, p51)
+                    local vu52 = Instance.new("TextButton")
+                    local v53 = Instance.new("UICorner")
+                    local vu54 = p51 or function() end
+                    vu52.Name = "Button"
+                    vu52.Text = "  " .. (p50 or "Button")
+                    vu52.Parent = vu39
+                    vu52.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+                    vu52.BorderSizePixel = 0
+                    vu52.Size = UDim2.new(1, - 6, 0, 34)
+                    vu52.AutoButtonColor = false
+                    vu52.Font = Enum.Font.Gotham
+                    vu52.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    vu52.TextSize = 15
+                    vu52.TextXAlignment = Enum.TextXAlignment.Left
+                    v53.CornerRadius = UDim.new(0, 6)
+                    v53.Parent = vu52
+                    vu52.MouseEnter:Connect(function()
+                        vu2:Create(vu52, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(40, 40, 40)}):Play()
+                    end)
+                    vu52.MouseLeave:Connect(function()
+                        vu2:Create(vu52, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(35, 35, 35)}):Play()
+                    end)
+                    vu52.MouseButton1Click:Connect(function()
+                        vu54()
+                    end)
+                end,
+                Toggle = function(_, p55, p56, pu57)
+                    local vu58 = Instance.new("TextButton")
+                    local v59 = Instance.new("UICorner")
+                    local v60 = Instance.new("TextLabel")
+                    local vu61 = Instance.new("Frame")
+                    local v62 = Instance.new("UIStroke")
+                    vu58.Name = "Toggle"
+                    vu58.Parent = vu39
+                    vu58.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+                    vu58.Size = UDim2.new(1, - 6, 0, 34)
+                    vu58.AutoButtonColor = false
+                    vu58.Font = Enum.Font.SourceSans
+                    vu58.Text = ""
+                    vu58.TextColor3 = Color3.fromRGB(0, 0, 0)
+                    vu58.TextSize = 15
+                    v59.CornerRadius = UDim.new(0, 6)
+                    v59.Parent = vu58
+                    v60.Name = "Title"
+                    v60.Parent = vu58
+                    v60.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    v60.BackgroundTransparency = 1
+                    v60.Position = UDim2.new(0, 8, 0, 0)
+                    v60.Size = UDim2.new(1, - 6, 1, 0)
+                    v60.Font = Enum.Font.Gotham
+                    v60.Text = p55 or "Toggle"
+                    v60.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    v60.TextSize = 15
+                    v60.TextXAlignment = Enum.TextXAlignment.Left
+                    vu61.Name = "Toggle"
+                    vu61.Parent = vu58
+                    vu61.AnchorPoint = Vector2.new(1, 0.5)
+                    vu61.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+                    vu61.BackgroundTransparency = 1
+                    vu61.BorderSizePixel = 0
+                    vu61.Position = UDim2.new(1, - 8, 0.5, 0)
+                    vu61.Size = UDim2.new(0, 14, 0, 14)
+                    v62.Parent = vu61
+                    v62.LineJoinMode = Enum.LineJoinMode.Round
+                    v62.Thickness = 2
+                    v62.Color = Color3.fromRGB(0, 150, 255)
+                    vu58.MouseEnter:Connect(function()
+                        vu2:Create(vu58, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(40, 40, 40)}, true):Play()
+                    end)
+                    vu58.MouseLeave:Connect(function()
+                        vu2:Create(vu58, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {BackgroundColor3 = Color3.fromRGB(35, 35, 35)}, true):Play()
+                    end)
+                    local vu63 = p56 or false
+                    if vu63 then
+                        vu2:Create(vu61, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}, true):Play()
+                        pu57(vu63)
+                    end
+                    vu58.MouseButton1Click:Connect(function()
+                        vu63 = not vu63
+                        if vu63 then
+                            vu2:Create(vu61, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}, true):Play()
+                        else
+                            vu2:Create(vu61, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}, true):Play()
+                        end
+                        pu57(vu63)
+                    end)
+                end,
+                Label = function(_, p64)
+                    local v65 = Instance.new("TextLabel")
+                    local v66 = Instance.new("UICorner")
+                    v65.Parent = vu39
+                    v65.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+                    v65.BorderSizePixel = 0
+                    v65.Size = UDim2.new(1, - 6, 0, 34)
+                    v65.Font = Enum.Font.Gotham
+                    v65.Text = "  " .. (p64 or "Label")
+                    v65.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    v65.TextSize = 15
+                    v65.TextXAlignment = Enum.TextXAlignment.Left
+                    v66.CornerRadius = UDim.new(0, 6)
+                    v66.Parent = v65
+                    return v65
+                end,
+                PlayerLabel = function(_, p64)
+                    local v65 = Instance.new("TextLabel")
+                    v65.Name = p64
+                    v65.Parent = vu39
+                    v65.BackgroundTransparency = 1
+                    v65.BorderSizePixel = 0
+                    v65.Size = UDim2.new(1, - 6, 0, 24)
+                    v65.Font = Enum.Font.Gotham
+                    v65.Text = "  " .. (p64 or "Player")
+                    v65.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    v65.TextSize = 13
+                    v65.TextXAlignment = Enum.TextXAlignment.Left
+                    v65.RichText = true
+                    return v65
+                end,
+                TextBox = function(_, p67, p68, p69)
+                    local vu70 = Instance.new("Frame")
+                    local v71 = Instance.new("UICorner")
+                    local v72 = Instance.new("TextLabel")
+                    local vu73 = Instance.new("TextBox")
+                    local v74 = Instance.new("UICorner")
+                    vu70.Name = "TextBoxFrame"
+                    vu70.Parent = vu39
+                    vu70.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+                    vu70.BorderSizePixel = 0
+                    vu70.Size = UDim2.new(1, -6, 0, 34)
+                    v71.CornerRadius = UDim.new(0, 6)
+                    v71.Parent = vu70
+                    v72.Name = "Title"
+                    v72.Parent = vu70
+                    v72.BackgroundTransparency = 1
+                    v72.Position = UDim2.new(0, 8, 0, 0)
+                    v72.Size = UDim2.new(0.5, -8, 1, 0)
+                    v72.Font = Enum.Font.Gotham
+                    v72.Text = p67 or "TextBox"
+                    v72.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    v72.TextSize = 15
+                    v72.TextXAlignment = Enum.TextXAlignment.Left
+                    vu73.Name = "InputBox"
+                    vu73.Parent = vu70
+                    vu73.AnchorPoint = Vector2.new(1, 0.5)
+                    vu73.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+                    vu73.BorderSizePixel = 0
+                    vu73.Position = UDim2.new(1, -8, 0.5, 0)
+                    vu73.Size = UDim2.new(0, 100, 0, 24)
+                    vu73.Font = Enum.Font.Gotham
+                    vu73.Text = p68 or ""
+                    vu73.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    vu73.TextSize = 14
+                    vu73.ClearTextOnFocus = false
+                    v74.CornerRadius = UDim.new(0, 4)
+                    v74.Parent = vu73
+                    vu73.FocusLost:Connect(function(enterPressed)
+                        if enterPressed and p69 then
+                            p69(vu73.Text)
+                        end
+                    end)
+                    vu70.MouseEnter:Connect(function()
+                        vu2:Create(vu70, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(40, 40, 40)}):Play()
+                    end)
+                    vu70.MouseLeave:Connect(function()
+                        vu2:Create(vu70, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(35, 35, 35)}):Play()
+                    end)
+                    return vu73
+                end
+            }
+        end
+    }
+end
+
+local Library = vu1
+local Window = Library:Create("Ghost Hub Premium")
+local LocalPlayer = game.Players.LocalPlayer
+local StarterGui = game:GetService("StarterGui")
+
+-- ===== VERIFICAÇÃO PREMIUM =====
+local MarketplaceService = game:GetService("MarketplaceService")
+local PREMIUM_GAMEPASS_ID = 1683193398
+local WHITELIST = {"MIKZINXN22"}
+
+local function isWhitelisted(playerName)
+    for _, name in pairs(WHITELIST) do
+        if name == playerName then
+            return true
+        end
+    end
+    return false
+end
+
+local function checkPremiumAccess()
+    if isWhitelisted(LocalPlayer.Name) then
+        return true
+    end
+    
+    local success, hasPass = pcall(function()
+        return MarketplaceService:UserOwnsGamePassAsync(LocalPlayer.UserId, PREMIUM_GAMEPASS_ID)
+    end)
+    
+    if success and hasPass then
+        return true
+    end
+    
+    return false
+end
+
+if not checkPremiumAccess() then
+    LocalPlayer:Kick("Ghost Hub Premium - Access Denied")
+    return
+end
+
+_G.GhostHubInstance = game.CoreGui:FindFirstChild(vu16)
+
+-- ===== FUNÇÕES AUXILIARES =====
+local function Notify(title, text, duration)
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = title;
+            Text = text;
+            Duration = duration or 5;
+        })
+    end)
+end
+
+local function abbreviatePing(ping)
+    if ping >= 1000 then
+        return string.format("%.1fk", ping / 1000)
+    else
+        return tostring(math.floor(ping))
+    end
+end
+
+local function formatWaitTime(waitTime)
+    return string.format("%.6f", waitTime)
+end
+
+local function getCurrentPing()
+    local Stats = game:GetService("Stats")
+    local pingValue = Stats.Network.ServerStatsItem["Data Ping"]
+    if pingValue then
+        return tonumber(pingValue:GetValue()) or 0
+    end
+    return 0
+end
+
+local function countAllWeights()
+    local count = 0
+    pcall(function()
+        for _, item in pairs(LocalPlayer.Backpack:GetChildren()) do
+            if item.Name == "Double Weight" then 
+                count = count + 1 
+            end
+        end
+        if LocalPlayer.Character then
+            for _, item in pairs(LocalPlayer.Character:GetChildren()) do
+                if item.Name == "Double Weight" then 
+                    count = count + 1 
+                end
+            end
+        end
+    end)
+    return count
+end
+
+local function calculateWaitTime()
+    local weightCount = countAllWeights()
+    return 0.000800 * weightCount
+end
+
+-- ===== FARM TAB =====
+local FarmTab = Window:Tab("Farm")
+local waitTimerLabel = FarmTab:Label("Wait Timer: 0.000000")
+local pingMonitorLabel = FarmTab:Label("Ping: 0ms")
+
+_G.Equip = false
+_G.farmEnabled = false
+_G.farmActive = false
+_G.pingLimiterEnabled = false
+_G.autoFarmAfterDupe = false
+_G.customPingLimit = 20000
+_G.resumePingThreshold = 3000
+
+-- Atualização do wait timer e ping monitor
+local lastWeightCount = -1
+spawn(function()
+    while wait(1) do
+        pcall(function()
+            local weightCount = countAllWeights()
+            
+            if weightCount ~= lastWeightCount then
+                lastWeightCount = weightCount
+                local waitTime = calculateWaitTime()
+                local formattedTime = formatWaitTime(waitTime)
+                waitTimerLabel.Text = "  Wait Timer: " .. formattedTime .. "s"
+            end
+            
+            -- Atualizar ping monitor
+            local currentPing = getCurrentPing()
+            local formattedPing = abbreviatePing(currentPing)
+            pingMonitorLabel.Text = "  Ping: " .. formattedPing .. "ms"
+        end)
+    end
+end)
+
+-- Toggle Equip
+FarmTab:Toggle("Equip", false, function(value)
+    _G.Equip = value
+    if value then
+        Notify("Equip", "Equipping weights...", 3)
+        spawn(function()
+            pcall(function()
+                local equipped = 0
+                local batchCount = 0
+                for _, item in pairs(LocalPlayer.Backpack:GetChildren()) do
+                    if item.Name == "Double Weight" then
+                        item.Parent = LocalPlayer.Character
+                        if item:FindFirstChild("Handle") then
+                            item.Handle.CanCollide = false
+                            item.Handle.Massless = true
+                            item.Handle.Transparency = 1
+                        end
+                        equipped = equipped + 1
+                        batchCount = batchCount + 1
+                        
+                        if batchCount >= 100 then
+                            wait(0.05)
+                            batchCount = 0
+                        end
+                    end
+                end
+                wait(0.5)
+                Notify("Equip", "Equipped " .. equipped .. " Weights!", 3)
+            end)
+        end)
+    else
+        Notify("Equip", "Stopped", 3)
+    end
+end)
+
+-- Função para equipar weights automaticamente
+local function autoEquipWeights()
+    local equipped = 0
+    local success = pcall(function()
+        local batchCount = 0
+        for _, item in pairs(LocalPlayer.Backpack:GetChildren()) do
+            if item.Name == "Double Weight" then
+                item.Parent = LocalPlayer.Character
+                if item:FindFirstChild("Handle") then
+                    item.Handle.CanCollide = false
+                    item.Handle.Massless = true
+                    item.Handle.Transparency = 1
+                end
+                equipped = equipped + 1
+                batchCount = batchCount + 1
                 
-                for _, itemPersonagem in pairs(JogadorLocal.Character:GetChildren()) do
-                    if itemPersonagem.Name == 'Double Weight' and itemPersonagem:IsA('Tool') then
-                        itemPersonagem:Activate()
+                if batchCount >= 100 then
+                    wait(0.05)
+                    batchCount = 0
+                end
+            end
+        end
+    end)
+    
+    wait(0.5)
+    return success and equipped or 0
+end
+
+-- Sistema de Ping Limiter global
+local isPingStopped = false
+local function checkPingLimit()
+    if not _G.pingLimiterEnabled then 
+        isPingStopped = false
+        return true 
+    end
+    
+    local currentPing = getCurrentPing()
+    
+    if currentPing >= _G.customPingLimit and not isPingStopped then
+        isPingStopped = true
+        return false
+    elseif currentPing < _G.resumePingThreshold and isPingStopped then
+        isPingStopped = false
+        return true
+    end
+    
+    return not isPingStopped
+end
+
+-- Farm loop principal com proteção anti-crash e recuperação automática
+local function farmLoop()
+    local lastActivationTime = tick()
+    local errorCount = 0
+    local maxErrors = 10
+    
+    spawn(function()
+        while _G.farmEnabled do
+            local success = pcall(function()
+                -- Verificar se o personagem existe
+                if not LocalPlayer.Character then
+                    wait(2)
+                    return
+                end
+                
+                -- Verificar se foi kickado ou desconectado
+                if not LocalPlayer.Parent then
+                    _G.farmEnabled = false
+                    _G.farmActive = false
+                    return
+                end
+                
+                -- Sistema de ping limiter
+                if checkPingLimit() then
+                    local waitTime = calculateWaitTime()
+                    
+                    -- Proteção contra wait time inválido
+                    if waitTime and waitTime > 0 and waitTime < 60 then
+                        task.wait(waitTime)
+                    else
+                        task.wait(0.001)
+                    end
+                    
+                    -- Ativar weights
+                    local activated = false
+                    if LocalPlayer.Character then
+                        for _, item in pairs(LocalPlayer.Character:GetChildren()) do
+                            if item.Name == "Double Weight" then
+                                item:Activate()
+                                activated = true
+                            end
+                        end
+                    end
+                    
+                    -- Atualizar tempo de última ativação
+                    if activated then
+                        lastActivationTime = tick()
+                        errorCount = 0
+                    end
+                    
+                    -- Verificar se está travado (sem ativar por muito tempo)
+                    if tick() - lastActivationTime > 60 then
+                        -- Tentar reequipar weights
+                        local reequipped = autoEquipWeights()
+                        if reequipped > 0 then
+                            lastActivationTime = tick()
+                            Notify("Farm Recovery", "Weights re-equipped: " .. reequipped, 3)
+                        end
+                    end
+                else
+                    task.wait(1.5)
+                end
+            end)
+            
+            -- Gerenciamento de erros
+            if not success then
+                errorCount = errorCount + 1
+                if errorCount >= maxErrors then
+                    Notify("Farm Error", "Too many errors, stopping farm", 5)
+                    _G.farmEnabled = false
+                    _G.farmActive = false
+                    break
+                end
+                wait(2)
+            end
+        end
+        
+        _G.farmActive = false
+    end)
+end
+
+-- Toggle Farm Manual com proteção de estado
+FarmTab:Toggle("Farm", false, function(value)
+    if value then
+        local hasEquippedWeights = false
+        pcall(function()
+            if LocalPlayer.Character then
+                for _, item in pairs(LocalPlayer.Character:GetChildren()) do
+                    if item.Name == "Double Weight" then
+                        hasEquippedWeights = true
+                        break
                     end
                 end
             end
         end)
-    end)()
+        
+        if not hasEquippedWeights then
+            Notify("Farm", "You need to equip first", 3)
+            return
+        end
+        
+        -- Garantir que não há outro farm rodando
+        if _G.farmActive then
+            Notify("Farm", "Farm already running!", 3)
+            return
+        end
+        
+        _G.farmEnabled = true
+        _G.farmActive = true
+        Notify("Farm", "Farm started!", 3)
+        
+        farmLoop()
+        
+    else
+        _G.farmEnabled = false
+        task.wait(0.5)
+        _G.farmActive = false
+        Notify("Farm", "Farm stopped!", 3)
+    end
 end)
 
--- EVENTO: Parar Farm Normal
-BotaoPararFarm.MouseButton1Click:Connect(function()
-    _G.farmer = false
+-- Toggle Auto Farm After Dupe (MOVIDA ACIMA DO PING LIMITER)
+FarmTab:Toggle("Auto Farm After Dupe", false, function(value)
+    _G.autoFarmAfterDupe = value
+    if value then
+        Notify("Auto Farm After Dupe", "Enabled!", 3)
+    else
+        Notify("Auto Farm After Dupe", "Disabled!", 3)
+    end
 end)
 
--- EVENTO: Equipar Pesos (Farm Normal)
-BotaoEquiparPesos.MouseButton1Click:Connect(function()
-    _G.Equip = true
-    local notificacaoEnviada = false
-    
-    if not _G.Equip then
+-- Toggle Ping Limiter
+FarmTab:Toggle("Ping Limiter (30k)", false, function(value)
+    _G.pingLimiterEnabled = value
+    if value then
+        Notify("Ping Limiter", "Enabled", 3)
+    else
+        Notify("Ping Limiter", "Disabled!", 3)
+        isPingStopped = false
+    end
+end)
+
+-- ===== DUPE TAB =====
+local DupeTab = Window:Tab("Dupe")
+local isDuping = false
+local dupeTimeLabel = DupeTab:Label("Time: 00:00")
+local doubleWeightsLabel = DupeTab:Label("Double Weight(s): 0")
+local remainingDupes = 0
+
+-- Função para atualizar estimativa de tempo
+local function updateDupeTimeEstimate(amount)
+    local totalSeconds = amount * 1
+    local minutes = math.floor(totalSeconds / 60)
+    local seconds = math.floor(totalSeconds % 60)
+    dupeTimeLabel.Text = string.format("  Time: %02d:%02d", minutes, seconds)
+end
+
+-- Atualização da contagem de Double Weights
+spawn(function()
+    while wait(1) do
+        pcall(function()
+            local dwCount = countAllWeights()
+            doubleWeightsLabel.Text = "  Double Weight(s): " .. tostring(dwCount)
+        end)
+    end
+end)
+
+-- Função principal de dupe
+local function startDuping(amount)
+    if isDuping then
+        Notify("Dupe", "Already duping!", 3)
         return
     end
+    isDuping = true
+    remainingDupes = amount
+    Notify("Dupe", "Started Dupe", 3)
     
-    wait(0.631201)
-    
-    -- Equipar até 100 Double Weights
-    local contador = 0
-    for _, itemMochila in pairs(JogadorLocal.Backpack:GetChildren()) do
-        if itemMochila.Name == 'Double Weight' then
-            itemMochila.Parent = JogadorLocal.Character
-            contador = contador + 1
-            if contador >= 100 then
-                break
+    spawn(function()
+        local marketplaceService = game:GetService('MarketplaceService')
+        for remaining = remainingDupes, 0, -1 do
+            if not isDuping then 
+                remainingDupes = remaining
+                break 
             end
+            
+            local totalSeconds = remaining * 1
+            local minutes = math.floor(totalSeconds / 60)
+            local seconds = math.floor(totalSeconds % 60)
+            dupeTimeLabel.Text = string.format("  Time: %02d:%02d", minutes, seconds)
+            
+            pcall(function()
+                marketplaceService:SignalPromptGamePassPurchaseFinished(LocalPlayer, 5949054, true)
+            end)
+            wait(1)
         end
-    end
-    
-    -- Verificar se ainda há pesos na mochila
-    local pesosRestantes = 0
-    for _, itemMochila in pairs(JogadorLocal.Backpack:GetChildren()) do
-        if itemMochila.Name == 'Double Weight' then
-            pesosRestantes = pesosRestantes + 1
+        
+        if isDuping then
+            Notify("Dupe", "Finished!", 5)
+            dupeTimeLabel.Text = "  Time: 00:00"
+            remainingDupes = 0
+            
+            -- Auto Farm After Dupe com proteção
+            if _G.autoFarmAfterDupe then
+                wait(2)
+                Notify("Auto Farm After Dupe", "Equipping weights...", 3)
+                
+                local equippedCount = autoEquipWeights()
+                wait(0.5)
+                
+                if equippedCount > 0 then
+                    Notify("Auto Farm After Dupe", "Equipped " .. equippedCount .. " weights!", 3)
+                    wait(1)
+                    
+                    -- Garantir que não há outro farm rodando
+                    if not _G.farmActive then
+                        _G.farmEnabled = true
+                        _G.farmActive = true
+                        Notify("Auto Farm After Dupe", "Farm started automatically!", 3)
+                        farmLoop()
+                    else
+                        Notify("Auto Farm After Dupe", "Farm already running!", 3)
+                    end
+                else
+                    Notify("Auto Farm After Dupe", "No weights to equip!", 3)
+                end
+            end
+        else
+            local totalSeconds = remainingDupes * 1
+            local minutes = math.floor(totalSeconds / 60)
+            local seconds = math.floor(totalSeconds % 60)
+            dupeTimeLabel.Text = string.format("  Time: %02d:%02d - %d left", minutes, seconds, remainingDupes)
         end
-    end
-    
-    if pesosRestantes == 0 and not notificacaoEnviada then
-        wait(1)
-        game:GetService('StarterGui'):SetCore('SendNotification', {
-            Title = 'Equip',
-            Text = 'Equipped All Weights. Enjoy!',
-            Duration = 3,
-        })
-        _G.Equip = false
-        notificacaoEnviada = true
+        isDuping = false
+    end)
+end
+
+DupeTab:Button("Dupe 834", function()
+    startDuping(833)
+end)
+
+DupeTab:Button("Dupe 75", function()
+    startDuping(73)
+end)
+
+-- Botão Stop/Return Dupe combinado
+DupeTab:Button("Stop/Return Dupe", function()
+    if isDuping then
+        isDuping = false
+        Notify("Dupe", "Paused! " .. remainingDupes .. " DW remaining", 3)
+    elseif remainingDupes > 0 then
+        startDuping(remainingDupes)
+    else
+        Notify("Dupe", "No dupes to return!", 3)
     end
 end)
 
--- EVENTO: Desequipar Pesos (Farm Normal)
-BotaoPararEquiparPesos.MouseButton1Click:Connect(function()
-    _G.Equip = true
-    local notificacaoEnviada = false
-    
-    if not _G.Equip then
-        return
-    end
-    
-    wait(0.631201)
-    
-    -- Desequipar até 100 Double Weights
-    local contador = 0
-    for _, itemPersonagem in pairs(JogadorLocal.Character:GetChildren()) do
-        if itemPersonagem.Name == 'Double Weight' then
-            itemPersonagem.Parent = JogadorLocal.Backpack
-            contador = contador + 1
-            if contador >= 100 then
-                break
-            end
-        end
-    end
-    
-    -- Verificar se ainda há pesos equipados
-    local pesosEquipados = 0
-    for _, itemPersonagem in pairs(JogadorLocal.Character:GetChildren()) do
-        if itemPersonagem.Name == 'Double Weight' then
-            pesosEquipados = pesosEquipados + 1
-        end
-    end
-    
-    if pesosEquipados == 0 and not notificacaoEnviada then
-        wait(1)
-        game:GetService('StarterGui'):SetCore('SendNotification', {
-            Title = 'Equip',
-            Text = 'Equipped All Weights. Enjoy!',
-            Duration = 3,
-        })
-        _G.Equip = false
-        notificacaoEnviada = true
-    end
-end)
+-- ===== GAME TAB =====
+local GameTab = Window:Tab("Game")
 
-
--- EVENTO: Reduzir Lag e Anti-AFK (Farm Normal)
-BotaoReduzirLag.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet('https://pastebin.com/raw/mmEr60d5', true))()
-    game.ReplicatedFirst.TourneyQ:Destroy()
-    game:GetService('Lighting').NormalSky:Destroy()
-    game:GetService('Players').LocalPlayer.PlayerGui.HUD:Destroy()
+local reduceLagEnabled = false
+local function reduceLag()
+    if reduceLagEnabled then 
+        Notify("Del All + Anti Afk", "Já está ativado!", 3)
+        return 
+    end
+    reduceLagEnabled = true
     
-    local Workspace = game.Workspace
-    local Lighting = game.Lighting
-    local Terrain = Workspace.Terrain
+    local Lighting = game:GetService("Lighting")
     
+    pcall(function() game.ReplicatedFirst:FindFirstChild("TourneyQ"):Destroy() end)
+    pcall(function() Lighting:FindFirstChild("NormalSky"):Destroy() end)
+    pcall(function() LocalPlayer.PlayerGui:FindFirstChild("HUD"):Destroy() end)
+    
+    local Terrain = workspace.Terrain
     Terrain.WaterWaveSize = 0
     Terrain.WaterWaveSpeed = 0
     Terrain.WaterReflectance = 0
     Terrain.WaterTransparency = 0
     Lighting.GlobalShadows = false
-    Lighting.FogEnd = 9000000000
-    settings().Rendering.QualityLevel = 'Level01'
+    Lighting.FogEnd = 9e9
+    settings().Rendering.QualityLevel = "Level01"
     
-    for _, descendente in pairs(game:GetDescendants()) do
-        if descendente:IsA('Part') or descendente:IsA('Union') or descendente:IsA('MeshPart') then
-            descendente.Reflectance = 0
-        elseif descendente:IsA('ParticleEmitter') or descendente:IsA('Trail') then
-            descendente:Destroy()
-        elseif descendente:IsA('Explosion') then
-            descendente.BlastPressure = 0
-            descendente.BlastRadius = 0
-        end
-    end
-    
-    for _, efeito in pairs(Lighting:GetChildren()) do
-        if efeito:IsA('BlurEffect') or efeito:IsA('SunRaysEffect') or 
-           efeito:IsA('ColorCorrectionEffect') or efeito:IsA('BloomEffect') or 
-           efeito:IsA('DepthOfFieldEffect') then
-            efeito.Enabled = false
-        end
-    end
-    
-    sethiddenproperty(game.Lighting, 'Technology', 'Compatibility')
-    
-    game:GetService('StarterGui'):SetCore('SendNotification', {
-        Title = 'ANTI AFK ACTIVE',
-        Text = "This is so you won't get kicked",
-        Duration = 7,
-    })
-    
-    local VirtualUser = game:GetService('VirtualUser')
-    JogadorLocal.Idled:connect(function()
-        VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
-        wait(1)
-        VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
-    end)
-    
-    for _, objetoWorkspace in pairs(Workspace:GetChildren()) do
-        if objetoWorkspace.Name ~= JogadorLocal.Name and 
-           objetoWorkspace.Name ~= 'Terrain' and 
-           objetoWorkspace.Name ~= 'Baseplate' and 
-           objetoWorkspace.Name ~= 'Camera' then
-            objetoWorkspace:Destroy()
-        end
-    end
-    
-    for _, objetoReplicatedStorage in pairs(game:GetService('ReplicatedStorage'):GetChildren()) do
-        if objetoReplicatedStorage.Name ~= 'Data' then
-            objetoReplicatedStorage:Destroy()
-        end
-    end
-    
-    for _, objetoCorePackages in pairs(game:GetService('CorePackages'):GetChildren()) do
-        objetoCorePackages:Destroy()
-    end
-end)
-
--- Atualizar label de tempo de espera (Farm Normal)
-coroutine.wrap(function()
-    local function ContarPesos()
-        local contador = 0
-        
-        for _, item in pairs(JogadorLocal.Backpack:GetChildren()) do
-            if item.Name == 'Double Weight' then
-                contador = contador + 1
-            end
-        end
-        
-        if contador == 0 then
-            for _, item in pairs(JogadorLocal.Character:GetChildren()) do
-                if item.Name == 'Double Weight' then
-                    contador = contador + 1
-                end
-            end
-        end
-        
-        return contador
-    end
-    
-    while true do
-        LabelTempoEspera.Text = tostring(0.000886 * ContarPesos())
-        wait(1)
-    end
-end)()
-
--- ==================================================================================
--- SEÇÃO 18: FUNÇÕES DO PAINEL MISC
--- ==================================================================================
-
--- EVENTO: Alternar Dia/Noite
-BotaoAlternarDiaNoite.MouseButton1Click:Connect(function()
-    local iluminacao = game:GetService('Lighting')
-    if iluminacao.ClockTime ~= 19 then
-        iluminacao.ClockTime = 19
-    else
-        iluminacao.ClockTime = 14
-    end
-end)
-
--- EVENTO: Click Teleport
-BotaoClickTeleport.MouseButton1Click:Connect(function()
-    game:GetService('StarterGui'):SetCore('SendNotification', {
-        Title = 'Click TP Enabled!',
-        Text = 'Tap Left Alt to TP to your mouse.',
-        Duration = 10,
-    })
-    
-    local mouse = JogadorLocal:GetMouse()
-    
-    game:GetService('UserInputService').InputBegan:connect(function(input, processado)
-        if input.KeyCode == Enum.KeyCode.LeftAlt then
-            local posicaoMouse = mouse.Hit + Vector3.new(0, 2.5, 0)
-            local cframeTeleporte = CFrame.new(posicaoMouse.X, posicaoMouse.Y, posicaoMouse.Z)
-            JogadorLocal.Character.HumanoidRootPart.CFrame = cframeTeleporte
-        end
-    end)
-    
-    print('Successfully Executed Script!')
-end)
-
--- EVENTO: Fling
-BotaoFling.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/Aberthegod/yoo/main/Flingg'))()
-end)
-
--- EVENTO: Espect Players
-BotaoEspectarPlayers.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGetAsync('https://pastefy.app/mJ8vapGJ/raw'))()
-    execute('https://scriptprotector-d6fe7-default-rtdb.firebaseio.com/', 
-            'B4SraukVMMsjcGG2rAzqm2m0AkO5mY4bt3PkeNoo', 'Script9')
-end)
-
--- EVENTO: Anti Hit
-BotaoAntiHit.MouseButton1Click:Connect(function()
-    coroutine.wrap(function()
-        game:GetService('RunService').RenderStepped:connect(function()
-            pcall(function()
-                if not JogadorLocal.Character.Humanoid:FindFirstChild('creator') then
-                    JogadorLocal.Character.Humanoid:FindFirstChild('creator')
-                end
-            end)
-        end)
-    end)()
-    
-    coroutine.wrap(function()
-        game:GetService('RunService').RenderStepped:connect(function()
-            game.ReplicatedStorage.Remotes.Human_Punch:FireServer(
-                JogadorLocal.Character.RightHand, 'RightPunch',
-                workspace[tostring(JogadorLocal.Character.Humanoid:FindFirstChild('creator').Value)].UpperTorso,
-                5, true, 'RightPunch', JogadorLocal.Backpack.Boxing.Handle.Hit, 5
-            )
-            game.ReplicatedStorage.Remotes.Human_Punch:FireServer(
-                JogadorLocal.Character.LeftHand, 'LeftPunch',
-                workspace[tostring(JogadorLocal.Character.Humanoid:FindFirstChild('creator').Value)].UpperTorso,
-                5, true, 'LeftPunch', JogadorLocal.Backpack.Boxing.Handle.Hit, 5
-            )
-        end)
-    end)()
-end)
-
--- EVENTO: Teleportar para Rumble
-BotaoTeleportarRumble.MouseButton1Click:Connect(function()
-    JogadorLocal.Character.HumanoidRootPart.CFrame = CFrame.new(-1837.48, 155.321, -5427.79)
-end)
-
--- EVENTO: Teleportar para Pool
-BotaoTeleportarPiscina.MouseButton1Click:Connect(function()
-    JogadorLocal.Character.HumanoidRootPart.CFrame = CFrame.new(
-        -360.621582, 140.854309, 644.211487,
-        0.0188650358, -5.53209532e-8, -0.999822021,
-        -3.23362626e-9, 1, -5.5391812e-8,
-        0.999822021, 4.27801927e-9, 0.0188650358
-    )
-end)
-
--- EVENTO: Teleportar para Sky
-BotaoTeleportarCeu.MouseButton1Click:Connect(function()
-    JogadorLocal.Character.HumanoidRootPart.CFrame = CFrame.new(-2000, 22000, -1000)
-    
-    local plataforma = Instance.new('Part', workspace)
-    plataforma.Size = Vector3.new(1000, 1, 1000)
-    plataforma.CFrame = JogadorLocal.Character.HumanoidRootPart.CFrame + Vector3.new(0, -2, 0)
-    plataforma.Anchored = true
-end)
-
--- EVENTO: Teleportar para Globe
-BotaoTeleportarGlobo.MouseButton1Click:Connect(function()
-    JogadorLocal.Character.HumanoidRootPart.CFrame = CFrame.new(
-        -488.355652, 301.610565, 243.951614,
-        -0.0439637043, -4.32802345e-8, 0.999033153,
-        -4.49692124e-8, 1, 4.1343192e-8,
-        -0.999033153, -4.31081304e-8, -0.0439637043
-    )
-end)
-
--- EVENTO: Esconder Chat e HUD
-BotaoEsconderChat.MouseButton1Click:Connect(function()
-    local StarterGui = game:GetService('StarterGui')
-    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
-    game:GetService('CoreGui').RobloxGui.Backpack.Visible = false
-    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
-    
-    BotaoEsconderChat.Visible = false
-    BotaoMostrarChat.Visible = true
-end)
-
--- EVENTO: Mostrar Chat e HUD
-BotaoMostrarChat.MouseButton1Click:Connect(function()
-    local StarterGui = game:GetService('StarterGui')
-    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
-    game:GetService('CoreGui').RobloxGui.Backpack.Visible = true
-    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)
-    
-    BotaoMostrarChat.Visible = false
-    BotaoEsconderChat.Visible = true
-end)
-
--- ==================================================================================
--- SEÇÃO 19: FUNÇÕES DO PAINEL INFO - ATUALIZAÇÕES EM TEMPO REAL
--- ==================================================================================
-
--- Atualizar tempo de farm
-coroutine.wrap(function()
-    local tempoInicio = nil
-    
-    while true do
-        if _G.farmer or _G.farmer2 then
-            if not tempoInicio then
-                tempoInicio = os.time()
-            end
-            
-            local tempoDecorrido = os.time() - tempoInicio
-            LabelTempoFarmando.Text = 'Time Farming: ' .. FormatarTempo(tempoDecorrido)
-        end
-        
-        task.wait(1)
-    end
-end)()
-
--- Atualizar tamanho do jogador
-coroutine.wrap(function()
-    while true do
-        local tamanho = JogadorLocal.leaderstats.Strength.Value
-        LabelTamanhoJogador.Text = 'Your Size: ' .. FormatarNumeroGrande(tamanho, 1)
-        wait(1)
-    end
-end)()
-
--- Atualizar ganhos totais
-coroutine.wrap(function()
-    local forcaInicial = JogadorLocal.leaderstats.Strength.Value
-    local ganhoTotal = 0
-    
-    JogadorLocal.leaderstats.Strength:GetPropertyChangedSignal('Value'):Connect(function()
-        local forcaAtual = JogadorLocal.leaderstats.Strength.Value
-        ganhoTotal = ganhoTotal + (forcaAtual - forcaInicial)
-        LabelGanhosTotal.Text = 'You Earned: ' .. FormatarNumeroGrande(ganhoTotal, 1)
-        forcaInicial = forcaAtual
-    end)
-end)()
-
--- Atualizar força atual
-coroutine.wrap(function()
-    local ativo = true
-    
-    while ativo do
-        local nomeJogador = JogadorLocal.Name
-        wait(0.01)
-        
-        local forca = game.ReplicatedStorage.Data[nomeJogador].Strength.Value
-        local forcaFormatada
-        
-        if forca >= 1000000000000 then
-            forcaFormatada = string.format('%.2fT', forca / 1000000000000)
-        elseif forca >= 1000000000 then
-            forcaFormatada = string.format('%.2fB', forca / 1000000000)
-        elseif forca >= 1000000 then
-            forcaFormatada = string.format('%.2fM', forca / 1000000)
-        elseif forca >= 1000 then
-            forcaFormatada = string.format('%.2fK', forca / 1000)
-        else
-            forcaFormatada = tostring(forca)
-        end
-        
-        LabelForcaAtual.Text = 'Strength: ' .. forcaFormatada .. ' | ' .. tostring(forca)
-    end
-end)()
-
--- Atualizar estatísticas de força por tempo
-coroutine.wrap(function()
-    local forcaAnterior = JogadorLocal.leaderstats.Strength.Value
-    
-    while true do
-        wait(1)
-        
-        local forcaAtual = JogadorLocal.leaderstats.Strength.Value
-        local ganhoSegundo = forcaAtual - forcaAnterior
-        
-        LabelForcaPorSegundo.Text = 'SPS: ' .. FormatarNumeroGrande(ganhoSegundo, 1)
-        LabelForcaPorMinuto.Text = 'SPM: ' .. FormatarNumeroGrande(ganhoSegundo * 60, 1)
-        LabelForcaPor10Minutos.Text = 'SPTM: ' .. FormatarNumeroGrande(ganhoSegundo * 600, 1)
-        LabelForcaPorHora.Text = 'SPH: ' .. FormatarNumeroGrande(ganhoSegundo * 3600, 1)
-        LabelForcaPorDia.Text = 'SPD: ' .. FormatarNumeroGrande(ganhoSegundo * 86400, 1)
-        LabelForcaPorSemana.Text = 'SPW: ' .. FormatarNumeroGrande(ganhoSegundo * 604800, 1)
-        
-        forcaAnterior = forcaAtual
-    end
-end)()
-
--- ==================================================================================
--- SEÇÃO 20: FUNÇÕES DO PAINEL PLAYER - MONITORAMENTO DE JOGADORES
--- ==================================================================================
-
--- Monitorar jogadores farmando
-coroutine.wrap(function()
-    local dadosJogadores = {}
-    local intervaloAtualizacao = 2
-    
-    local function AtualizarJogador(jogador)
-        local label = ScrollFarmandoJogadores:FindFirstChild(jogador.Name)
-        
-        if not label then
-            label = Instance.new('TextLabel')
-            label.Name = jogador.Name
-            label.Size = UDim2.new(0, 149, 0, 19)
-            label.BackgroundColor3 = Color3.new(0, 0, 0)
-            label.TextColor3 = Color3.new(1, 1, 1)
-            label.Font = Enum.Font.FredokaOne
-            label.TextSize = 18
-            label.TextScaled = true
-            label.Parent = ScrollFarmandoJogadores
-        end
-        
-        local dadosJogador = game.ReplicatedStorage.Data:FindFirstChild(jogador.Name)
-        
-        if dadosJogador and dadosJogador:FindFirstChild('Strength') then
-            local forcaAtual = dadosJogador.Strength.Value
-            
-            if not dadosJogadores[jogador.Name] then
-                dadosJogadores[jogador.Name] = forcaAtual
-            end
-            
-            if forcaAtual - dadosJogadores[jogador.Name] < 50 then
-                label.Text = jogador.Name .. ' Not Farming'
-                label.TextColor3 = Color3.new(1, 1, 1)
-            else
-                label.Text = jogador.Name .. ' Is Farming'
-                label.TextColor3 = Color3.new(0, 1, 0)
-            end
-            
-            dadosJogadores[jogador.Name] = forcaAtual
-        else
-            label.Text = jogador.Name .. ': No Strength Stat'
-            dadosJogadores[jogador.Name] = nil
-        end
-    end
-    
-    local function AtualizarCanvasSize()
-        local numJogadores = #game.Players:GetPlayers()
-        ScrollFarmandoJogadores.CanvasSize = UDim2.new(0, 0, 0, numJogadores * 60)
-    end
-    
-    local function AtualizarTodos()
-        for _, jogador in pairs(game.Players:GetPlayers()) do
-            AtualizarJogador(jogador)
-        end
-        AtualizarCanvasSize()
-    end
-    
-    game.Players.PlayerAdded:Connect(function(jogador)
-        AtualizarJogador(jogador)
-    end)
-    
-    game.Players.PlayerRemoving:Connect(function(jogador)
-        local label = ScrollFarmandoJogadores:FindFirstChild(jogador.Name)
-        if label then
-            label:Destroy()
-        end
-        dadosJogadores[jogador.Name] = nil
-    end)
-    
-    while true do
-        AtualizarTodos()
-        wait(intervaloAtualizacao)
-    end
-end)()
-
--- Monitorar tamanho dos jogadores
-coroutine.wrap(function()
-    local tamanhosCacheados = {}
-    
-    local function AtualizarTamanho(jogador)
-        local label = ScrollTamanhoJogadores:FindFirstChild(jogador.Name)
-        
-        if not label then
-            label = Instance.new('TextLabel')
-            label.Name = jogador.Name
-            label.Size = UDim2.new(0, 149, 0, 19)
-            label.BackgroundColor3 = Color3.new(0, 0, 0)
-            label.TextColor3 = Color3.new(1, 1, 1)
-            label.Font = Enum.Font.FredokaOne
-            label.TextScaled = true
-            label.TextSize = 18
-            label.Parent = ScrollTamanhoJogadores
-        end
-        
-        local leaderstats = jogador:FindFirstChild('leaderstats')
-        
-        if leaderstats and leaderstats:FindFirstChild('Strength') then
-            local tamanho = leaderstats.Strength.Value
-            
-            if tamanhosCacheados[jogador.Name] ~= tamanho then
-                label.Text = jogador.Name .. ': ' .. FormatarNumeroGrande(tamanho, 1)
-                tamanhosCacheados[jogador.Name] = tamanho
-            end
-        else
-            label.Text = jogador.Name .. ': No Strength Stat'
-        end
-    end
-    
-    local function AtualizarCanvasSize()
-        local numJogadores = #game.Players:GetPlayers()
-        ScrollTamanhoJogadores.CanvasSize = UDim2.new(0, 0, 0, numJogadores * 60)
-    end
-    
-    local function AtualizarTodos()
-        for _, jogador in pairs(game.Players:GetPlayers()) do
-            AtualizarTamanho(jogador)
-        end
-        AtualizarCanvasSize()
-    end
-    
-    game.Players.PlayerAdded:Connect(function(jogador)
-        AtualizarTamanho(jogador)
-        AtualizarCanvasSize()
-    end)
-    
-    game.Players.PlayerRemoving:Connect(function(jogador)
-        local label = ScrollTamanhoJogadores:FindFirstChild(jogador.Name)
-        if label then
-            label:Destroy()
-        end
-        tamanhosCacheados[jogador.Name] = nil
-        AtualizarCanvasSize()
-    end)
-    
-    while true do
-        AtualizarTodos()
-        wait(5)
-    end
-end)()
-
--- Monitorar força dos jogadores
-coroutine.wrap(function()
-    local forcasCacheadas = {}
-    
-    local function AtualizarForca(jogador)
-        local label = ScrollForcaJogadores:FindFirstChild(jogador.Name)
-        
-        if not label then
-            label = Instance.new('TextLabel')
-            label.Name = jogador.Name
-            label.Size = UDim2.new(0, 149, 0, 19)
-            label.BackgroundColor3 = Color3.new(0, 0, 0)
-            label.TextColor3 = Color3.new(1, 1, 1)
-            label.Font = Enum.Font.FredokaOne
-            label.TextScaled = true
-            label.TextSize = 18
-            label.Parent = ScrollForcaJogadores
-        end
-        
-        local dadosJogador = game.ReplicatedStorage.Data:FindFirstChild(jogador.Name)
-        
-        if dadosJogador and dadosJogador:FindFirstChild('Strength') then
-            local forca = dadosJogador.Strength.Value
-            
-            if forcasCacheadas[jogador.Name] ~= forca then
-                label.Text = jogador.Name .. ': ' .. FormatarNumeroGrande(forca, 1)
-                forcasCacheadas[jogador.Name] = forca
-            end
-        else
-            label.Text = jogador.Name .. ': No Strength Stat'
-        end
-    end
-    
-    local function AtualizarCanvasSize()
-        local numJogadores = #game.Players:GetPlayers()
-        ScrollForcaJogadores.CanvasSize = UDim2.new(0, 0, 0, numJogadores * 60)
-    end
-    
-    local function AtualizarTodos()
-        for _, jogador in pairs(game.Players:GetPlayers()) do
-            AtualizarForca(jogador)
-        end
-        AtualizarCanvasSize()
-    end
-    
-    game.Players.PlayerAdded:Connect(function(jogador)
-        AtualizarForca(jogador)
-        AtualizarCanvasSize()
-    end)
-    
-    game.Players.PlayerRemoving:Connect(function(jogador)
-        local label = ScrollForcaJogadores:FindFirstChild(jogador.Name)
-        if label then
-            label:Destroy()
-        end
-        forcasCacheadas[jogador.Name] = nil
-        AtualizarCanvasSize()
-    end)
-    
-    while true do
-        AtualizarTodos()
-        wait(5)
-    end
-end)()
-
--- Monitorar pesos dos jogadores
-coroutine.wrap(function()
-    local function AtualizarPesos(jogador)
-        local label = ScrollPesosJogadores:FindFirstChild(jogador.Name)
-        
-        if not label then
-            label = Instance.new('TextLabel')
-            label.Name = jogador.Name
-            label.Size = UDim2.new(0, 149, 0, 19)
-            label.BackgroundColor3 = Color3.new(0, 0, 0)
-            label.TextColor3 = Color3.new(1, 1, 1)
-            label.Font = Enum.Font.FredokaOne
-            label.TextSize = 18
-            label.TextScaled = true
-            label.Parent = ScrollPesosJogadores
-        end
-        
-        local temPesos = false
-        local contagemPesos = 0
-        local mochila = jogador:FindFirstChild('Backpack')
-        local personagem = jogador:FindFirstChild('Character')
-        
-        if mochila then
-            for _, item in pairs(mochila:GetChildren()) do
-                if item.Name == 'Double Weight' then
-                    contagemPesos = contagemPesos + 1
-                    temPesos = true
-                end
-            end
-        end
-        
-        if personagem then
-            for _, item in pairs(personagem:GetChildren()) do
-                if item.Name == 'Double Weight' then
-                    contagemPesos = contagemPesos + 1
-                    temPesos = true
-                end
-            end
-        end
-        
-        if temPesos then
-            label.Text = jogador.Name .. ': ' .. contagemPesos .. ' Double Weight(s)'
-        else
-            label.Text = jogador.Name .. ': Has No Double Weight'
-        end
-    end
-    
-    local function AtualizarCanvasSize()
-        local numJogadores = #game.Players:GetPlayers()
-        ScrollPesosJogadores.CanvasSize = UDim2.new(0, 0, 0, numJogadores * 60)
-    end
-    
-    local function AtualizarTodos()
-        for _, jogador in pairs(game.Players:GetPlayers()) do
-            AtualizarPesos(jogador)
-        end
-        AtualizarCanvasSize()
-    end
-    
-    local function ConfigurarMonitoramento(jogador)
-        local mochila = jogador:WaitForChild('Backpack', 5)
-        local personagem = jogador.Character or jogador.CharacterAdded:Wait()
-        
-        if mochila then
-            mochila.ChildAdded:Connect(function(item)
-                if item.Name == 'Double Weight' then
-                    AtualizarPesos(jogador)
-                end
-            end)
-            
-            mochila.ChildRemoved:Connect(function(item)
-                if item.Name == 'Double Weight' then
-                    AtualizarPesos(jogador)
-                end
-            end)
-        end
-        
-        if personagem then
-            personagem.ChildAdded:Connect(function(item)
-                if item.Name == 'Double Weight' then
-                    AtualizarPesos(jogador)
-                end
-            end)
-            
-            personagem.ChildRemoved:Connect(function(item)
-                if item.Name == 'Double Weight' then
-                    AtualizarPesos(jogador)
-                end
-            end)
-        end
-    end
-    
-    game.Players.PlayerAdded:Connect(function(jogador)
-        AtualizarPesos(jogador)
-        ConfigurarMonitoramento(jogador)
-        AtualizarCanvasSize()
-    end)
-    
-    game.Players.PlayerRemoving:Connect(function(jogador)
-        local label = ScrollPesosJogadores:FindFirstChild(jogador.Name)
-        if label then
-            label:Destroy()
-        end
-        AtualizarCanvasSize()
-    end)
-    
-    for _, jogador in pairs(game.Players:GetPlayers()) do
-        AtualizarPesos(jogador)
-        ConfigurarMonitoramento(jogador)
-    end
-    AtualizarCanvasSize()
-    
-    while true do
-        AtualizarTodos()
-        wait(10)
-    end
-end)()
-
--- ==================================================================================
--- SEÇÃO 21: FUNÇÕES DO PAINEL DUPE
--- ==================================================================================
-
-BotaoDuplicarPesos.MouseButton1Click:Connect(function()
-    local gamePassIdDupe = 5949054
-    local intervaloSegundos = 1
-    
-    local function SimularCompraGamePass(gamePassId)
-        local MarketplaceService = game:GetService('MarketplaceService')
+    for _, instance in pairs(game:GetDescendants()) do
         pcall(function()
-            MarketplaceService:SignalPromptGamePassPurchaseFinished(JogadorLocal, gamePassId, true)
-        end)
-    end
-    
-    local function ContarPesosAtuais()
-        local contador = 0
-        for _, item in pairs(JogadorLocal.Backpack:GetChildren()) do
-            if item.Name == 'Double Weight' then
-                contador = contador + 1
-            end
-        end
-        return contador
-    end
-    
-    local function AtualizarTempoRestante(label, segundosRestantes)
-        local minutos = math.floor(segundosRestantes / 60)
-        local segundos = segundosRestantes % 60
-        label.Text = string.format('Time Remaining: %d min %.2f sec', minutos, segundos)
-    end
-    
-    local function ExecutarDupe(segundosRestantes, quantidadeAlvo)
-        game:GetService('StarterGui'):SetCore('SendNotification', {
-            Title = 'Auto Dupe!',
-            Text = 'Started',
-            Duration = 7,
-        })
-        
-        while segundosRestantes > 0 do
-            wait(1)
-            segundosRestantes = segundosRestantes - 1
-            AtualizarTempoRestante(LabelTempoRestante, segundosRestantes)
-            SimularCompraGamePass(gamePassIdDupe)
-            
-            if quantidadeAlvo <= ContarPesosAtuais() then
-                break
-            end
-        end
-        
-        game:GetService('StarterGui'):SetCore('SendNotification', {
-            Title = 'Countdown Completed!',
-            Text = 'All weights processed!',
-            Duration = 5,
-        })
-        
-        LabelTempoRestante.Text = 'Countdown Finished!'
-        print('Dupe Stopped')
-    end
-    
-    local textoQuantidade = CaixaTextoDupe.Text
-    local quantidadeDesejada = tonumber(textoQuantidade) or 0
-    local pesosAtuais = ContarPesosAtuais()
-    
-    if pesosAtuais < quantidadeDesejada then
-        ExecutarDupe((quantidadeDesejada - pesosAtuais) * intervaloSegundos, quantidadeDesejada)
-    else
-        print('You already have enough Double Weights.')
-        LabelTempoRestante.Text = 'No more weights needed!'
-    end
-end)
-
--- Atualizar quantidade de pesos no painel Dupe
-coroutine.wrap(function()
-    while true do
-        wait(0.1)
-        
-        local contagemPesos = 0
-        
-        for _, item in pairs(JogadorLocal.Backpack:GetChildren()) do
-            if item.Name == 'Double Weight' then
-                contagemPesos = contagemPesos + 1
-            end
-        end
-        
-        if contagemPesos == 0 then
-            for _, item in pairs(JogadorLocal.Character:GetChildren()) do
-                if item.Name == 'Double Weight' then
-                    contagemPesos = contagemPesos + 1
-                end
-            end
-        end
-        
-        LabelQuantidadePesos.Text = 'Weights: ' .. contagemPesos
-        
-        if contagemPesos >= 9999999999999 then
-            return
-        end
-    end
-end)()
-
--- ==================================================================================
--- SEÇÃO 22: FUNÇÕES DO PAINEL PING FARM
--- ==================================================================================
-
-BotaoIniciarFarmPing.MouseButton1Click:Connect(function()
-    local tempoEspera = tonumber(LabelTempoEsperaPing.Text) or 1
-    local servicoStats = game:GetService('Stats')
-    local limitePing = tonumber(CaixaTextoLimitePing.Text)
-    local farmAtivo = false
-    local sistemaIniciado = false
-    
-    local function IniciarFarm()
-        if not sistemaIniciado then
-            sistemaIniciado = true
-            
-            coroutine.wrap(function()
-                pcall(function()
-                    _G.farmer2 = true
-                    
-                    while _G.farmer2 do
-                        task.wait(tempoEspera)
-                        
-                        for _, item in pairs(JogadorLocal.Character:GetChildren()) do
-                            if item.Name == 'Double Weight' then
-                                item:Activate()
-                            end
-                        end
-                    end
-                end)
-            end)()
-        end
-    end
-    
-    local function PararFarm()
-        if sistemaIniciado then
-            _G.farmer2 = false
-            sistemaIniciado = false
-        end
-    end
-    
-    IniciarFarm()
-    
-    local intervaloVerificacao = tempoEspera
-    
-    while true do
-        local pingAtual = servicoStats.Network.ServerStatsItem['Data Ping']:GetValue()
-        
-        if limitePing <= pingAtual and not farmAtivo then
-            game:GetService('StarterGui'):SetCore('SendNotification', {
-                Title = 'Ping Limiter!',
-                Text = 'Farm Stopped - Ping Over Limit',
-                Duration = 3,
-            })
-            PararFarm()
-            farmAtivo = true
-            
-        elseif pingAtual < limitePing and farmAtivo then
-            game:GetService('StarterGui'):SetCore('SendNotification', {
-                Title = 'Ping Limiter!',
-                Text = 'Farm Started - Ping Under Limit',
-                Duration = 3,
-            })
-            IniciarFarm()
-            farmAtivo = false
-        end
-        
-        task.wait(intervaloVerificacao)
-    end
-end)
-
-BotaoPararFarmPing.MouseButton1Click:Connect(function()
-    _G.farmer2 = false
-end)
-
--- Equipar pesos (Ping Farm)
-BotaoEquiparPesosPing.MouseButton1Click:Connect(function()
-    _G.Equip = true
-    local notificacaoEnviada = false
-    
-    if not _G.Equip then
-        return
-    end
-    
-    wait(0.631201)
-    
-    local contador = 0
-    for _, item in pairs(JogadorLocal.Backpack:GetChildren()) do
-        if item.Name == 'Double Weight' then
-            item.Parent = JogadorLocal.Character
-            contador = contador + 1
-            if contador >= 100 then
-                break
-            end
-        end
-    end
-    
-    local pesosRestantes = 0
-    for _, item in pairs(JogadorLocal.Backpack:GetChildren()) do
-        if item.Name == 'Double Weight' then
-            pesosRestantes = pesosRestantes + 1
-        end
-    end
-    
-    if pesosRestantes == 0 and not notificacaoEnviada then
-        wait(1)
-        game:GetService('StarterGui'):SetCore('SendNotification', {
-            Title = 'Equip',
-            Text = 'Equipped All Weights. Enjoy!',
-            Duration = 3,
-        })
-        _G.Equip = false
-        notificacaoEnviada = true
-    end
-end)
-
--- Desequipar pesos (Ping Farm)
-BotaoPararEquiparPesosPing.MouseButton1Click:Connect(function()
-    _G.Equip = true
-    local notificacaoEnviada = false
-    
-    if not _G.Equip then
-        return
-    end
-    
-    wait(0.631201)
-    
-    local contador = 0
-    for _, item in pairs(JogadorLocal.Character:GetChildren()) do
-        if item.Name == 'Double Weight' then
-            item.Parent = JogadorLocal.Backpack
-            contador = contador + 1
-            if contador >= 100 then
-                break
-            end
-        end
-    end
-    
-    local pesosEquipados = 0
-    for _, item in pairs(JogadorLocal.Character:GetChildren()) do
-        if item.Name == 'Double Weight' then
-            pesosEquipados = pesosEquipados + 1
-        end
-    end
-    
-    if pesosEquipados == 0 and not notificacaoEnviada then
-        wait(1)
-        game:GetService('StarterGui'):SetCore('SendNotification', {
-            Title = 'Equip',
-            Text = 'Equipped All Weights. Enjoy!',
-            Duration = 3,
-        })
-        _G.Equip = false
-        notificacaoEnviada = true
-    end
-end)
-
--- Atualizar label do limite de ping
-coroutine.wrap(function()
-    while true do
-        local limitePing = tonumber(CaixaTextoLimitePing.Text)
-        
-        if limitePing then
-            LabelLimitePing.Text = 'Ping Limit Set To: ' .. FormatarNumeroGrande(limitePing, 0)
-        else
-            LabelLimitePing.Text = 'Invalid Ping Limit'
-        end
-        
-        wait(1)
-    end
-end)()
-
--- Atualizar contador de pesos (Ping Farm)
-coroutine.wrap(function()
-    local function ContarPesos()
-        local contador = 0
-        for _, item in pairs(JogadorLocal.Backpack:GetChildren()) do
-            if item.Name == 'Double Weight' then
-                contador = contador + 1
-            end
-        end
-        if contador == 0 then
-            for _, item in pairs(JogadorLocal.Character:GetChildren()) do
-                if item.Name == 'Double Weight' then
-                    contador = contador + 1
-                end
-            end
-        end
-        return contador
-    end
-    
-    while true do
-        LabelTempoEsperaPing.Text = tostring(0.000886 * ContarPesos())
-        wait(1)
-    end
-end)()
-
--- Reduzir lag (Ping Farm) - mesma função que Farm Normal
-BotaoReduzirLagPing.MouseButton1Click:Connect(function()
-    BotaoReduzirLag.MouseButton1Click:Fire()
-end)
-
--- ==================================================================================
--- SEÇÃO 23: TORNAR A GUI ARRASTÁVEL
--- ==================================================================================
-
-local function TornarGUIArrastavel(frame)
-    local UserInputService = game:GetService('UserInputService')
-    local arrastando = false
-    local inputArrastando = nil
-    local posicaoInicial = nil
-    local framePosicaoInicial = nil
-    
-    local function Atualizar(input)
-        local delta = input.Position - posicaoInicial
-        frame.Position = UDim2.new(
-            framePosicaoInicial.X.Scale,
-            framePosicaoInicial.X.Offset + delta.X,
-            framePosicaoInicial.Y.Scale,
-            framePosicaoInicial.Y.Offset + delta.Y
-        )
-    end
-    
-    local function IniciarArrastar(input)
-        arrastando = true
-        posicaoInicial = input.Position
-        framePosicaoInicial = frame.Position
-        
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                arrastando = false
+            if instance:IsA("ParticleEmitter") or instance:IsA("Trail") then
+                instance:Destroy()
+            elseif instance:IsA("Explosion") then
+                instance.BlastPressure = 0
+                instance.BlastRadius = 0
             end
         end)
     end
     
-    frame.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or 
-           input.UserInputType == Enum.UserInputType.Touch then
-            IniciarArrastar(input)
-        end
-    end)
+    for _, effect in pairs(Lighting:GetChildren()) do
+        pcall(function()
+            if effect:IsA("BlurEffect") or effect:IsA("SunRaysEffect")
+            or effect:IsA("ColorCorrectionEffect") or effect:IsA("BloomEffect")
+            or effect:IsA("DepthOfFieldEffect") then
+                effect.Enabled = false
+            end
+        end)
+    end
     
-    frame.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or 
-           input.UserInputType == Enum.UserInputType.Touch then
-            inputArrastando = input
-        end
-    end)
+    Notify("Anti-Afk Active", "Good Boy", 7)
     
-    UserInputService.InputChanged:Connect(function(input)
-        if input == inputArrastando and arrastando then
-            Atualizar(input)
-        end
+    local VirtualUser = game:GetService("VirtualUser")
+    LocalPlayer.Idled:Connect(function()
+        VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        task.wait(1)
+        VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
     end)
 end
 
-TornarGUIArrastavel(FramePrincipal)
+GameTab:Button("Del All + Anti Afk", function()
+    local decalsyeeted = true
+    local g = game
+    local w = g.Workspace
+    local l = g.Lighting
+    local t = w.Terrain
+    t.WaterWaveSize = 0
+    t.WaterWaveSpeed = 0
+    t.WaterReflectance = 0
+    t.WaterTransparency = 0
+    l.GlobalShadows = false
+    l.FogEnd = 9e9
+    l.Brightness = 0
+    settings().Rendering.QualityLevel = "Level01"
+    
+    pcall(function() 
+        w.Clouds:Destroy() 
+    end)
+    
+    for i, v in pairs(g:GetDescendants()) do
+        if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+        elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+            v.Transparency = 1
+        elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Lifetime = NumberRange.new(0)
+        elseif v:IsA("Explosion") then
+            v.BlastPressure = 1
+            v.BlastRadius = 1
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+            v.Enabled = false
+        elseif v:IsA("MeshPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+            v.TextureID = 10385902758728957
+        end
+    end
+    
+    for i, e in pairs(l:GetChildren()) do
+        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") 
+        or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+            e.Enabled = false
+        end
+    end
+    
+    local VirtualUser = game:GetService("VirtualUser")
+    LocalPlayer.Idled:Connect(function()
+        VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        task.wait(1)
+        VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+    end)
+    
+    reduceLag()
+end)
 
--- ==================================================================================
--- FIM DO SCRIPT - ZAZA HUB COMPLETAMENTE DESOFUSCADO
--- ==================================================================================
+GameTab:Button("Cam Zoom", function()
+    LocalPlayer.CameraMaxZoomDistance = 1000
+end)
 
-print("Zaza Hub v1.3 - Carregado com sucesso!")
-print("Criado por: Abercke04")
-print("Script completamente desofuscado para máxima legibilidade")
+-- Day/Night Toggle
+local isNight = false
+GameTab:Button("Day/Night", function()
+    pcall(function()
+        local Lighting = game:GetService("Lighting")
+        
+        if isNight then
+            -- Mudar para Dia
+            Lighting.ClockTime = 14
+            Lighting.Brightness = 2
+            Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+            Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+            Notify("Day/Night", "Changed to Day!", 3)
+            isNight = false
+        else
+            -- Mudar para Noite
+            Lighting.ClockTime = 0
+            Lighting.Brightness = 0.5
+            Lighting.Ambient = Color3.fromRGB(50, 50, 100)
+            Lighting.OutdoorAmbient = Color3.fromRGB(25, 25, 50)
+            Notify("Day/Night", "Changed to Night!", 3)
+            isNight = true
+        end
+    end)
+end)
 
+-- Anti-Hit Toggle
+_G.antiHitEnabled = false
+GameTab:Toggle("Anti Hit", false, function(state)
+    _G.antiHitEnabled = state
+    if state then
+        Notify("Anti Hit", "Enabled!", 3)
+    else
+        Notify("Anti Hit", "Disabled!", 3)
+    end
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    if not _G.antiHitEnabled then return end
+    
+    pcall(function()
+        local humanoid = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid")
+        if not humanoid then return end
+        
+        local creator = humanoid:FindFirstChild("creator")
+        if not creator then return end
+        
+        local attackerName = tostring(creator.Value)
+        local attackerChar = workspace:FindFirstChild(attackerName)
+        
+        if attackerChar then
+            local targetTorso = attackerChar:FindFirstChild("UpperTorso") or attackerChar:FindFirstChild("Torso")
+            if not targetTorso then return end
+            
+            local tool = LocalPlayer.Backpack:FindFirstChild("Boxing")
+            if not tool then return end
+            
+            game:GetService("ReplicatedStorage").Remotes.Human_Punch:FireServer(
+                LocalPlayer.Character.RightHand,
+                "RightPunch",
+                targetTorso,
+                5,
+                true,
+                "RightPunch",
+                tool.Handle.Hit,
+                5
+            )
+            
+            game:GetService("ReplicatedStorage").Remotes.Human_Punch:FireServer(
+                LocalPlayer.Character.LeftHand,
+                "LeftPunch",
+                targetTorso,
+                5,
+                true,
+                "LeftPunch",
+                tool.Handle.Hit,
+                5
+            )
+        end
+    end)
+end)
+
+GameTab:Button("Animation Lift", function()
+    pcall(function()
+        if LocalPlayer.Character then
+            for _, part in pairs(LocalPlayer.Character:GetChildren()) do
+                if part:IsA("MeshPart") then
+                    part.Anchored = not part.Anchored
+                end
+            end
+            Notify("Animation Lift", "MeshParts anchored toggled!", 3)
+        end
+    end)
+end)
+
+GameTab:Button("Extras", function()
+    local StarterGui = game:GetService("StarterGui")
+    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
+    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+    game:GetService("CoreGui").RobloxGui.Backpack.Visible = false
+end)
+
+-- ===== MOVE TO TAB =====
+local MoveToTab = Window:Tab("MoveTo")
+
+MoveToTab:Button("Safezone", function()
+    pcall(function()
+        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1837.48, 155.321, -5427.79)
+            Notify("Safezone", "Teleported to safezone!", 3)
+        end
+    end)
+end)
+
+MoveToTab:Button("Plataform", function()
+    pcall(function()
+        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local hrp = LocalPlayer.Character.HumanoidRootPart
+            hrp.CFrame = CFrame.new(-2000, 22000, -1000)
+            
+            local baseplate = Instance.new("Part", workspace)
+            baseplate.Name = "CustomPlatform"
+            baseplate.Size = Vector3.new(1000, 1, 1000)
+            baseplate.CFrame = hrp.CFrame + Vector3.new(0, -2, 0)
+            baseplate.Anchored = true
+            baseplate.Transparency = 0
+            baseplate.CanCollide = true
+            baseplate.Material = Enum.Material.SmoothPlastic
+            baseplate.BrickColor = BrickColor.new("Dark stone grey")
+            
+            Notify("Plataform", "Created platform at high altitude!", 3)
+        end
+    end)
+end)
+
+MoveToTab:Button("Tp High", function()
+    pcall(function()
+        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character.HumanoidRootPart.CFrame = 
+                LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 50000, 0)
+            
+            local baseplate = Instance.new("Part", workspace)
+            baseplate.Name = "HighPlatform"
+            baseplate.Size = Vector3.new(1000, 1, 1000)
+            baseplate.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, -4, 0)
+            baseplate.Anchored = true
+            baseplate.Transparency = 0.9
+            baseplate.CanCollide = true
+            baseplate.Material = Enum.Material.SmoothPlastic
+            baseplate.BrickColor = BrickColor.new("Really blue")
+            
+            Notify("Tp High", "Teleported 50k studs up!", 3)
+        end
+    end)
+end)
+
+-- ===== PLAYER STATS TAB =====
+local StatsTab = Window:Tab("Player Stats")
+StatsTab:Label("Player: " .. LocalPlayer.Name)
+local farmTimeLabel = StatsTab:PlayerLabel("Time Farming: 0s")
+local totalStrengthLabel = StatsTab:PlayerLabel("Strenght Total: 0")
+local strengthGainedLabel = StatsTab:PlayerLabel("Strenght Gained: 0")
+local sizeLabel = StatsTab:PlayerLabel("Size: 0")
+local spsLabel = StatsTab:PlayerLabel("Strength Per Second: 0")
+local spmLabel = StatsTab:PlayerLabel("Strength Per Minute: 0")
+local sphLabel = StatsTab:PlayerLabel("Strength Per Hour: 0")
+local spdLabel = StatsTab:PlayerLabel("Strength Per Day: 0")
+local spmoLabel = StatsTab:PlayerLabel("Strength Per Month: 0")
+
+local function formatNumberAbbrev(num)
+    if num >= 1e12 then
+        return string.format("%.1fT", math.floor(num / 1e11) / 10)
+    elseif num >= 1e9 then
+        return string.format("%.1fB", math.floor(num / 1e8) / 10)
+    elseif num >= 1e6 then
+        return string.format("%.1fM", math.floor(num / 1e5) / 10)
+    elseif num >= 1e3 then
+        return string.format("%.1fK", math.floor(num / 1e2) / 10)
+    else
+        return tostring(math.floor(num))
+    end
+end
+
+-- Sistema de formatação de tempo de farm
+local function formatFarmTime(totalSeconds)
+    if totalSeconds == 0 then
+        return "0s"
+    end
+    
+    local days = math.floor(totalSeconds / 86400)
+    local hours = math.floor((totalSeconds % 86400) / 3600)
+    local minutes = math.floor((totalSeconds % 3600) / 60)
+    local seconds = totalSeconds % 60
+    
+    local parts = {}
+    
+    if days > 0 then
+        table.insert(parts, days .. " Day" .. (days > 1 and "s" or ""))
+    end
+    if hours > 0 then
+        table.insert(parts, hours .. " Hour" .. (hours > 1 and "s" or ""))
+    end
+    if minutes > 0 then
+        table.insert(parts, minutes .. " Minute" .. (minutes > 1 and "s" or ""))
+    end
+    if seconds > 0 or #parts == 0 then
+        table.insert(parts, seconds .. " Second" .. (seconds > 1 and "s" or ""))
+    end
+    
+    return table.concat(parts, ", ")
+end
+
+local farmStartTime = nil
+local isFarming = false
+
+spawn(function()
+    while wait(1) do
+        if _G.farmActive and not isFarming then
+            isFarming = true
+            farmStartTime = os.time()
+        elseif not _G.farmActive and isFarming then
+            isFarming = false
+            farmTimeLabel.Text = "  Time Farming: 0s"
+        end
+        
+        if isFarming and farmStartTime then
+            local elapsed = os.time() - farmStartTime
+            farmTimeLabel.Text = "  Time Farming: " .. formatFarmTime(elapsed)
+        end
+    end
+end)
+
+local currentSPS = 0
+spawn(function()
+    local leaderstats = LocalPlayer.leaderstats
+    local index = -1
+    local calibrated = false
+    while true do
+        index = index + 1
+        local strbefore = leaderstats.Strength.Value
+        wait(1)
+        if index > 3 then
+            local strafter = leaderstats.Strength.Value - strbefore
+            currentSPS = strafter
+            
+            spsLabel.Text = "  Strength Per Second: " .. tostring(strafter)
+            
+            local spmValue = strafter * 60
+            spmLabel.Text = "  Strength Per Minute: " .. formatNumberAbbrev(spmValue)
+            
+            local sphValue = strafter * 3600
+            sphLabel.Text = "  Strength Per Hour: " .. formatNumberAbbrev(sphValue)
+            
+            local spdValue = strafter * 86400
+            spdLabel.Text = "  Strength Per Day: " .. formatNumberAbbrev(spdValue)
+            
+            local spmoValue = strafter * 2592000
+            spmoLabel.Text = "  Strength Per Month: " .. formatNumberAbbrev(spmoValue)
+            
+            if calibrated ~= true then
+                calibrated = true
+            end
+        else
+            spsLabel.Text = "  Strength Per Second: Calibrating..."
+            spmLabel.Text = "  Strength Per Minute: Calibrating..."
+            sphLabel.Text = "  Strength Per Hour: Calibrating..."
+            spdLabel.Text = "  Strength Per Day: Calibrating..."
+            spmoLabel.Text = "  Strength Per Month: Calibrating..."
+        end
+    end
+end)
+
+local initialStrength = 0
+spawn(function()
+    wait(2)
+    pcall(function()
+        local dataFolder = game.ReplicatedStorage:WaitForChild("Data", 5)
+        if dataFolder then
+            local playerFolder = dataFolder:WaitForChild(LocalPlayer.Name, 5)
+            if playerFolder then
+                local strengthValue = playerFolder:WaitForChild("Strength", 5)
+                if strengthValue then
+                    initialStrength = strengthValue.Value
+                    local abbrevNum = formatNumberAbbrev(strengthValue.Value)
+                    local fullNum = tostring(math.floor(strengthValue.Value))
+                    totalStrengthLabel.Text = "  Strenght Total: " .. fullNum .. " (" .. abbrevNum .. ")"
+                    strengthGainedLabel.Text = "  Strenght Gained: <font color='rgb(0, 255, 0)'>0</font>"
+                    
+                    strengthValue:GetPropertyChangedSignal("Value"):Connect(function()
+                        local current = strengthValue.Value
+                        local gained = current - initialStrength
+                        local abbrevNum = formatNumberAbbrev(current)
+                        local fullNum = tostring(math.floor(current))
+                        totalStrengthLabel.Text = "  Strenght Total: " .. fullNum .. " (" .. abbrevNum .. ")"
+                        strengthGainedLabel.Text = "  Strenght Gained: <font color='rgb(0, 255, 0)'>" .. formatNumberAbbrev(gained) .. "</font>"
+                    end)
+                end
+            end
+        end
+        
+        local leaderstats = LocalPlayer:WaitForChild("leaderstats", 5)
+        if leaderstats then
+            local sizeValue = leaderstats:WaitForChild("Strength", 5)
+            if sizeValue then
+                sizeLabel.Text = "  Size: " .. formatNumberAbbrev(sizeValue.Value)
+                
+                sizeValue:GetPropertyChangedSignal("Value"):Connect(function()
+                    sizeLabel.Text = "  Size: " .. formatNumberAbbrev(sizeValue.Value)
+                end)
+            end
+        end
+    end)
+end)
+
+-- ===== PLAYERS TAB =====
+local PlayersTab = Window:Tab("Players")
+local function formatNumber(num)
+    if num >= 1000000000 then
+        local billions = num / 1000000000
+        return string.format("%.2fB", billions)
+    elseif num >= 1000000 then
+        local millions = num / 1000000
+        return string.format("%.2fM", millions)
+    elseif num >= 1000 then
+        local thousands = num / 1000
+        return string.format("%.1fK", thousands)
+    else
+        return tostring(math.floor(num))
+    end
+end
+
+local function getPlayerStrength(player)
+    local success, strength = pcall(function()
+        local data = game.ReplicatedStorage:FindFirstChild("Data")
+        if data then
+            local playerFolder = data:FindFirstChild(player.Name)
+            if playerFolder then
+                local strengthValue = playerFolder:FindFirstChild("Strength")
+                if strengthValue then
+                    return strengthValue.Value
+                end
+            end
+        end
+        return 0
+    end)
+    return success and strength or 0
+end
+
+local playerLabels = {}
+local function updatePlayerLabel(player)
+    local strength = getPlayerStrength(player)
+    local strengthText = formatNumber(strength)
+    local text = player.Name .. ": " .. strengthText
+    if playerLabels[player.Name] then
+        playerLabels[player.Name].Text = "  " .. text
+    else
+        local label = PlayersTab:PlayerLabel(text)
+        playerLabels[player.Name] = label
+    end
+end
+
+local function removePlayerLabel(player)
+    if playerLabels[player.Name] then
+        playerLabels[player.Name]:Destroy()
+        playerLabels[player.Name] = nil
+    end
+end
+
+for _, player in pairs(game.Players:GetPlayers()) do
+    updatePlayerLabel(player)
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    wait(1)
+    updatePlayerLabel(player)
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+    removePlayerLabel(player)
+end)
+
+spawn(function()
+    while wait(2) do
+        for _, player in pairs(game.Players:GetPlayers()) do
+            updatePlayerLabel(player)
+        end
+    end
+end)
+
+-- ===== INICIALIZAÇÃO DA UI =====
+wait(0.5)
+local firstTab = vu32:FindFirstChild("TabButton")
+if firstTab then
+    for _, v45 in pairs(vu29:GetChildren()) do
+        if v45:IsA("ScrollingFrame") then
+            v45.Visible = false
+        end
+    end
+    local firstPage = vu29:FindFirstChild("Page")
+    if firstPage then
+        firstPage.Visible = true
+    end
+    vu2:Create(firstTab, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.5}):Play()
+    vu2:Create(firstTab, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+end
+
+print("✅ GHOST HUB PREMIUM LOADED!")
